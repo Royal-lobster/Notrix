@@ -1,13 +1,20 @@
+.container_wraper {
+  margin: 0 auto;
+  max-width: 800px;
+}
 .container {
   max-width: 800px;
-  margin: 0 auto;
+  margin: 0 30px;
   margin-top: 10vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 .titleBox,
 .notesBox {
-  background-color: #222;
-  padding: 10px;
+  display: block;
   width: 100%;
+  padding: 10px;
   margin: 10px 0;
   border: none;
   color: #fff;
@@ -18,13 +25,15 @@
   outline: none;
 }
 .titleBox {
+  background-color: transparent;
   font-size: 45px;
   font-family: Palatino, Georgia, serif;
   font-weight: 900;
   caret-color: rgb(212, 253, 26);
-  border-bottom: 4px solid rgb(54, 54, 54);
 }
 .notesBox {
+  background-color: transparent;
+  border-radius: 8px;
   font-size: 20px;
   line-height: 1.5;
   font-weight: 100;
