@@ -1,19 +1,43 @@
-import React, { useState } from "react";
-import Notes from "./notes";
-import nextId from "react-id-generator";
-export default function notesList() {
-  if (localStorage.getItem("ids_array") == null)
-    localStorage.setItem("ids_array", []);
-  const [ids, setIds] = useState(localStorage.getItem("ids_array"));
-  let createNotes = () => {
-    newId = nextId();
-    setIds(ids.push(newId));
-    localStorage.setItem("ids_array", ids);
-  };
+import React, { useState, useEffect } from "react";
+import NotesListItem from "./NotesListItem";
+import styles from "./NotesList.module.css";
+import noNotesFoundImg from "../assets/noNotesFound.svg";
+
+export default function NotesList() {
+  // initalise ids array state
+  const [ids, setIds] = useState([]);
+  const [emptyContents, setEmptyContents] = useState(true);
+
+  // fetch ids array from storage
+  useEffect(() => {
+    const stored_ids_array = JSON.parse(localStorage.getItem("ids_array"));
+    if (stored_ids_array != null) setIds(stored_ids_array);
+  }, []);
+
   return (
-    <div>
-      {ids ? ids.map((id) => <Notes id={id} />) : <div>No Notes detected</div>}
-      <button onClick={createNotes}></button>
+    <div className={styles.container}>
+      {ids.length || !emptyContents ? (
+        [...new Set(ids)].map((id) => {
+          if (
+            localStorage.getItem(`Title_${id}`) &&
+            localStorage.getItem(`NotesContent_${id}`) !== ""
+          ) {
+            console.log(emptyContents);
+            setEmptyContents(false);
+            return <NotesListItem id={id} />;
+          }
+        })
+      ) : (
+        <div className={styles.NoNotesDetectedContainer}>
+          <img
+            src={noNotesFoundImg}
+            className="styles.noNotesFoundImg"
+            width="300px"
+          />
+          <h1>No Notes detected</h1>
+          <p>Click on + button at top right corner</p>
+        </div>
+      )}
     </div>
   );
 }

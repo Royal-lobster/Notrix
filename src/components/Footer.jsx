@@ -4,7 +4,11 @@ function Footer() {
   return (
     <div className={styles.container}>
       <h4>
-        Made by <a href="https://srujangurram.me">Srujan Gurram</a> with Reactjs
+        Made by{" "}
+        <a className={styles.Footerlink} href="https://srujangurram.me">
+          Srujan Gurram
+        </a>{" "}
+        with Reactjs
       </h4>
     </div>
   );

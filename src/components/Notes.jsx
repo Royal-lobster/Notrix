@@ -1,7 +1,11 @@
 import React, { useEffect, useState } from "react";
 import TextareaAutosize from "react-textarea-autosize";
 import styles from "./Notes.module.css";
-export default function Notes({ id }) {
+import { useParams } from "react-router";
+
+export default function Notes() {
+  let { id } = useParams();
+
   // retriving storedTitle and storedNotesContent from localstorage
   let storedTitle,
     storedNotesContent = "";
@@ -10,7 +14,7 @@ export default function Notes({ id }) {
     : (storedTitle = localStorage.getItem(`Title_${id}`));
   localStorage.getItem(`NotesContent_${id}`) == null
     ? (storedNotesContent = "")
-    : (storedNotesContent = localStorage.getItem(`Title_${id}`));
+    : (storedNotesContent = localStorage.getItem(`NotesContent_${id}`));
 
   // initalising state for Notes content and title
   const [NotesContent, setNotesContent] = useState(storedNotesContent);

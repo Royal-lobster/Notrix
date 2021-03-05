@@ -1,11 +1,23 @@
 .container {
-  margin: 2rem;
+  display: flex;
+  padding: 0 2rem;
+  justify-content: space-between;
+  background-color: rgb(22, 22, 22);
+  border-bottom: 2px solid #47ff6f;
+  margin-bottom: 20px;
 }
 .branding {
   font-family: Palatino, Georgia, serif;
-  background-color: rgb(212, 253, 26);
+  background-color: #47ff6f;
   border-radius: 8px;
   color: #222;
   display: inline;
   padding: 8px;
+}
+.createNotesBtn {
+  background-color: transparent;
+  border: none;
+}
+.createNotesIcon {
+  cursor: pointer;
 }

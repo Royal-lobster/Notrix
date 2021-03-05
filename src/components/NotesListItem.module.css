@@ -1,0 +1,35 @@
+.container {
+  background-color: rgb(70, 70, 70);
+  width: 80vw;
+  margin: 10px auto;
+  padding: 5px 30px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  position: relative;
+  overflow: hidden;
+}
+.content_wraper {
+  margin-left: 20px;
+}
+.title {
+  font-family: Palatino, Georgia, serif;
+  font-size: 30px;
+}
+.titleLink {
+  color: rgb(29, 29, 29);
+  text-decoration: none;
+}
+
+.content {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  color: rgb(143, 143, 143);
+}
+.decor {
+  position: absolute;
+  left: 0;
+  background-color: #47ff6f;
+  height: 100%;
+  width: 20px;
+}

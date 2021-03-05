@@ -1,0 +1,35 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.createNotesBtn {
+  margin-top: 30px;
+  background-color: #47ff6f;
+  padding: 10px;
+  border: 0;
+  border-radius: 8px;
+  color: #222;
+  font-weight: bold;
+  cursor: pointer;
+}
+.notfound {
+  background-color: rgb(95, 49, 49);
+  width: min(800px, 90vw);
+  margin: 10px auto;
+  padding: 5px 30px;
+  border-radius: 12px;
+}
+
+.noNotesFoundImg {
+  width: 30;
+}
+
+.NoNotesDetectedContainer {
+  margin-top: 10ch;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: rgb(160, 160, 160);
+}
