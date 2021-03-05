@@ -3,7 +3,7 @@ import styles from "./NavBar.module.css";
 
 export default function NavBar({ createNotes }) {
   return (
-    <div class={styles.container}>
+    <div className={styles.container}>
       <h2 className={styles.branding}>Notrix</h2>
       <button className={styles.createNotesBtn} onClick={createNotes}>
         <svg
@@ -12,10 +12,10 @@ export default function NavBar({ createNotes }) {
           viewBox="0 0 24 24"
           fill="none"
           stroke="#fff"
-          stroke-width="2"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          class={styles.createNotesIcon}
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          className={styles.createNotesIcon}
         >
           <circle cx="12" cy="12" r="10"></circle>
           <line x1="12" y1="8" x2="12" y2="16"></line>

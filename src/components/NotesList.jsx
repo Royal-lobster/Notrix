@@ -12,7 +12,7 @@ export default function NotesList({ ids }) {
             localStorage.getItem(`Title_${id}`) &&
             localStorage.getItem(`NotesContent_${id}`) !== ""
           ) {
-            return <NotesListItem id={id} />;
+            return <NotesListItem id={id} key={id} />;
           }
         })
       ) : (
