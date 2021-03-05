@@ -6,7 +6,6 @@ import noNotesFoundImg from "../assets/noNotesFound.svg";
 export default function NotesList() {
   // initalise ids array state
   const [ids, setIds] = useState([]);
-  const [emptyContents, setEmptyContents] = useState(true);
 
   // fetch ids array from storage
   useEffect(() => {
@@ -16,14 +15,12 @@ export default function NotesList() {
 
   return (
     <div className={styles.container}>
-      {ids.length || !emptyContents ? (
+      {ids.length ? (
         [...new Set(ids)].map((id) => {
           if (
             localStorage.getItem(`Title_${id}`) &&
             localStorage.getItem(`NotesContent_${id}`) !== ""
           ) {
-            console.log(emptyContents);
-            setEmptyContents(false);
             return <NotesListItem id={id} />;
           }
         })
