@@ -1,5 +1,5 @@
 .container {
-  background-color: rgb(70, 70, 70);
+  background-color: #2c2c2c;
   width: 80vw;
   margin: 10px auto;
   padding: 5px 30px;
@@ -16,6 +16,8 @@
 .title {
   font-family: Palatino, Georgia, serif;
   font-size: 30px;
+  color: #fff;
+  margin-bottom: 0;
 }
 .titleLink {
   color: rgb(180, 180, 180);
@@ -29,7 +31,7 @@
 .decor {
   position: absolute;
   left: 0;
-  background-color: #47ff6f;
+  background-color: #47ff5f;
   height: 100%;
-  width: 20px;
+  width: 15px;
 }

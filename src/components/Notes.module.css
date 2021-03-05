@@ -42,13 +42,33 @@
 .ShowNotesContent {
   white-space: pre-line;
 }
-.deleteNoteBtn {
+.saveMessage {
+  margin: 20px 0;
+  background-color: transparent;
+  padding: 5px 30px;
+  border-radius: 90px;
+  border: 1px solid #47ff6f;
+  text-align: center;
+  color: #47ff6f;
+}
+.deleteNoteBtn,
+.backBtn {
   display: inline-block;
   padding: 10px 20px;
   border-radius: 8px;
   border: none;
-  background-color: #414141;
-  color: #818181;
+  background: #ff6347;
+  color: #363636;
   font-weight: 900;
   cursor: pointer;
+}
+.backBtn {
+  background: #47ff6f;
+  color: #363636;
+}
+.notesBtnsContainer {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  justify-content: space-around;
 }

@@ -21,10 +21,12 @@ function App() {
 
   let createNotes = () => {
     let newId = createUID(22);
-    console.log([...ids, newId]);
-    setIds([...ids, newId]);
-    localStorage.setItem("ids_array", JSON.stringify(ids));
+    let newIdsArray = ids.concat([newId]);
+    setIds(newIdsArray);
+    localStorage.setItem("ids_array", JSON.stringify(newIdsArray));
     history.push(`/notes/${newId}`);
+    console.log(`NewIdsArray: ${newIdsArray}`);
+    console.log(`Local Storage: ${localStorage.getItem("ids_array")}`);
   };
   return (
     <div>

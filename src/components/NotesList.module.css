@@ -4,6 +4,10 @@
   align-items: center;
   justify-content: center;
 }
+.SavedNotesText {
+  color: #cfcfcf;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
 .createNotesBtn {
   margin-top: 30px;
   background-color: #47ff6f;
@@ -27,7 +31,7 @@
 }
 
 .NoNotesDetectedContainer {
-  margin-top: 10ch;
+  margin-top: 5vh;
   display: flex;
   flex-direction: column;
   align-items: center;

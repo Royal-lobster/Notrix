@@ -30,13 +30,22 @@ export default function Notes({ ids_array, setIds_array, history }) {
 
   // delete note
   let deleteNote = () => {
-    const index = ids_array.indexOf(id);
-    console.log("old Array", ids_array);
+    //get stored array directly from localstorage
+    let storedIdsArray = JSON.parse(localStorage.getItem("ids_array"));
+    console.log("old Array", storedIdsArray);
+
+    //get index of id of this note
+    const index = storedIdsArray.indexOf(id);
     console.log("Index", index);
-    ids_array.splice(index, 1);
-    console.log("new Array", ids_array);
-    setIds_array(ids_array);
-    localStorage.setItem("ids_array", JSON.stringify(ids_array));
+
+    //remove the id in the array by the index we found
+    console.log(typeof storedIdsArray);
+    storedIdsArray.splice(index, 1);
+    console.log("new Array", storedIdsArray);
+    localStorage.setItem("ids_array", JSON.stringify(storedIdsArray));
+
+    //set the new array as state
+    setIds_array(storedIdsArray);
     history.push(`/`);
     console.log(localStorage.getItem("ids_array"));
   };
@@ -59,9 +68,18 @@ export default function Notes({ ids_array, setIds_array, history }) {
           onChange={(e) => setNotesContent(e.target.value)}
           type="text"
         />
-        <button onClick={deleteNote} className={styles.deleteNoteBtn}>
-          Delete Note
-        </button>
+        <div className={styles.notesBtnsContainer}>
+          <button onClick={deleteNote} className={styles.backBtn}>
+            Back to Home
+          </button>
+          <button onClick={deleteNote} className={styles.deleteNoteBtn}>
+            Delete Note
+          </button>
+        </div>
+        <div className={styles.saveMessage}>
+          {" "}
+          Notes are saved Automatically in Browser
+        </div>
       </div>
     </div>
   );
