@@ -42,3 +42,13 @@
 .ShowNotesContent {
   white-space: pre-line;
 }
+.deleteNoteBtn {
+  display: inline-block;
+  padding: 10px 20px;
+  border-radius: 8px;
+  border: none;
+  background-color: #414141;
+  color: #818181;
+  font-weight: 900;
+  cursor: pointer;
+}

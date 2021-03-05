@@ -31,12 +31,14 @@ export default function Notes({ ids_array, setIds_array, history }) {
   // delete note
   let deleteNote = () => {
     const index = ids_array.indexOf(id);
-    if (index > -1) {
-      let newIds_array = ids_array.splice(index, 1);
-      localStorage.setItem("ids_array", JSON.stringify(newIds_array));
-      history.push(`/`);
-      console.log(localStorage.getItem("ids_array"));
-    }
+    console.log("old Array", ids_array);
+    console.log("Index", index);
+    ids_array.splice(index, 1);
+    console.log("new Array", ids_array);
+    setIds_array(ids_array);
+    localStorage.setItem("ids_array", JSON.stringify(ids_array));
+    history.push(`/`);
+    console.log(localStorage.getItem("ids_array"));
   };
   return (
     <div className={styles.container_wraper}>
@@ -57,8 +59,10 @@ export default function Notes({ ids_array, setIds_array, history }) {
           onChange={(e) => setNotesContent(e.target.value)}
           type="text"
         />
+        <button onClick={deleteNote} className={styles.deleteNoteBtn}>
+          Delete Note
+        </button>
       </div>
-      <button onClick={deleteNote}>Delete Note</button>
     </div>
   );
 }
