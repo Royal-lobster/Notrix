@@ -69,9 +69,7 @@ export default function Notes({ ids_array, setIds_array, history }) {
           type="text"
         />
         <div className={styles.notesBtnsContainer}>
-          <button onClick={deleteNote} className={styles.backBtn}>
-            Back to Home
-          </button>
+          <button className={styles.backBtn}>Back to Home</button>
           <button onClick={deleteNote} className={styles.deleteNoteBtn}>
             Delete Note
           </button>
