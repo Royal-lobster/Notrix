@@ -1,5 +1,5 @@
 .container {
-  width: min(90%, 800px);
+  width: min(95vw, 800px);
   margin: 0 auto;
   margin-top: 10vh;
 }

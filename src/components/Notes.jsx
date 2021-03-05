@@ -2,11 +2,20 @@ import React, { useEffect, useState } from "react";
 import TextareaAutosize from "react-textarea-autosize";
 import styles from "./Notes.module.css";
 export default function Notes({ id }) {
-  const [title, setTitle] = useState(localStorage.getItem(`Title_${id}`));
-  const [NotesContent, setNotesContent] = useState(
-    localStorage.getItem(`NotesContent_${id}`)
-  );
+  //set title
+  if (localStorage.getItem(`Title_${id}`) == null) {
+    const [title, setTitle] = useState("");
+  } else {
+    const [title, setTitle] = useState(localStorage.getItem(`Title_${id}`));
+  }
 
+  if (localStorage.getItem(`NotesContent_${id}`) == null) {
+    const [title, setTitle] = useState("");
+  } else {
+    const [NotesContent, setNotesContent] = useState(
+      localStorage.getItem(`NotesContent_${id}`)
+    );
+  }
   useEffect(() => {
     localStorage.setItem(`Title_${id}`, title);
   }, [title]);
