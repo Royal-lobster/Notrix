@@ -7,15 +7,17 @@ function NotesListItem({ id }) {
 
   if (Title != null && Content != null) {
     return (
-      <div className={styles.container}>
-        <div className={styles.decor}></div>
-        <div className={styles.content_wraper}>
-          <a className={styles.titleLink} href={`/notes/${id}`}>
+      <a className={styles.titleLink} href={`/notes/${id}`}>
+        <div className={styles.container}>
+          <div className={styles.decor}></div>
+          <div className={styles.content_wraper}>
             <h2 className={styles.title}>{Title}</h2>
-          </a>
-          <p className={styles.content}>{Content.substring(0, 200) + "..."}</p>
+            <p className={styles.content}>
+              {Content.substring(0, 200) + "..."}
+            </p>
+          </div>
         </div>
-      </div>
+      </a>
     );
   } else return <div className={styles.notfound}>Content Not Found</div>;
 }
