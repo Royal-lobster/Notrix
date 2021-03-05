@@ -1,0 +1,16 @@
+.container {
+  background: rgb(58, 58, 58);
+  padding: 10px;
+  color: #cccccc;
+  border-radius: 12px;
+  width: min(80%, 800px);
+  margin: 0 auto;
+}
+h4 {
+  font-size: 18px;
+  font-family: Palatino, Georgia, serif;
+  text-align: center;
+}
+a {
+  color: rgb(136, 158, 35);
+}
