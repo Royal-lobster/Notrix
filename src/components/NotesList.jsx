@@ -1,18 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import NotesListItem from "./NotesListItem";
 import styles from "./NotesList.module.css";
 import noNotesFoundImg from "../assets/noNotesFound.svg";
 
-export default function NotesList() {
-  // initalise ids array state
-  const [ids, setIds] = useState([]);
-
-  // fetch ids array from storage
-  useEffect(() => {
-    const stored_ids_array = JSON.parse(localStorage.getItem("ids_array"));
-    if (stored_ids_array != null) setIds(stored_ids_array);
-  }, []);
-
+export default function NotesList({ ids }) {
   return (
     <div className={styles.container}>
       {ids.length ? (

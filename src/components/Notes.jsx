@@ -3,7 +3,7 @@ import TextareaAutosize from "react-textarea-autosize";
 import styles from "./Notes.module.css";
 import { useParams } from "react-router";
 
-export default function Notes() {
+export default function Notes({ ids_array, setIds_array, history }) {
   let { id } = useParams();
 
   // retriving storedTitle and storedNotesContent from localstorage
@@ -28,6 +28,16 @@ export default function Notes() {
     localStorage.setItem(`NotesContent_${id}`, NotesContent);
   }, [NotesContent, id]);
 
+  // delete note
+  let deleteNote = () => {
+    const index = ids_array.indexOf(id);
+    if (index > -1) {
+      let newIds_array = ids_array.splice(index, 1);
+      localStorage.setItem("ids_array", JSON.stringify(newIds_array));
+      history.push(`/`);
+      console.log(localStorage.getItem("ids_array"));
+    }
+  };
   return (
     <div className={styles.container_wraper}>
       <div className={styles.container}>
@@ -48,6 +58,7 @@ export default function Notes() {
           type="text"
         />
       </div>
+      <button onClick={deleteNote}>Delete Note</button>
     </div>
   );
 }
