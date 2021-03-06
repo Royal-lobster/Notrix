@@ -1,9 +1,9 @@
 .container_wraper {
   margin: 0 auto;
-  max-width: 800px;
+  max-width: 900px;
 }
 .container {
-  max-width: 800px;
+  max-width: 900px;
   margin: 0 30px;
   margin-top: 10vh;
   display: flex;
@@ -76,4 +76,9 @@
   align-items: center;
   gap: 20px;
   justify-content: space-around;
+}
+@media screen and (max-width: 480px) {
+  .notesBox {
+    font-size: 18px;
+  }
 }
