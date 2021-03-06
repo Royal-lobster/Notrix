@@ -30,6 +30,7 @@
   font-family: Palatino, Georgia, serif;
   font-weight: 900;
   caret-color: #47ff6f;
+  overflow: hidden;
 }
 .notesBox {
   background-color: transparent;
@@ -38,6 +39,8 @@
   line-height: 1.5;
   font-weight: 100;
   color: rgb(190, 190, 190);
+  overflow: hidden;
+  margin-bottom: 30px;
 }
 .ShowNotesContent {
   white-space: pre-line;
@@ -49,6 +52,8 @@
   border-radius: 90px;
   border: 1px solid #47ff6f;
   text-align: center;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 12px;
   color: #47ff6f;
 }
 .deleteNoteBtn,
