@@ -25,7 +25,7 @@ function App() {
     setIds(newIdsArray);
     localStorage.setItem("ids_array", JSON.stringify(newIdsArray));
     history.push(`/notes/${newId}`);
-    console.log(`NewIdsArray: ${newIdsArray}`);
+    console.log(`New Id Created: ${newId}`);
     console.log(`Local Storage: ${localStorage.getItem("ids_array")}`);
   };
   return (

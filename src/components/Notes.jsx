@@ -46,8 +46,16 @@ export default function Notes({ ids_array, setIds_array, history }) {
 
     //set the new array as state
     setIds_array(storedIdsArray);
+
+    //remove data from local storage
+    localStorage.removeItem(`Title_${id}`);
+    localStorage.removeItem(`NotesContent_${id}`);
+
+    //log the data in console
+    console.log(`Item Deleted : ${id}`);
+    console.log(`Local Storage: ${localStorage.getItem("ids_array")}`);
+
     history.push(`/`);
-    console.log(localStorage.getItem("ids_array"));
   };
   return (
     <div className={styles.container_wraper}>
