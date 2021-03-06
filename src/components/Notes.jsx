@@ -3,7 +3,7 @@ import TextareaAutosize from "react-textarea-autosize";
 import styles from "./Notes.module.css";
 import { useParams } from "react-router";
 
-export default function Notes({ ids_array, setIds_array, history }) {
+export default function Notes({ deleteNote, history }) {
   let { id } = useParams();
 
   // retriving storedTitle and storedNotesContent from localstorage
@@ -28,33 +28,15 @@ export default function Notes({ ids_array, setIds_array, history }) {
     localStorage.setItem(`NotesContent_${id}`, NotesContent);
   }, [NotesContent, id]);
 
-  // delete note
-  let deleteNote = () => {
-    //get stored array directly from localstorage
-    let storedIdsArray = JSON.parse(localStorage.getItem("ids_array"));
-    console.log("old Array", storedIdsArray);
+  let goToHome = () => {
+    //if the note is empty then delete the note
+    if (
+      localStorage.getItem(`Title_${id}`) &&
+      localStorage.getItem(`NotesContent_${id}`) === ""
+    )
+      deleteNote(id);
 
-    //get index of id of this note
-    const index = storedIdsArray.indexOf(id);
-    console.log("Index", index);
-
-    //remove the id in the array by the index we found
-    console.log(typeof storedIdsArray);
-    storedIdsArray.splice(index, 1);
-    console.log("new Array", storedIdsArray);
-    localStorage.setItem("ids_array", JSON.stringify(storedIdsArray));
-
-    //set the new array as state
-    setIds_array(storedIdsArray);
-
-    //remove data from local storage
-    localStorage.removeItem(`Title_${id}`);
-    localStorage.removeItem(`NotesContent_${id}`);
-
-    //log the data in console
-    console.log(`Item Deleted : ${id}`);
-    console.log(`Local Storage: ${localStorage.getItem("ids_array")}`);
-
+    //go to homepage
     history.push(`/`);
   };
   return (
@@ -77,10 +59,13 @@ export default function Notes({ ids_array, setIds_array, history }) {
           type="text"
         />
         <div className={styles.notesBtnsContainer}>
-          <button onClick={() => history.push(`/`)} className={styles.backBtn}>
+          <button onClick={goToHome} className={styles.backBtn}>
             Back to Home
           </button>
-          <button onClick={deleteNote} className={styles.deleteNoteBtn}>
+          <button
+            onClick={() => deleteNote(id)}
+            className={styles.deleteNoteBtn}
+          >
             Delete Note
           </button>
         </div>

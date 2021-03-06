@@ -18,6 +18,9 @@
   background-color: transparent;
   border: none;
 }
+.createNotesBtn:focus {
+  outline: none;
+}
 .createNotesIcon {
   cursor: pointer;
 }
