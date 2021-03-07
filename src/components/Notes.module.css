@@ -15,7 +15,6 @@
   display: block;
   width: 100%;
   padding: 10px;
-  margin: 10px 0;
   border: none;
   color: #fff;
   resize: none;
@@ -25,6 +24,7 @@
   outline: none;
 }
 .titleBox {
+  margin: 10px 0;
   margin-left: 20px;
   background-color: transparent;
   font-size: 45px;
@@ -77,10 +77,4 @@
   align-items: center;
   gap: 20px;
   justify-content: space-around;
-}
-@media screen and (max-width: 480px) {
-  .CodeMirror pre.CodeMirror-line,
-  .CodeMirror pre.CodeMirror-line-like {
-    font-size: 16px;
-  }
 }

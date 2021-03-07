@@ -12,7 +12,7 @@
   height: 300px;
   color: rgb(194, 194, 194);
   direction: ltr;
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif !important;
+  font-family: monospace !important;
 }
 .CodeMirror-lines {
   padding: 4px 0;
@@ -299,8 +299,8 @@ div.CodeMirror span.CodeMirror-nonmatchingbracket {
   border-radius: 0;
   border-width: 0;
   background: 0 0;
-  font-family: inherit;
-  font-weight: 400;
+  font-family: monospace;
+  font-weight: 100 !important;
   font-size: 20px;
   margin: 0;
   white-space: pre;
