@@ -4,6 +4,9 @@
  * @link https://github.com/ionaru/easy-markdown-editor
  * @license MIT
  */
+.fa {
+  color: rgb(194, 194, 194);
+}
 .CodeMirror {
   font-family: monospace;
   height: 300px;
