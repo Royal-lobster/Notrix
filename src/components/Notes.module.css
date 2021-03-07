@@ -3,7 +3,6 @@
   max-width: 900px;
 }
 .container {
-  max-width: 900px;
   margin: 0 10px;
   margin-top: 10vh;
   display: flex;
@@ -23,9 +22,11 @@
 .notesBox:focus {
   outline: none;
 }
+.titleBoxWraper {
+  width: 100%;
+}
 .titleBox {
-  margin: 10px 0;
-  margin-left: 20px;
+  text-align: left;
   background-color: transparent;
   font-size: 45px;
   font-family: Palatino, Georgia, serif;

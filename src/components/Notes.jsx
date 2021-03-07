@@ -42,13 +42,15 @@ export default function Notes({ deleteNote, history }) {
   return (
     <div className={styles.container_wraper}>
       <div className={styles.container}>
-        <TextareaAutosize
-          className={styles.titleBox}
-          value={title}
-          onChange={(e) => setTitle(e.target.value)}
-          type="text"
-          placeholder="Enter Title"
-        />
+        <div className={styles.titleBoxWraper}>
+          <TextareaAutosize
+            className={styles.titleBox}
+            value={title}
+            onChange={(e) => setTitle(e.target.value)}
+            type="text"
+            placeholder="Enter Title"
+          />
+        </div>
         <br />
         <SimpleMDE
           placeholder="Start Typing..."
