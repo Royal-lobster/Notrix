@@ -60,15 +60,14 @@ export default function Notes({ deleteNote, history }) {
               uniqueId: id,
               delay: 1000,
             },
-            // toolbar: false,
+            toolbar: false,
             status: false,
             shortcuts: {
               togglePreview: "Ctrl-Alt-P",
             },
-            initialValue: "Press **Eye Button** On top and Start Editing...",
+            placeholder: "Start Typing...",
           }}
           className={styles.notesBox}
-          getMdeInstance={(instance) => instance.togglePreview()}
           onChange={(e) => setNotesContent({ mdeValue: e })}
           type="text"
         />

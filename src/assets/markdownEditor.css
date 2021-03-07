@@ -208,7 +208,6 @@ div.CodeMirror span.CodeMirror-nonmatchingbracket {
   position: relative;
   overflow: hidden;
   background: #222;
-  font-size: 16px;
 }
 .CodeMirror-scroll {
   overflow: scroll !important;
@@ -301,7 +300,8 @@ div.CodeMirror span.CodeMirror-nonmatchingbracket {
   border-width: 0;
   background: 0 0;
   font-family: inherit;
-  font-size: inherit;
+  font-weight: 400;
+  font-size: 20px;
   margin: 0;
   white-space: pre;
   word-wrap: normal;
@@ -313,6 +313,12 @@ div.CodeMirror span.CodeMirror-nonmatchingbracket {
   -webkit-tap-highlight-color: transparent;
   -webkit-font-variant-ligatures: contextual;
   font-variant-ligatures: contextual;
+}
+@media screen and (max-width: 480px) {
+  .CodeMirror pre.CodeMirror-line,
+  .CodeMirror pre.CodeMirror-line-like {
+    font-size: 18px;
+  }
 }
 .CodeMirror-wrap pre.CodeMirror-line,
 .CodeMirror-wrap pre.CodeMirror-line-like {
