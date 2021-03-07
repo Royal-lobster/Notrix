@@ -23,6 +23,7 @@
   outline: none;
 }
 .titleBoxWraper {
+  overflow-x: hidden;
   width: 100%;
 }
 .titleBox {
@@ -32,7 +33,7 @@
   font-family: Palatino, Georgia, serif;
   font-weight: 900;
   caret-color: #47ff6f;
-  overflow: hidden;
+  overflow-x: hidden;
 }
 .notesBox {
   background-color: transparent;
@@ -41,7 +42,7 @@
   line-height: 1.5;
   font-weight: 100;
   color: rgb(190, 190, 190);
-  overflow: hidden;
+  overflow-x: hidden;
   margin-bottom: 30px;
 }
 .ShowNotesContent {
