@@ -60,7 +60,7 @@ export default function Notes({ deleteNote, history }) {
             autosave: {
               enabled: true,
               uniqueId: id,
-              delay: 1000,
+              delay: 0,
             },
             toolbar: false,
             status: false,
