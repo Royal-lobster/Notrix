@@ -14,7 +14,7 @@ export default function NotesList({ ids, deleteNote }) {
             // if there is content in notes then show it
             if (
               localStorage.getItem(`Title_${id}`) &&
-              localStorage.getItem(`NotesContent_${id}`) !== ""
+              localStorage.getItem(`smde_${id}`) !== ""
             ) {
               return <NotesListItem id={id} key={id} />;
             }

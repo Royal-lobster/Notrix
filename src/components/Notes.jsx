@@ -2,8 +2,10 @@ import React, { useEffect, useState } from "react";
 import TextareaAutosize from "react-textarea-autosize";
 import styles from "./Notes.module.css";
 import { useParams } from "react-router";
-
+import SimpleMDE from "react-simplemde-editor";
+import "../assets/markdownEditor.css";
 export default function Notes({ deleteNote, history }) {
+  //get id from prams in url
   let { id } = useParams();
 
   // retriving storedTitle and storedNotesContent from localstorage
@@ -12,33 +14,31 @@ export default function Notes({ deleteNote, history }) {
   localStorage.getItem(`Title_${id}`) == null
     ? (storedTitle = "")
     : (storedTitle = localStorage.getItem(`Title_${id}`));
-  localStorage.getItem(`NotesContent_${id}`) == null
+  localStorage.getItem(`smde_${id}`) == null
     ? (storedNotesContent = "")
-    : (storedNotesContent = localStorage.getItem(`NotesContent_${id}`));
+    : (storedNotesContent = localStorage.getItem(`smde_${id}`));
 
   // initalising state for Notes content and title
-  const [NotesContent, setNotesContent] = useState(storedNotesContent);
+  const [notesContent, setNotesContent] = useState(storedNotesContent);
   const [title, setTitle] = useState(storedTitle);
 
   // useEffect to update local storage when ever title and notesContent change
   useEffect(() => {
     localStorage.setItem(`Title_${id}`, title);
   }, [title, id]);
-  useEffect(() => {
-    localStorage.setItem(`NotesContent_${id}`, NotesContent);
-  }, [NotesContent, id]);
 
   let goToHome = () => {
     //if the note is empty then delete the note
     if (
       localStorage.getItem(`Title_${id}`) &&
-      localStorage.getItem(`NotesContent_${id}`) === ""
+      localStorage.getItem(`smde_${id}`) === ""
     )
       deleteNote(id);
 
     //go to homepage
     history.push(`/`);
   };
+
   return (
     <div className={styles.container_wraper}>
       <div className={styles.container}>
@@ -50,12 +50,26 @@ export default function Notes({ deleteNote, history }) {
           placeholder="Enter Title"
         />
         <br />
-        <TextareaAutosize
+        <SimpleMDE
           placeholder="Start Typing..."
           minRows={10}
+          id={id}
+          options={{
+            autosave: {
+              enabled: true,
+              uniqueId: id,
+              delay: 1000,
+            },
+            // toolbar: false,
+            status: false,
+            shortcuts: {
+              togglePreview: "Ctrl-Alt-P",
+            },
+            initialValue: "Press **Eye Button** On top and Start Editing...",
+          }}
           className={styles.notesBox}
-          value={NotesContent}
-          onChange={(e) => setNotesContent(e.target.value)}
+          getMdeInstance={(instance) => instance.togglePreview()}
+          onChange={(e) => setNotesContent({ mdeValue: e })}
           type="text"
         />
         <div className={styles.notesBtnsContainer}>
