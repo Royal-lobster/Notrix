@@ -68,6 +68,7 @@ export default function Notes({ deleteNote, history }) {
               togglePreview: "Ctrl-Alt-P",
             },
             placeholder: "Start Typing...",
+            spellChecker: false,
           }}
           className={styles.notesBox}
           onChange={(e) => setNotesContent({ mdeValue: e })}
