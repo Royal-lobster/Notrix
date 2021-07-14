@@ -2,8 +2,9 @@ import React, { useEffect, useState } from "react";
 import TextareaAutosize from "react-textarea-autosize";
 import styles from "./Notes.module.css";
 import { useParams } from "react-router";
-import SimpleMDE from "react-simplemde-editor";
+import Editor from "rich-markdown-editor";
 import "../assets/markdownEditor.css";
+
 export default function Notes({ deleteNote, history }) {
   //get id from prams in url
   let { id } = useParams();
@@ -29,11 +30,7 @@ export default function Notes({ deleteNote, history }) {
 
   let goToHome = () => {
     //if the note is empty then delete the note
-    if (
-      localStorage.getItem(`Title_${id}`) &&
-      localStorage.getItem(`smde_${id}`) === ""
-    )
-      deleteNote(id);
+    if (localStorage.getItem(`Title_${id}`) && localStorage.getItem(`smde_${id}`) === "") deleteNote(id);
 
     //go to homepage
     history.push(`/`);
@@ -52,43 +49,28 @@ export default function Notes({ deleteNote, history }) {
           />
         </div>
         <br />
-        <SimpleMDE
+        <Editor
           placeholder="Start Typing..."
-          minRows={10}
           id={id}
-          options={{
-            autosave: {
-              enabled: true,
-              uniqueId: id,
-              delay: 0,
-            },
-            toolbar: false,
-            status: false,
-            shortcuts: {
-              togglePreview: "Ctrl-Alt-P",
-            },
-            placeholder: "Start Typing...",
-            spellChecker: false,
-          }}
+          defaultValue={notesContent}
+          value={storedNotesContent}
           className={styles.notesBox}
-          onChange={(e) => setNotesContent({ mdeValue: e })}
+          dark={true}
+          onChange={(value) => {
+            const text = value();
+            localStorage.setItem(`smde_${id}`, text);
+          }}
           type="text"
         />
         <div className={styles.notesBtnsContainer}>
           <button onClick={goToHome} className={styles.backBtn}>
             Back to Home
           </button>
-          <button
-            onClick={() => deleteNote(id)}
-            className={styles.deleteNoteBtn}
-          >
+          <button onClick={() => deleteNote(id)} className={styles.deleteNoteBtn}>
             Delete Note
           </button>
         </div>
-        <div className={styles.saveMessage}>
-          {" "}
-          Notes are saved Automatically in Browser
-        </div>
+        <div className={styles.saveMessage}> Notes are saved Automatically in Browser</div>
       </div>
     </div>
   );

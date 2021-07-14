@@ -1,0 +1,24 @@
+.ProseMirror {
+  min-height: 40vh !important;
+  background-color: transparent !important;
+  border-radius: 8px;
+  font-size: 20px;
+  line-height: 1.5;
+  font-weight: 400;
+  font-family: monospace;
+  color: rgb(190, 190, 190) !important;
+  overflow-x: hidden;
+  margin-bottom: 30px;
+}
+.heading-content {
+  font-weight: bold;
+}
+.content {
+  min-height: unset !important;
+}
+.hfZAVs hr::before {
+  border-color: #c1c1c1 !important;
+}
+.hfZAVs hr.page-break::before {
+  border-color: #c1c1c1 !important;
+}

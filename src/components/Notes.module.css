@@ -13,7 +13,7 @@
 .notesBox {
   display: block;
   width: 100%;
-  padding: 10px;
+  margin: 10px 0;
   border: none;
   color: #fff;
   resize: none;
@@ -35,16 +35,18 @@
   caret-color: #47ff6f;
   overflow-x: hidden;
 }
-.notesBox {
-  background-color: transparent;
+.notesBox > div {
+  background-color: transparent !important;
   border-radius: 8px;
   font-size: 20px;
   line-height: 1.5;
-  font-weight: 100;
-  color: rgb(190, 190, 190);
+  font-weight: 400;
+  font-family: monospace;
+  color: rgb(190, 190, 190) !important;
   overflow-x: hidden;
   margin-bottom: 30px;
 }
+
 .ShowNotesContent {
   white-space: pre-line;
 }

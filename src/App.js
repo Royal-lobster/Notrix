@@ -62,17 +62,8 @@ function App() {
       <NavBar createNotes={createNotes} />
       <div className="content">
         <Switch>
-          <Route
-            exact
-            path="/"
-            component={() => <NotesList ids={ids} deleteNote={deleteNote} />}
-          />
-          <Route
-            path="/notes/:id"
-            component={() => (
-              <Notes deleteNote={deleteNote} history={history} />
-            )}
-          />
+          <Route exact path="/" component={() => <NotesList ids={ids} deleteNote={deleteNote} />} />
+          <Route path="/notes/:id" component={() => <Notes deleteNote={deleteNote} history={history} />} />
         </Switch>
       </div>
       <Footer />
