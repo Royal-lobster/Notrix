@@ -31,6 +31,7 @@
 .placeholder::before {
   color: #4d4d4d !important ;
 }
-input {
-  caret-color: red !important;
+.notice-block .icon{
+  top: 4px !important;
 }
+  
