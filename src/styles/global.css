@@ -36,5 +36,7 @@
 }
 pre{
   border-radius: 12px !important;
+  padding: 20px !important;
+  background: rgb(25, 25, 25) none repeat scroll 0% 0% !important;
 }
   
