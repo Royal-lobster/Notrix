@@ -34,4 +34,7 @@
 .notice-block .icon{
   top: 4px !important;
 }
+pre{
+  border-radius: 12px !important;
+}
   
