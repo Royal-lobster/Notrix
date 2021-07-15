@@ -7,11 +7,17 @@
   font-weight: 400;
   font-family: monospace;
   color: rgb(190, 190, 190) !important;
-  overflow-x: hidden;
   margin-bottom: 30px;
 }
+.block-menu-trigger {
+  margin-top: 2px !important;
+  margin-left: -34px !important;
+}
+.block-menu-trigger svg {
+  fill: #4d4d4d !important;
+}
 .heading-content {
-  font-weight: bold;
+  font-weight: 900;
 }
 .content {
   min-height: unset !important;
@@ -21,4 +27,10 @@
 }
 .hfZAVs hr.page-break::before {
   border-color: #c1c1c1 !important;
+}
+.hfZAVs .placeholder::before {
+  color: #4d4d4d !important ;
+}
+input {
+  caret-color: red !important;
 }
