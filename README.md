@@ -2,7 +2,7 @@
 
 A Simple notes app which saves all notes to browser storage. 
 
-🔗 **Link:** https://covercons.vercel.app/
+🔗 **Link:** https://notrix.netlify.app/
 
 [![MIT License](https://img.shields.io/apm/l/atomic-design-ui.svg?)](https://github.com/tterb/atomic-design-ui/blob/master/LICENSEs)
 ## Screenshots
