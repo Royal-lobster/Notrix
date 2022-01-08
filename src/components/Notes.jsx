@@ -17,7 +17,9 @@ export default function Notes({ deleteNote, createNotes, history }) {
   let [width] = useWindowSize();
 
   // retriving storedTitle and storedNotesContent from localstorage
-  let storedTitle, storedPastelColor, storedNotesContent;
+  let storedTitle,
+    storedPastelColor,
+    storedNotesContent = "";
   localStorage.getItem(`Title_${id}`) == null
     ? (storedTitle = "")
     : (storedTitle = localStorage.getItem(`Title_${id}`));
