@@ -48,9 +48,10 @@ export default function Notes({ deleteNote, createNotes, history }) {
       setToggleLock(true);
     }
     setTimeout(() => {
-      let t = title + " !";
+      let t = title;
+      setTitle("");
       setTitle(t);
-    }, 1000);
+    }, 100);
   }, []);
 
   let changeRandomPastelColor = () => {
