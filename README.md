@@ -8,7 +8,7 @@ A Simple notes app which saves all notes to browser storage.
 ## Screenshots
 
 <center>
-<img src="/screenshot.png"/>
+<img src="/interface.png"/>
 </center>
   
 ## Installation
