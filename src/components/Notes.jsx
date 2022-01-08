@@ -47,9 +47,12 @@ export default function Notes({ deleteNote, createNotes, history }) {
     if (localStorage.getItem(`smde_${id}`)?.trim()) {
       setToggleLock(true);
     }
-    let t = title;
-    setTitle("");
-    setTitle(t);
+    // trigger TextareaAutosize update for change in height of the textarea
+    setTimeout(() => {
+      let t = title;
+      setTitle("");
+      setTitle(t);
+    }, 10);
   }, []);
 
   let changeRandomPastelColor = () => {
