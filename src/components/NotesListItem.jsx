@@ -18,7 +18,7 @@ function NotesListItem({ id }) {
                 {
                   localStorage
                     .getItem(`smde_${id}`)
-                    .split(" ")
+                    ?.split(" ")
                     .filter((w) => w.trim() !== "").length
                 }
               </b>{" "}
