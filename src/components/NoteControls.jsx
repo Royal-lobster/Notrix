@@ -21,7 +21,7 @@ function NoteControls({
           localStorage
             .getItem(`smde_${id}`)
             ?.split(" ")
-            .filter((w) => w.trim() !== "").length
+            .filter((w) => w.trim() !== "").length || 0
         )
       );
     }, 1000);
