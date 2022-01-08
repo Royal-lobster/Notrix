@@ -49,7 +49,7 @@ export default function Notes({ deleteNote, createNotes, history }) {
     if (localStorage.getItem(`smde_${id}`)?.trim()) {
       setToggleLock(true);
     }
-  }, []);
+  }, [id]);
 
   let changeRandomPastelColor = () => {
     setPastelColor(`hsl(${Math.floor(Math.random() * 360)}, ${70}%, ${80}%)`);
@@ -112,6 +112,7 @@ export default function Notes({ deleteNote, createNotes, history }) {
         <div className={styles.container}>
           <div className={styles.titleBoxWraper}>
             <TextareaAutosize
+              async
               className={styles.titleBox}
               value={title}
               onChange={(e) => setTitle(e.target.value)}
