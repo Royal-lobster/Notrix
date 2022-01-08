@@ -50,7 +50,7 @@ export default function Notes({ deleteNote, createNotes, history }) {
     if (localStorage.getItem(`smde_${id}`)?.trim()) {
       setToggleLock(true);
     }
-    window.setTimeout(() => this.refs.textarea._resizeComponent(), 1);
+    window.setTimeout(() => textarea.current._resizeComponent(), 1);
   }, []);
 
   let changeRandomPastelColor = () => {
