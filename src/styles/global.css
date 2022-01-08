@@ -49,6 +49,9 @@
   background: #222222 none repeat scroll 0% 0% !important;
   margin: 10px 0 !important;
 }
+#block-menu-container::-webkit-scrollbar {
+  display: none;
+}
 .ProseMirror table .grip-column::after {
   background-color: var(--secondary_dark_color) !important;
   border-bottom: 3px solid #00000071 !important;
