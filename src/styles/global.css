@@ -5,6 +5,9 @@
   --primary_color: #a3f7bf;
 }
 
+* {
+  accent-color: var(--primary_color);
+}
 /* EDITOR STYLES */
 .ProseMirror {
   min-height: 30vh !important;
