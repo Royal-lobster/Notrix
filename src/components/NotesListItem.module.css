@@ -28,6 +28,7 @@
 .titleLink {
   color: rgb(180, 180, 180);
   text-decoration: none;
+  width: 100%;
 }
 
 .content {
