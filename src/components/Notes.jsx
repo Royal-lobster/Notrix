@@ -47,11 +47,9 @@ export default function Notes({ deleteNote, createNotes, history }) {
     if (localStorage.getItem(`smde_${id}`)?.trim()) {
       setToggleLock(true);
     }
-    setTimeout(() => {
-      let t = title;
-      setTitle("");
-      setTitle(t);
-    }, 10);
+    let t = title;
+    setTitle("");
+    setTitle(t);
   }, []);
 
   let changeRandomPastelColor = () => {
