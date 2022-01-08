@@ -17,7 +17,6 @@
   border: none;
   color: #fff;
   resize: none;
-  overflow: hidden;
 }
 .titleBox:focus,
 .notesBox:focus {
