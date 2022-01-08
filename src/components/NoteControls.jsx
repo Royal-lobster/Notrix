@@ -35,7 +35,7 @@ function NoteControls({
         icon="trash-2"
         outline
         color="#fa7272"
-        onClick={deleteNote}
+        onClick={() => deleteNote(true)}
       />
       <Button
         text="Color"

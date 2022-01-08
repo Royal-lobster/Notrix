@@ -59,6 +59,10 @@
   background-color: var(--secondary_dark_color) !important;
   border-bottom: 3px solid #00000071 !important;
 }
+.ProseMirror table .grip-row::after {
+  background-color: var(--secondary_dark_color) !important;
+  border-right: 3px solid #00000071 !important;
+}
 .ProseMirror table td,
 .ProseMirror table th {
   border: 2px solid #ffffff2a !important;
@@ -124,6 +128,16 @@ input[type="checkbox"] {
   margin-right: 10px !important;
 }
 /* ---------------------------------------------- */
+
+/* ------------------------------------------------- */
+[data-reach-dialog-content] {
+  width: min(75vw, 400px) !important;
+  background: var(--secondary_dark_color) !important;
+  border-radius: 8px;
+  padding: 20px !important;
+}
+
+/* ------------------------------------------------- */
 
 @media only screen and (max-width: 700px) {
   .ProseMirror {

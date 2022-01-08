@@ -17,7 +17,6 @@
   border: none;
   color: #fff;
   resize: none;
-  overflow: hidden;
 }
 .titleBox:focus,
 .notesBox:focus {
@@ -90,9 +89,62 @@
   bottom: 10px;
   background-color: #363e417a;
 }
+/* ----------------------------------------------- */
+.deleteDialogHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #ffffff2d;
+}
+.deleteDialogHeader h3 {
+  margin: 10px 0;
+}
+.deleteDialogCloseBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  background: #e74646;
+  border: none;
+  padding: 10px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 25px;
+  width: 30px;
+  height: 30px;
+}
+.deleteDialogButtonWrapper {
+  display: flex;
+  align-items: center;
+  margin-top: 20px;
+  gap: 10px;
+}
+.deleteDialogConfirmBtn,
+.deleteDialogDenyBtn {
+  padding: 8px 20px;
+  cursor: pointer;
+  border: none;
+  border-radius: 6px;
+  font-weight: 600;
+}
+.deleteDialogDenyBtn {
+  background-color: #6da680;
+}
+.deleteDialogConfirmBtn {
+  background: #e74646;
+}
+.deleteDialogCloseBtn:focus,
+.deleteDialogDenyBtn:focus,
+.deleteDialogConfirmBtn:focus {
+  outline: 4px solid rgba(255, 255, 255, 0.2);
+}
+/* ----------------------------------------------- */
 
 @media only screen and (max-width: 700px) {
   .titleBox {
     font-size: 38px;
+  }
+  .notesBox {
+    overflow: hidden;
   }
 }

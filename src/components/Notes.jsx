@@ -8,6 +8,8 @@ import NavBar from "./NavBar";
 import Footer from "./Footer";
 import useWindowSize from "../lib/useWindowSize";
 import NoteControls from "./NoteControls";
+import { Dialog } from "@reach/dialog";
+import "@reach/dialog/styles.css";
 
 export default function Notes({ deleteNote, createNotes, history }) {
   //get id from prams in url
@@ -32,9 +34,7 @@ export default function Notes({ deleteNote, createNotes, history }) {
   const [title, setTitle] = useState(storedTitle);
   const [toggleLock, setToggleLock] = useState(false);
   const [pastelColor, setPastelColor] = useState(storedPastelColor);
-  const [wordCount, setWordCount] = useState(
-    storedNotesContent.split(" ").length
-  );
+  const [showDialog, setShowDialog] = React.useState(false);
 
   // useEffect to update local storage when ever title and notesContent change
   useEffect(() => {
@@ -43,19 +43,65 @@ export default function Notes({ deleteNote, createNotes, history }) {
     localStorage.setItem(`Date_${id}`, new Date().toLocaleString());
   }, [title, pastelColor, id]);
 
+  useEffect(() => {
+    if (localStorage.getItem(`smde_${id}`)?.trim()) {
+      setToggleLock(true);
+    }
+  }, []);
+
   let changeRandomPastelColor = () => {
     setPastelColor(`hsl(${Math.floor(Math.random() * 360)}, ${70}%, ${80}%)`);
   };
 
   return (
     <>
+      {/* -------------------------------------------------- */}
+      <Dialog
+        className={styles.deleteDialog}
+        isOpen={showDialog}
+        onDismiss={() => setShowDialog(false)}
+      >
+        <div className={styles.deleteDialogHeader}>
+          <h3>Delete Note ?</h3>
+          <button
+            className={styles.deleteDialogCloseBtn}
+            onClick={() => setShowDialog(false)}
+          >
+            <span aria-hidden>×</span>
+          </button>
+        </div>
+        <p>
+          Are you sure you want to delete this note ? Once deleted there is no
+          going back
+        </p>
+        <div className={styles.deleteDialogButtonWrapper}>
+          <button
+            className={styles.deleteDialogDenyBtn}
+            onClick={() => {
+              setShowDialog(false);
+            }}
+          >
+            No
+          </button>
+          <button
+            className={styles.deleteDialogConfirmBtn}
+            onClick={() => {
+              deleteNote();
+              setShowDialog(false);
+            }}
+          >
+            Delete
+          </button>
+        </div>
+      </Dialog>
+      {/* --------------------------------------------------- */}
       <NavBar
         notePage
         createNotes={createNotes}
         showNoteControls={width > 800}
         toggleLock={toggleLock}
         setToggleLock={setToggleLock}
-        deleteNote={deleteNote}
+        deleteNote={setShowDialog}
         id={id}
         pastelColor={pastelColor}
         changeRandomPastelColor={changeRandomPastelColor}
@@ -93,7 +139,7 @@ export default function Notes({ deleteNote, createNotes, history }) {
                 mobile
                 toggleLock={toggleLock}
                 setToggleLock={setToggleLock}
-                deleteNote={deleteNote}
+                deleteNote={setShowDialog}
                 pastelColor={pastelColor}
                 id={id}
                 changeRandomPastelColor={changeRandomPastelColor}
