@@ -17,12 +17,14 @@
   border: none;
   color: #fff;
   resize: none;
+  overflow: hidden;
 }
 .titleBox:focus,
 .notesBox:focus {
   outline: none;
 }
 .titleBoxWraper {
+  overflow-x: hidden;
   width: 100%;
 }
 .titleBox {
@@ -33,6 +35,7 @@
   font-weight: 900;
   line-height: 1.2;
   caret-color: #47ff6f;
+  overflow-x: hidden;
 }
 .notesBox > div {
   background-color: transparent !important;
