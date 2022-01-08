@@ -3,6 +3,7 @@
   --primary_dark_color: #27323a;
   --secondary_dark_color: #435055;
   --primary_color: #a3f7bf;
+  --placeholder_color: #757575;
 }
 
 * {
@@ -20,13 +21,15 @@
   color: rgb(190, 190, 190) !important;
   margin-bottom: 20px;
 }
-
+.ProseMirror p[data-empty-text]::before {
+  color: var(--placeholder_color) !important;
+}
 .ProseMirror .block-menu-trigger {
-  margin-top: 2px !important;
+  margin-top: 3px !important;
   margin-left: -39px !important;
 }
 .ProseMirror .block-menu-trigger svg {
-  fill: #4d4d4d !important;
+  fill: var(--placeholder_color) !important;
 }
 .ProseMirror .heading-content {
   font-weight: 900;
@@ -39,9 +42,6 @@
 }
 .ProseMirror hr.page-break::before {
   border-color: #c1c1c1 !important;
-}
-.ProseMirror .placeholder::before {
-  color: #4d4d4d !important ;
 }
 .ProseMirror .notice-block .icon {
   top: 4px !important;
