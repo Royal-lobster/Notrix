@@ -50,6 +50,7 @@ export default function Notes({ deleteNote, createNotes, history }) {
   return (
     <>
       <NavBar
+        notePage
         createNotes={createNotes}
         showNoteControls={width > 800}
         toggleLock={toggleLock}

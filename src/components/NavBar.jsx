@@ -5,6 +5,7 @@ import styles from "./NavBar.module.css";
 import NoteControls from "./NoteControls";
 
 export default function NavBar({
+  notePage,
   createNotes,
   deleteNote,
   showNoteControls,
@@ -32,12 +33,21 @@ export default function NavBar({
             changeRandomPastelColor={changeRandomPastelColor}
           />
         )}
-        <Button
-          className={styles.createNotesBtn}
-          onClick={createNotes}
-          icon="pen-tool"
-          text="New Note"
-        />
+        {notePage ? (
+          <Button
+            className={styles.createNotesBtn}
+            onClick={() => history.push("/")}
+            icon="home"
+            text="All Notes"
+          />
+        ) : (
+          <Button
+            className={styles.createNotesBtn}
+            onClick={createNotes}
+            icon="pen-tool"
+            text="New Note"
+          />
+        )}
       </div>
     </div>
   );
