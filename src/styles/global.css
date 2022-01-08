@@ -57,6 +57,13 @@
 .ProseMirror table th {
   border: 2px solid #ffffff2a !important;
 }
+.ProseMirror .scrollable-wrapper:hover ::-webkit-scrollbar {
+  background-color: #0000002a !important;
+}
+.ProseMirror .scrollable-wrapper:hover ::-webkit-scrollbar-thumb {
+  border-color: transparent !important;
+  background-color: var(--secondary_dark_color) !important;
+}
 .ProseMirror h1,
 .ProseMirror h2,
 .ProseMirror h3,
