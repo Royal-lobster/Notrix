@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import TextareaAutosize from "react-textarea-autosize";
 import styles from "./Notes.module.css";
 import { useParams } from "react-router";
@@ -15,6 +15,7 @@ export default function Notes({ deleteNote, createNotes, history }) {
   //get id from prams in url
   let { id } = useParams();
   let [width] = useWindowSize();
+  let textarea = useRef(null);
 
   // retriving storedTitle and storedNotesContent from localstorage
   let storedTitle,
@@ -49,7 +50,8 @@ export default function Notes({ deleteNote, createNotes, history }) {
     if (localStorage.getItem(`smde_${id}`)?.trim()) {
       setToggleLock(true);
     }
-  }, [id]);
+    window.setTimeout(() => this.refs.textarea._resizeComponent(), 1);
+  }, []);
 
   let changeRandomPastelColor = () => {
     setPastelColor(`hsl(${Math.floor(Math.random() * 360)}, ${70}%, ${80}%)`);
@@ -112,6 +114,7 @@ export default function Notes({ deleteNote, createNotes, history }) {
         <div className={styles.container}>
           <div className={styles.titleBoxWraper}>
             <TextareaAutosize
+              ref={textarea}
               className={styles.titleBox}
               value={title}
               onChange={(e) => setTitle(e.target.value)}
