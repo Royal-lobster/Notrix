@@ -48,7 +48,7 @@ export default function Notes({ deleteNote, createNotes, history }) {
       setToggleLock(true);
     }
     setTimeout(() => {
-      let t = title;
+      let t = title + " !";
       setTitle(t);
     }, 1000);
   }, []);
