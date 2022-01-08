@@ -1,27 +1,42 @@
 import React from "react";
+import { useHistory } from "react-router";
+import Button from "./general_components/Button";
 import styles from "./NavBar.module.css";
+import NoteControls from "./NoteControls";
 
-export default function NavBar({ createNotes }) {
+export default function NavBar({
+  createNotes,
+  deleteNote,
+  showNoteControls,
+  toggleLock,
+  setToggleLock,
+  id,
+  pastelColor,
+  changeRandomPastelColor,
+}) {
+  const history = useHistory();
   return (
     <div className={styles.container}>
-      <h2 className={styles.branding}>Notrix</h2>
-      <button className={styles.createNotesBtn} onClick={createNotes}>
-        <svg
-          width="24"
-          height="24"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="#fff"
-          strokeWidth="2"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          className={styles.createNotesIcon}
-        >
-          <circle cx="12" cy="12" r="10"></circle>
-          <line x1="12" y1="8" x2="12" y2="16"></line>
-          <line x1="8" y1="12" x2="16" y2="12"></line>
-        </svg>
-      </button>
+      <h2 className={styles.branding} onClick={() => history.push("/")}>
+        <div className={styles.brandingSymbol}>N</div>
+        <div className={styles.brandingLettering}>Notrix</div>
+      </h2>
+      {showNoteControls && (
+        <NoteControls
+          deleteNote={deleteNote}
+          toggleLock={toggleLock}
+          id={id}
+          setToggleLock={setToggleLock}
+          pastelColor={pastelColor}
+          changeRandomPastelColor={changeRandomPastelColor}
+        />
+      )}
+      <Button
+        className={styles.createNotesBtn}
+        onClick={createNotes}
+        icon="pen-tool"
+        text="New Note"
+      />
     </div>
   );
 }

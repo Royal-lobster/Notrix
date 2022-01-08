@@ -1,0 +1,26 @@
+.button,
+.buttonOutline {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  border-radius: 6px;
+  padding: 5px 10px;
+  cursor: pointer;
+}
+.button {
+  background-color: var(--secondary_dark_color);
+  color: #fff;
+}
+.buttonOutline {
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 5px;
+}
+.text {
+  color: #fff;
+  font-weight: 800;
+  margin-top: 3px;
+  -webkit-user-select: none; /* Safari */
+  -moz-user-select: none; /* Firefox */
+  -ms-user-select: none; /* IE10+/Edge */
+  user-select: none; /* Standard */
+}

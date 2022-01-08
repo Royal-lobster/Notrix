@@ -8,11 +8,10 @@
   color: rgb(194, 194, 194);
 }
 .CodeMirror {
-  font-family: monospace;
+  font-family: "Nunito", sans-serif !important;
   height: 300px;
   color: rgb(194, 194, 194);
   direction: ltr;
-  font-family: monospace !important;
 }
 .CodeMirror-lines {
   padding: 4px 0;

@@ -3,8 +3,6 @@ import Notes from "./components/Notes";
 import { useHistory } from "react-router-dom";
 import createUID from "create-unique-id";
 import "./App.css";
-import NavBar from "./components/NavBar";
-import Footer from "./components/Footer";
 import { Route, Switch } from "react-router";
 import NotesList from "./components/NotesList";
 
@@ -59,14 +57,27 @@ function App() {
   };
   return (
     <div>
-      <NavBar createNotes={createNotes} />
       <div className="content">
         <Switch>
-          <Route exact path="/" component={() => <NotesList ids={ids} deleteNote={deleteNote} />} />
-          <Route path="/notes/:id" component={() => <Notes deleteNote={deleteNote} history={history} />} />
+          <Route
+            exact
+            path="/"
+            component={() => (
+              <NotesList
+                ids={ids}
+                createNotes={createNotes}
+                deleteNote={deleteNote}
+              />
+            )}
+          />
+          <Route
+            path="/notes/:id"
+            component={() => (
+              <Notes deleteNote={deleteNote} history={history} />
+            )}
+          />
         </Switch>
       </div>
-      <Footer />
     </div>
   );
 }

@@ -1,9 +1,10 @@
 body {
-  background-color: #222;
+  background-color: var(--primary_dark_color);
   color: #eee;
   margin: 0;
   padding: 0;
   overflow-x: hidden;
+  font-family: "nunito", sans-serif;
 }
 .content {
   min-height: 70vh;

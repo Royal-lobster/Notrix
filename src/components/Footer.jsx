@@ -6,9 +6,8 @@ function Footer() {
       <h4>
         Made by{" "}
         <a className={styles.Footerlink} href="https://srujangurram.me">
-          Srujan Gurram
-        </a>{" "}
-        with Reactjs
+          Srujan
+        </a>
       </h4>
     </div>
   );

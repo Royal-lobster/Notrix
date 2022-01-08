@@ -1,18 +1,39 @@
 .container {
   display: flex;
-  padding: 0 2rem;
+  padding: 26px 20px;
   justify-content: space-between;
-  background-color: rgb(22, 22, 22);
-  border-bottom: 2px solid #47ff6f;
+  background-color: var(--primary_dark_color);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
   margin-bottom: 20px;
 }
 .branding {
-  font-family: Palatino, Georgia, serif;
-  background-color: #47ff6f;
-  border-radius: 8px;
-  color: #222;
-  display: inline;
-  padding: 8px;
+  display: flex;
+  align-items: center;
+  color: var(--primary_color);
+  cursor: pointer;
+  font-size: 28px;
+  font-weight: 900;
+  margin: 0;
+}
+.brandingSymbol,
+.brandingLettering {
+  font-family: "Vollkorn", serif;
+}
+.brandingSymbol {
+  background-color: var(--primary_color);
+  color: var(--primary_dark_color);
+  padding: 5px;
+  font-size: 24px;
+  margin-right: 12px;
+  border-radius: 5px;
+  height: 25px;
+  width: 25px;
+  text-align: center;
+  line-height: 1.2;
+}
+.brandingLettering {
+  margin-top: 5px;
+  line-height: 0;
 }
 .createNotesBtn {
   background-color: transparent;

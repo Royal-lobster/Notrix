@@ -3,7 +3,7 @@
   max-width: 900px;
 }
 .container {
-  margin: 0 10px;
+  margin: 0 20px;
   margin-top: 10vh;
   display: flex;
   flex-direction: column;
@@ -13,10 +13,10 @@
 .notesBox {
   display: block;
   width: 100%;
-  margin: 10px 0;
   border: none;
   color: #fff;
   resize: none;
+  overflow: hidden;
 }
 .titleBox:focus,
 .notesBox:focus {
@@ -29,9 +29,10 @@
 .titleBox {
   text-align: left;
   background-color: transparent;
-  font-size: 45px;
-  font-family: Palatino, Georgia, serif;
+  font-size: 50px;
+  font-family: "Vollkorn", serif;
   font-weight: 900;
+  line-height: 1.2;
   caret-color: #47ff6f;
   overflow-x: hidden;
 }
@@ -41,7 +42,7 @@
   font-size: 20px;
   line-height: 1.5;
   font-weight: 400;
-  font-family: monospace;
+  font-family: "Nunito", sans-serif;
   color: rgb(190, 190, 190) !important;
   margin-bottom: 30px;
 }
@@ -56,7 +57,6 @@
   border-radius: 90px;
   border: 1px solid #47ff6f;
   text-align: center;
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   font-size: 12px;
   color: #47ff6f;
 }
@@ -80,4 +80,12 @@
   align-items: center;
   gap: 20px;
   justify-content: space-around;
+}
+.footerControls {
+  backdrop-filter: blur(8px);
+  padding: 10px;
+  border-radius: 8px;
+  position: fixed;
+  bottom: 10px;
+  background-color: #363e417a;
 }
