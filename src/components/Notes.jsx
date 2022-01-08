@@ -112,7 +112,6 @@ export default function Notes({ deleteNote, createNotes, history }) {
         <div className={styles.container}>
           <div className={styles.titleBoxWraper}>
             <TextareaAutosize
-              async
               className={styles.titleBox}
               value={title}
               onChange={(e) => setTitle(e.target.value)}
