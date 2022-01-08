@@ -51,7 +51,7 @@ export default function Notes({ deleteNote, createNotes, history }) {
       let t = title;
       setTitle("");
       setTitle(t);
-    }, 100);
+    }, 10);
   }, []);
 
   let changeRandomPastelColor = () => {

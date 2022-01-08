@@ -36,6 +36,9 @@
   caret-color: #47ff6f;
   overflow-x: hidden;
 }
+.titleBox::-webkit-scrollbar {
+  display: none;
+}
 .notesBox > div {
   background-color: transparent !important;
   border-radius: 8px;
