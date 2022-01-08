@@ -111,6 +111,16 @@
 .ProseMirror li {
   margin-left: 10px;
 }
+.ProseMirror input[type="checkbox"] {
+  padding: 10px;
+}
+
+/* ---------------------------------------------- */
+input[type="checkbox"] {
+  transform: scale(1.5);
+  margin-right: 10px !important;
+}
+/* ---------------------------------------------- */
 
 @media only screen and (max-width: 700px) {
   .ProseMirror {
