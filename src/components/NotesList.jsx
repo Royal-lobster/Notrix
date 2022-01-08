@@ -4,12 +4,19 @@ import styles from "./NotesList.module.css";
 import noNotesFoundImg from "../assets/noNotesFound.svg";
 import NavBar from "./NavBar";
 import Footer from "./Footer";
+import useWindowSize from "../lib/useWindowSize";
 
 export default function NotesList({ ids, createNotes, deleteNote }) {
+  let [width] = useWindowSize();
   return (
     <>
       <NavBar createNotes={createNotes} />
-      <div className={styles.container}>
+      <div
+        className={styles.container}
+        style={
+          width > 800 ? { marginTop: "calc(15vh - 5vw)" } : { marginTop: 20 }
+        }
+      >
         {ids.length != 0 && (
           <h1 className={styles.SavedNotesText}>💾 Your Saved Notes</h1>
         )}
@@ -32,12 +39,15 @@ export default function NotesList({ ids, createNotes, deleteNote }) {
             })
           ) : (
             // if there are no items in ids array then return ntoes not Detected message
-            <div className={styles.NoNotesDetectedContainer}>
+            <div
+              className={styles.NoNotesDetectedContainer}
+              style={{ padding: 20, textAlign: "center" }}
+            >
               <img
                 src={noNotesFoundImg}
                 className="styles.noNotesFoundImg"
                 alt="No Notes Found"
-                width="300px"
+                width="250px"
               />
               <h1>No Notes detected</h1>
               <p>Click on new note button at top right corner</p>

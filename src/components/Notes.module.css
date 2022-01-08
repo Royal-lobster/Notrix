@@ -44,7 +44,7 @@
   font-weight: 400;
   font-family: "Nunito", sans-serif;
   color: rgb(190, 190, 190) !important;
-  margin-bottom: 30px;
+  margin-bottom: 60px;
 }
 
 .ShowNotesContent {
@@ -88,4 +88,10 @@
   position: fixed;
   bottom: 10px;
   background-color: #363e417a;
+}
+
+@media only screen and (max-width: 700px) {
+  .titleBox {
+    font-size: 38px;
+  }
 }

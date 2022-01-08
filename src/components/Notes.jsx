@@ -40,6 +40,7 @@ export default function Notes({ deleteNote, createNotes, history }) {
   useEffect(() => {
     localStorage.setItem(`Title_${id}`, title);
     localStorage.setItem(`Color_${id}`, pastelColor);
+    localStorage.setItem(`Date_${id}`, new Date().toLocaleString());
   }, [title, pastelColor, id]);
 
   let changeRandomPastelColor = () => {
@@ -81,6 +82,7 @@ export default function Notes({ deleteNote, createNotes, history }) {
             onChange={(value) => {
               const text = value();
               localStorage.setItem(`smde_${id}`, text);
+              localStorage.setItem(`Date_${id}`, new Date().toLocaleString());
             }}
             type="text"
           />

@@ -16,27 +16,29 @@ export default function NavBar({
 }) {
   const history = useHistory();
   return (
-    <div className={styles.container}>
-      <h2 className={styles.branding} onClick={() => history.push("/")}>
-        <div className={styles.brandingSymbol}>N</div>
-        <div className={styles.brandingLettering}>Notrix</div>
-      </h2>
-      {showNoteControls && (
-        <NoteControls
-          deleteNote={deleteNote}
-          toggleLock={toggleLock}
-          id={id}
-          setToggleLock={setToggleLock}
-          pastelColor={pastelColor}
-          changeRandomPastelColor={changeRandomPastelColor}
+    <div className={styles.topWrapper}>
+      <div className={styles.container}>
+        <h2 className={styles.branding} onClick={() => history.push("/")}>
+          <div className={styles.brandingSymbol}>N</div>
+          <div className={styles.brandingLettering}>Notrix</div>
+        </h2>
+        {showNoteControls && (
+          <NoteControls
+            deleteNote={deleteNote}
+            toggleLock={toggleLock}
+            id={id}
+            setToggleLock={setToggleLock}
+            pastelColor={pastelColor}
+            changeRandomPastelColor={changeRandomPastelColor}
+          />
+        )}
+        <Button
+          className={styles.createNotesBtn}
+          onClick={createNotes}
+          icon="pen-tool"
+          text="New Note"
         />
-      )}
-      <Button
-        className={styles.createNotesBtn}
-        onClick={createNotes}
-        icon="pen-tool"
-        text="New Note"
-      />
+      </div>
     </div>
   );
 }

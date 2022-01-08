@@ -95,3 +95,24 @@
 .ProseMirror li {
   margin-left: 10px;
 }
+
+@media only screen and (max-width: 700px) {
+  .ProseMirror {
+    font-size: 18px;
+  }
+  .ProseMirror h1 {
+    font-size: 1.4em;
+    margin-top: 0.6em;
+    margin-bottom: 0.64em;
+  }
+  .ProseMirror h2 {
+    font-size: 1.17em;
+    margin-top: 0.8em;
+    margin-bottom: 0.8em;
+  }
+  .ProseMirror h3 {
+    font-size: 1.33em;
+    margin-top: 0.7em;
+    margin-bottom: 0.7em;
+  }
+}
