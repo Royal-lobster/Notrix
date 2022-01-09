@@ -15,11 +15,21 @@ function NoteControls({
   let [wordCount, setWordCount] = useState(0);
 
   useEffect(() => {
+    // get word count from note for first render
+    setWordCount(
+      abbreviateNumber(
+        localStorage
+          .getItem(`smde_${id}`)
+          ?.split(" ")
+          .filter((w) => w.trim() !== "").length || 0
+      )
+    );
+
+    // set up a listener for changes to note
     let handleUserKeyPress;
 
     //if the note is locked, don't count the words
     if (toggleLock) {
-      console.log("word counter is locked");
       window.removeEventListener("keydown", handleUserKeyPress);
     } else {
       handleUserKeyPress = (e) => {
@@ -30,7 +40,6 @@ function NoteControls({
           e.keyCode === 13 ||
           e.keyCode === 46
         ) {
-          console.log("word counter is running");
           setWordCount(
             abbreviateNumber(
               localStorage
