@@ -10,6 +10,7 @@ import useWindowSize from "../lib/useWindowSize";
 import NoteControls from "./NoteControls";
 import { Dialog } from "@reach/dialog";
 import "@reach/dialog/styles.css";
+import Head from "next/head";
 
 export default function Notes({ deleteNote, createNotes, history }) {
   //get id from prams in url
@@ -61,6 +62,9 @@ export default function Notes({ deleteNote, createNotes, history }) {
 
   return (
     <>
+      <Head>
+        <title>{"Notrix | " + title}</title>
+      </Head>
       {/* -------------------------------------------------- */}
       <Dialog
         className={styles.deleteDialog}

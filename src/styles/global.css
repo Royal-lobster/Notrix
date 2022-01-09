@@ -187,4 +187,14 @@ input[type="checkbox"] {
     margin-top: 0.7em;
     margin-bottom: 0.7em;
   }
+  .ProseMirror table td,
+  .ProseMirror table th {
+    border: 2px solid #555555 !important;
+  }
+  .ProseMirror hr::before {
+    border-color: #555555 !important;
+  }
+  .ProseMirror hr.page-break::before {
+    border-color: #555555 !important;
+  }
 }
