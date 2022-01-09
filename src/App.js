@@ -51,6 +51,8 @@ function App() {
     //remove data from local storage
     localStorage.removeItem(`Title_${note_id}`);
     localStorage.removeItem(`smde_${note_id}`);
+    localStorage.removeItem(`Date_${note_id}`);
+    localStorage.removeItem(`Color_${note_id}`);
 
     //go to homepage
     history.push(`/`);

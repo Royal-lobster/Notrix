@@ -6,7 +6,7 @@ function Button({ icon, text, outline, onClick, color, toggleColor }) {
   return (
     <a
       href="#"
-      tabindex="0"
+      tabIndex="0"
       style={toggleColor && { backgroundColor: toggleColor }}
       className={outline ? styles.buttonOutline : styles.button}
       onClick={onClick}
