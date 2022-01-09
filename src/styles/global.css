@@ -197,4 +197,16 @@ input[type="checkbox"] {
   .ProseMirror hr.page-break::before {
     border-color: #555555 !important;
   }
+  .ProseMirror .notice-block {
+    border: 2px solid #444444 !important;
+  }
+  .ProseMirror .notice-block tip {
+    color: rgb(163, 69, 163);
+  }
+  .ProseMirror .notice-block warn {
+    color: rgb(194, 74, 74);
+  }
+  .ProseMirror .notice-block info {
+    color: rgb(184, 184, 78);
+  }
 }
