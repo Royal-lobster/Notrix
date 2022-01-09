@@ -35,24 +35,20 @@ function App() {
 
   // delete Note Function
   let deleteNote = (note_id) => {
-    //get stored array directly from localstorage
-    let storedIdsArray = JSON.parse(localStorage.getItem("ids_array"));
-
-    //get index of id of this note
-    const index = storedIdsArray.indexOf(note_id);
-
-    //remove the id in the array by the index we found
-    storedIdsArray.splice(index, 1);
-    localStorage.setItem("ids_array", JSON.stringify(storedIdsArray));
-
-    //set the new array as state
-    setIds(storedIdsArray);
-
     //remove data from local storage
     localStorage.removeItem(`Title_${note_id}`);
     localStorage.removeItem(`smde_${note_id}`);
     localStorage.removeItem(`Date_${note_id}`);
     localStorage.removeItem(`Color_${note_id}`);
+
+    //remove id from ids array
+    let storedIdsArray = JSON.parse(localStorage.getItem("ids_array"));
+    const index = storedIdsArray.indexOf(note_id);
+    storedIdsArray.splice(index, 1);
+    localStorage.setItem("ids_array", JSON.stringify(storedIdsArray));
+
+    //set the new array as state
+    setIds(storedIdsArray);
 
     //go to homepage
     history.push(`/`);

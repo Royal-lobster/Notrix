@@ -92,7 +92,7 @@ export default function Notes({ deleteNote, createNotes, history }) {
           <button
             className={styles.deleteDialogConfirmBtn}
             onClick={() => {
-              deleteNote();
+              deleteNote(id);
               setShowDialog(false);
             }}
           >
