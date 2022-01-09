@@ -170,7 +170,7 @@ input[type="checkbox"] {
   div {
     width: auto;
     border: 0;
-    margin: 0 5%;
+    margin: 0;
     padding: 0;
     float: none;
     position: static;
@@ -216,14 +216,6 @@ input[type="checkbox"] {
   }
   .ProseMirror .notice-block {
     border: 2px solid #444444 !important;
-  }
-  .ProseMirror .notice-block tip {
-    color: rgb(163, 69, 163);
-  }
-  .ProseMirror .notice-block warn {
-    color: rgb(194, 74, 74);
-  }
-  .ProseMirror .notice-block info {
-    color: rgb(184, 184, 78);
+    color: #222222;
   }
 }
