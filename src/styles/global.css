@@ -160,17 +160,17 @@ input[type="checkbox"] {
   }
 }
 @media print {
-  /* ------------------------------------------------ */
-  * {
-    width: auto;
-    border: 0;
-    margin: 0;
-    padding: 0;
-    float: none;
-    position: static;
-    overflow: visible;
+  p,
+  div,
+  pre,
+  h1,
+  h2,
+  h3 {
+    width: auto !important;
+    float: none !important;
+    position: static !important;
+    overflow: visible !important;
   }
-  /* ------------------------------------------------ */
   .ProseMirror {
     font-size: 18px;
     color: #222222 !important;

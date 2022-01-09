@@ -156,10 +156,16 @@
 }
 @media print {
   .container {
-    margin-top: 80px;
+    margin-top: 0;
   }
   .titleBox {
+    margin-top: 80px !important;
     font-size: 35px;
     color: #000000;
+    text-align: center;
+    width: 100%;
+  }
+  .footerControls {
+    display: none;
   }
 }
