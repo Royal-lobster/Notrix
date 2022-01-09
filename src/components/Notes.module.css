@@ -1,7 +1,9 @@
+.wrapper {
+  min-height: calc(100vh - 90px);
+}
 .container_wraper {
   margin: 0 auto;
   max-width: 900px;
-  min-height: calc(100vh - 300px);
 }
 .container {
   margin: 0 20px;

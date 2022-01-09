@@ -101,57 +101,59 @@ export default function Notes({ deleteNote, createNotes, history }) {
         </div>
       </Dialog>
       {/* --------------------------------------------------- */}
-      <NavBar
-        notePage
-        createNotes={createNotes}
-        showNoteControls={width > 800}
-        toggleLock={toggleLock}
-        setToggleLock={setToggleLock}
-        deleteNote={setShowDialog}
-        id={id}
-        pastelColor={pastelColor}
-        changeRandomPastelColor={changeRandomPastelColor}
-      />
-      <div className={styles.container_wraper}>
-        <div className={styles.container}>
-          <div className={styles.titleBoxWraper}>
-            <TextareaAutosize
-              className={styles.titleBox}
-              value={title}
-              onChange={(e) => setTitle(e.target.value)}
-              type="text"
-              placeholder="Enter Title"
-            />
-          </div>
-          <br />
-          <Editor
-            placeholder="Start Typing..."
-            id={id}
-            defaultValue={storedNotesContent}
-            value={storedNotesContent}
-            className={styles.notesBox}
-            dark={true}
-            readOnly={toggleLock}
-            onChange={(value) => {
-              const text = value();
-              localStorage.setItem(`smde_${id}`, text);
-              localStorage.setItem(`Date_${id}`, new Date().toLocaleString());
-            }}
-            type="text"
-          />
-          {width < 800 && (
-            <div className={styles.footerControls}>
-              <NoteControls
-                mobile
-                toggleLock={toggleLock}
-                setToggleLock={setToggleLock}
-                deleteNote={setShowDialog}
-                pastelColor={pastelColor}
-                id={id}
-                changeRandomPastelColor={changeRandomPastelColor}
+      <div className={styles.wrapper}>
+        <NavBar
+          notePage
+          createNotes={createNotes}
+          showNoteControls={width > 800}
+          toggleLock={toggleLock}
+          setToggleLock={setToggleLock}
+          deleteNote={setShowDialog}
+          id={id}
+          pastelColor={pastelColor}
+          changeRandomPastelColor={changeRandomPastelColor}
+        />
+        <div className={styles.container_wraper}>
+          <div className={styles.container}>
+            <div className={styles.titleBoxWraper}>
+              <TextareaAutosize
+                className={styles.titleBox}
+                value={title}
+                onChange={(e) => setTitle(e.target.value)}
+                type="text"
+                placeholder="Enter Title"
               />
             </div>
-          )}
+            <br />
+            <Editor
+              placeholder="Start Typing..."
+              id={id}
+              defaultValue={storedNotesContent}
+              value={storedNotesContent}
+              className={styles.notesBox}
+              dark={true}
+              readOnly={toggleLock}
+              onChange={(value) => {
+                const text = value();
+                localStorage.setItem(`smde_${id}`, text);
+                localStorage.setItem(`Date_${id}`, new Date().toLocaleString());
+              }}
+              type="text"
+            />
+            {width < 800 && (
+              <div className={styles.footerControls}>
+                <NoteControls
+                  mobile
+                  toggleLock={toggleLock}
+                  setToggleLock={setToggleLock}
+                  deleteNote={setShowDialog}
+                  pastelColor={pastelColor}
+                  id={id}
+                  changeRandomPastelColor={changeRandomPastelColor}
+                />
+              </div>
+            )}
+          </div>
         </div>
       </div>
       {width >= 800 && <Footer />}
