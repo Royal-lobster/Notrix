@@ -154,3 +154,11 @@
     overflow: hidden;
   }
 }
+@media print {
+  .container {
+    margin-top: 20px;
+  }
+  .titleBox {
+    font-size: 35px;
+  }
+}

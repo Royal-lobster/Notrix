@@ -31,3 +31,9 @@ a {
   -ms-user-select: none; /* IE10+/Edge */
   user-select: none; /* Standard */
 }
+@media print {
+  .button,
+  .buttonOutline {
+    display: none;
+  }
+}

@@ -17,3 +17,8 @@ h4 {
 .Footerlink {
   color: var(--primary_color);
 }
+@media print {
+  .container {
+    display: none;
+  }
+}

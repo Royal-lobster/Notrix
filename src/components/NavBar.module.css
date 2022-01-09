@@ -61,3 +61,8 @@
     gap: 20px;
   }
 }
+@media print {
+  .topWrapper {
+    display: none;
+  }
+}

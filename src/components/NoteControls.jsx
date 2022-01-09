@@ -15,18 +15,38 @@ function NoteControls({
   let [wordCount, setWordCount] = useState(0);
 
   useEffect(() => {
-    const interval = setInterval(() => {
-      setWordCount(
-        abbreviateNumber(
-          localStorage
-            .getItem(`smde_${id}`)
-            ?.split(" ")
-            .filter((w) => w.trim() !== "").length || 0
-        )
-      );
-    }, 1000);
-    return () => clearInterval(interval);
-  }, []);
+    let handleUserKeyPress;
+
+    //if the note is locked, don't count the words
+    if (toggleLock) {
+      console.log("word counter is locked");
+      window.removeEventListener("keydown", handleUserKeyPress);
+    } else {
+      handleUserKeyPress = (e) => {
+        if (
+          e.keyCode === 32 ||
+          e.keyCode === 8 ||
+          e.keyCode === 9 ||
+          e.keyCode === 13 ||
+          e.keyCode === 46
+        ) {
+          console.log("word counter is running");
+          setWordCount(
+            abbreviateNumber(
+              localStorage
+                .getItem(`smde_${id}`)
+                ?.split(" ")
+                .filter((w) => w.trim() !== "").length || 0
+            )
+          );
+        }
+      };
+      window.addEventListener("keydown", handleUserKeyPress);
+    }
+    return () => {
+      window.removeEventListener("keydown", handleUserKeyPress);
+    };
+  }, [toggleLock]);
 
   return (
     <div className={styles.container}>
