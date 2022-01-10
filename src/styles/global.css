@@ -63,6 +63,10 @@
   margin: 10px 0 !important;
   border: none !important;
 }
+.ProseMirror code{
+  border: 1px solid rgb(64 64 64);
+  background: #00000024;
+}
 #block-menu-container::-webkit-scrollbar {
   display: none;
 }
