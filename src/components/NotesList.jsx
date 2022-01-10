@@ -15,7 +15,9 @@ export default function NotesList({ ids, createNotes, deleteNote }) {
         <div
           className={styles.container}
           style={
-            width > 800 ? { marginTop: "calc(15vh - 5vw)" } : { marginTop: 20 }
+            width > 800
+              ? { marginTop: "calc(15vh - 5vw)" }
+              : { marginTop: "max(20px, 5vh)" }
           }
         >
           {ids.length != 0 && (
@@ -50,7 +52,7 @@ export default function NotesList({ ids, createNotes, deleteNote }) {
                   alt="No Notes Found"
                   width="250px"
                 />
-                <h1>No Notes detected</h1>
+                <h1>It's a Fresh Start !</h1>
                 <p>Click on new note button at top right corner</p>
               </div>
             )
