@@ -21,12 +21,23 @@
   color: rgb(190, 190, 190) !important;
   margin-bottom: 20px;
 }
+.ProseMirror select,
+.ProseMirror button {
+  background-color: var(--secondary_dark_color) !important;
+  color: white !important;
+  border: none !important;
+  padding: 3px !important;
+}
+.ProseMirror select:focus {
+  outline: 3px solid rgba(255, 255, 255, 0.1);
+}
 .ProseMirror p[data-empty-text]::before {
   color: var(--placeholder_color) !important;
 }
 .ProseMirror .block-menu-trigger {
-  margin-top: 3px !important;
+  margin-top: 1px !important;
   margin-left: -39px !important;
+  background-color: transparent !important;
 }
 .ProseMirror .block-menu-trigger svg {
   fill: var(--placeholder_color) !important;
@@ -49,8 +60,9 @@
 .ProseMirror pre {
   border-radius: 6px !important;
   padding: 20px !important;
-  background: #222222 none repeat scroll 0% 0% !important;
+  background: #00000044 none repeat scroll 0% 0% !important;
   margin: 10px 0 !important;
+  border: none !important;
 }
 #block-menu-container::-webkit-scrollbar {
   display: none;
@@ -208,15 +220,15 @@ input[type="checkbox"] {
   .ProseMirror hr.page-break::before {
     border-color: #555555 !important;
   }
-  .ProseMirror .notice-block tip {
+  .ProseMirror .notice-block .tip {
     color: rgb(163, 69, 163);
     border: 2px solid rgb(163, 69, 163);
   }
-  .ProseMirror .notice-block warn {
+  .ProseMirror .notice-block .warn {
     color: rgb(194, 74, 74);
     border: 2px solid rgb(194, 74, 74);
   }
-  .ProseMirror .notice-block info {
+  .ProseMirror .notice-block .info {
     color: rgb(155, 90, 61);
     border: 2px solid rgb(155, 90, 61);
   }
