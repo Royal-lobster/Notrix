@@ -171,6 +171,8 @@ input[type="checkbox"] {
     margin-bottom: 0.7em;
   }
 }
+
+/* -----------------PRINT STYLES----------------- */
 @media print {
   p,
   div,
@@ -178,7 +180,6 @@ input[type="checkbox"] {
   h1,
   h2,
   h3 {
-    width: auto !important;
     float: none !important;
     position: static !important;
     overflow: visible !important;
@@ -220,16 +221,15 @@ input[type="checkbox"] {
   .ProseMirror hr.page-break::before {
     border-color: #555555 !important;
   }
-  .ProseMirror .notice-block .tip {
-    color: rgb(163, 69, 163);
-    border: 2px solid rgb(163, 69, 163);
+  .ProseMirror .notice-block {
+    border: 2px solid #444444 !important;
+    text-align: left !important;
+    color: #444444 !important;
   }
-  .ProseMirror .notice-block .warn {
-    color: rgb(194, 74, 74);
-    border: 2px solid rgb(194, 74, 74);
-  }
-  .ProseMirror .notice-block .info {
-    color: rgb(155, 90, 61);
-    border: 2px solid rgb(155, 90, 61);
+
+  .ProseMirror pre {
+    background-color: #666666 !important;
+    border-radius: 6px !important;
+    border: 1px solid #cccccc !important;
   }
 }
