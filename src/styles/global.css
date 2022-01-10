@@ -21,8 +21,7 @@
   color: rgb(190, 190, 190) !important;
   margin-bottom: 20px;
 }
-.ProseMirror select,
-.ProseMirror button {
+.ProseMirror select {
   background-color: var(--secondary_dark_color) !important;
   color: white !important;
   border: none !important;
