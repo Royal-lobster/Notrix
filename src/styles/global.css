@@ -156,7 +156,7 @@ input[type="checkbox"] {
   background: var(--secondary_dark_color) !important;
   border-radius: 8px;
   padding: 20px !important;
-  z-index: 99999 !important;
+  margin: 15vh auto !important;
 }
 
 /* ------------------------------------------------- */
