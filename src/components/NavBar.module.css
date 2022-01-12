@@ -1,6 +1,12 @@
-.topWrapper {
+.topWrapper,
+.topWrapperNotesList {
   border-bottom: 1px solid rgba(255, 255, 255, 0.12);
   z-index: 999;
+}
+.topWrapperNotesList {
+  position: fixed;
+  width: 100%;
+  top: 0;
 }
 .container {
   display: flex;
@@ -54,6 +60,7 @@
 .createNotesIcon {
   cursor: pointer;
 }
+
 @media only screen and (max-width: 320px) {
   .container {
     flex-direction: column;

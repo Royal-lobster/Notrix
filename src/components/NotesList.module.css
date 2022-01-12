@@ -1,5 +1,6 @@
 .wrapper {
-  min-height: calc(100vh - 90px);
+  min-height: calc(100vh - 180px);
+  margin-top: 90px;
 }
 .container {
   display: flex;

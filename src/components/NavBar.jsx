@@ -28,7 +28,7 @@ export default function NavBar({
 
   return (
     <div
-      className={styles.topWrapper}
+      className={notePage ? styles.topWrapper : styles.topWrapperNotesList}
       style={
         toggleNavTransparent
           ? {
