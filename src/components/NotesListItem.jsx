@@ -1,6 +1,6 @@
 import React from "react";
 import styles from "./NotesListItem.module.css";
-
+import { abbreviateNumber } from "../lib/abbreviateNumber";
 function NotesListItem({ id }) {
   let Title = localStorage.getItem(`Title_${id}`);
   let Content = localStorage.getItem(`smde_${id}`);
@@ -15,12 +15,12 @@ function NotesListItem({ id }) {
           <p className={styles.contentDetails}>
             <span>
               <b>
-                {
+                {abbreviateNumber(
                   localStorage
                     .getItem(`smde_${id}`)
                     ?.split(" ")
                     .filter((w) => w.trim() !== "").length
-                }
+                )}
               </b>{" "}
               words{" "}
             </span>
