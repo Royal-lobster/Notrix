@@ -9,6 +9,9 @@
 * {
   accent-color: var(--primary_color);
 }
+html {
+  scroll-behavior: smooth;
+}
 /* EDITOR STYLES */
 .ProseMirror {
   min-height: 30vh !important;

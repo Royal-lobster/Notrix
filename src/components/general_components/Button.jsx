@@ -5,7 +5,6 @@ import FeatherIcon from "feather-icons-react";
 function Button({ icon, text, outline, onClick, color, toggleColor }) {
   return (
     <a
-      href="#"
       tabIndex="0"
       style={toggleColor && { backgroundColor: toggleColor }}
       className={outline ? styles.buttonOutline : styles.button}

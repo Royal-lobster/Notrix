@@ -94,6 +94,11 @@
   bottom: 10px;
   background-color: #363e417a;
 }
+@-moz-document url-prefix() {
+  .footerControls {
+    background-color: #363e41;
+  }
+}
 /* ----------------------------------------------- */
 .deleteDialogHeader {
   display: flex;

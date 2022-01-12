@@ -8,6 +8,7 @@ function NoteControls({
   toggleLock,
   setToggleLock,
   mobile,
+  toggleNavTransparent,
   pastelColor,
   id,
   changeRandomPastelColor,
@@ -38,13 +39,15 @@ function NoteControls({
           e.keyCode === 8 ||
           e.keyCode === 9 ||
           e.keyCode === 13 ||
-          e.keyCode === 46
+          e.keyCode === 46 ||
+          e.keyCode === 86 ||
+          e.keyCode === 88
         ) {
           setWordCount(
             abbreviateNumber(
               localStorage
                 .getItem(`smde_${id}`)
-                ?.split(" ")
+                ?.split(/\s/)
                 .filter((w) => w.trim() !== "").length || 0
             )
           );
@@ -58,7 +61,22 @@ function NoteControls({
   }, [toggleLock]);
 
   return (
-    <div className={styles.container}>
+    <div
+      className={styles.container}
+      style={
+        toggleNavTransparent
+          ? {
+              backgroundColor:
+                navigator.userAgent.toLowerCase().indexOf("firefox") > -1
+                  ? "#363e41"
+                  : "#363e417a",
+              backdropFilter: "blur(8px)",
+              padding: 10,
+              borderRadius: 10,
+            }
+          : {}
+      }
+    >
       <Button
         text="Delete"
         icon="trash-2"
