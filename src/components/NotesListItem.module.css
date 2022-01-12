@@ -55,4 +55,7 @@
   .title {
     font-size: 25px;
   }
+  .container {
+    padding: 5px 20px;
+  }
 }
