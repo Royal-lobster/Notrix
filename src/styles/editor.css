@@ -1,4 +1,5 @@
-/* EDITOR STYLES */
+/* NOTRIX EDITOR STYLES */
+
 .ProseMirror {
   min-height: 30vh !important;
   background-color: transparent !important;
@@ -10,6 +11,8 @@
   color: rgb(190, 190, 190) !important;
   margin-bottom: 20px;
 }
+
+/* BUTTONS and INPUTS Styling*/
 .ProseMirror .code-block button[type="button"] {
   display: none !important;
 }
@@ -22,9 +25,20 @@
 .ProseMirror select:focus {
   outline: 3px solid rgba(255, 255, 255, 0.1);
 }
+.ProseMirror input[type="checkbox"] {
+  padding: 10px;
+}
+.ProseMirror input[type="checkbox"] {
+  transform: scale(1.5);
+  margin-right: 10px !important;
+}
+
+/* Editor Placeholder Styling*/
 .ProseMirror p[data-empty-text]::before {
   color: var(--placeholder_color) !important;
 }
+
+/* Block menu trigger styles */
 .ProseMirror .block-menu-trigger {
   margin-top: 1px !important;
   margin-left: -39px !important;
@@ -33,6 +47,8 @@
 .ProseMirror .block-menu-trigger svg {
   fill: var(--placeholder_color) !important;
 }
+
+/* Content and Blocks styles */
 .ProseMirror .heading-content {
   font-weight: 900;
 }
@@ -62,6 +78,8 @@
 #block-menu-container::-webkit-scrollbar {
   display: none;
 }
+
+/* Tables styles */
 .ProseMirror table .grip-column::after {
   background-color: var(--secondary_dark_color) !important;
   border-bottom: 3px solid #00000071 !important;
@@ -81,12 +99,11 @@
   border-color: transparent !important;
   background-color: var(--secondary_dark_color) !important;
 }
+
+/* Heading styles */
 .ProseMirror h1,
 .ProseMirror h2,
-.ProseMirror h3,
-.ProseMirror h4,
-.ProseMirror h5,
-.ProseMirror h6 {
+.ProseMirror h3 {
   color: #ffffff;
   display: block;
   font-weight: bold;
@@ -108,30 +125,8 @@
   margin-top: 1em;
   margin-bottom: 1em;
 }
-.ProseMirror h4 {
-  margin-top: 1.33em;
-  margin-bottom: 1.33em;
-}
-.ProseMirror h5 {
-  font-size: 0.83em;
-  margin-top: 1.67em;
-  margin-bottom: 1.67em;
-}
-.ProseMirror h6 {
-  font-size: 0.67em;
-  margin-top: 2.33em;
-  margin-bottom: 2.33em;
-}
 .ProseMirror li {
   margin-left: 10px;
-}
-.ProseMirror input[type="checkbox"] {
-  padding: 10px;
-}
-
-.ProseMirror input[type="checkbox"] {
-  transform: scale(1.5);
-  margin-right: 10px !important;
 }
 
 /* ------------------------------------------------- */
@@ -147,6 +142,46 @@
   }
   .ProseMirror h2 {
     font-size: 1.17em;
+    margin-top: 0.4em;
+    margin-bottom: 0.4em;
+  }
+  .ProseMirror h3 {
+    font-size: 0.9em;
+    margin-top: 0.2em;
+    margin-bottom: 0.2em;
+  }
+}
+/* -----------------PRINT STYLES----------------- */
+@media print {
+  p,
+  div,
+  pre,
+  h1,
+  h2,
+  h3 {
+    float: none !important;
+    position: static !important;
+    overflow: visible !important;
+  }
+  .ProseMirror {
+    font-size: 18px;
+    color: #222222 !important;
+  }
+  .ProseMirror h1,
+  .ProseMirror h2,
+  .ProseMirror h3,
+  .ProseMirror h4,
+  .ProseMirror h5,
+  .ProseMirror h6 {
+    color: #000000;
+  }
+  .ProseMirror h1 {
+    font-size: 1.4em;
+    margin-top: 0.6em;
+    margin-bottom: 0.64em;
+  }
+  .ProseMirror h2 {
+    font-size: 1.17em;
     margin-top: 0.8em;
     margin-bottom: 0.8em;
   }
@@ -154,5 +189,26 @@
     font-size: 1.33em;
     margin-top: 0.7em;
     margin-bottom: 0.7em;
+  }
+  .ProseMirror table td,
+  .ProseMirror table th {
+    border: 2px solid #555555 !important;
+  }
+  .ProseMirror hr::before {
+    border-color: #555555 !important;
+  }
+  .ProseMirror hr.page-break::before {
+    border-color: #555555 !important;
+  }
+  .ProseMirror .notice-block {
+    border: 2px solid #444444 !important;
+    text-align: left !important;
+    color: #444444 !important;
+  }
+
+  .ProseMirror pre {
+    background-color: #666666 !important;
+    border-radius: 6px !important;
+    border: 1px solid #cccccc !important;
   }
 }
