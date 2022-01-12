@@ -69,6 +69,7 @@ export default function Notes({ deleteNote }) {
         className={styles.deleteDialog}
         isOpen={showDialog}
         onDismiss={() => setShowDialog(false)}
+        aria-label="Delete Note"
       >
         {/* Header of the Modal Dialog */}
         <div className={styles.deleteDialogHeader}>
