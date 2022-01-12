@@ -9,10 +9,16 @@ a {
   border-radius: 6px;
   padding: 5px 10px;
   cursor: pointer;
+  font-size: 16px;
+  font-family: "nunito", sans-serif;
 }
 .button {
   background-color: var(--secondary_dark_color);
   color: #fff;
+  border: none;
+}
+.buttonOutline {
+  background-color: transparent;
 }
 .button:focus,
 .buttonOutline:focus {

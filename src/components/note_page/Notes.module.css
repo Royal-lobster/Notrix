@@ -1,7 +1,7 @@
 .wrapper {
   min-height: calc(100vh - 90px);
 }
-.container_wraper {
+.containerWrapper {
   margin: 0 auto;
   max-width: 900px;
 }
@@ -24,9 +24,10 @@
 .notesBox:focus {
   outline: none;
 }
-.titleBoxWraper {
+.titleBoxWrapper {
   overflow-x: hidden;
   width: 100%;
+  margin-bottom: 20px;
 }
 .titleBox {
   text-align: left;

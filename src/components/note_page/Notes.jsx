@@ -1,22 +1,21 @@
 import React, { useEffect, useState } from "react";
-import TextareaAutosize from "react-textarea-autosize";
-import styles from "./Notes.module.css";
 import { useParams } from "react-router";
-import Editor from "rich-markdown-editor";
-import "../assets/markdownEditor.css";
-import NavBar from "./NavBar";
-import Footer from "./Footer";
-import useWindowSize from "../lib/useWindowSize";
-import NoteControls from "./NoteControls";
 import { Dialog } from "@reach/dialog";
+import useWindowSize from "../../lib/useWindowSize";
+import TextareaAutosize from "react-textarea-autosize";
+import Editor from "rich-markdown-editor";
+import NavBar from "../layout/NavBar";
+import Footer from "../layout/Footer";
+import NoteControls from "./NoteControls";
 import "@reach/dialog/styles.css";
+import styles from "./Notes.module.css";
 
-export default function Notes({ deleteNote, createNotes, history }) {
+export default function Notes({ deleteNote }) {
   //get id from prams in url
   let { id } = useParams();
   let [width] = useWindowSize();
 
-  // retriving storedTitle and storedNotesContent from localstorage
+  // retrieving storedTitle and storedNotesContent from local storage
   let storedTitle, storedPastelColor, storedNotesContent;
   localStorage.getItem(`Title_${id}`) == null
     ? (storedTitle = "")
@@ -30,43 +29,48 @@ export default function Notes({ deleteNote, createNotes, history }) {
     ? (storedNotesContent = "")
     : (storedNotesContent = localStorage.getItem(`smde_${id}`));
 
-  // initalising state for Notes content and title
+  // initializing state for Notes content and title
   const [title, setTitle] = useState(storedTitle);
-  const [toggleLock, setToggleLock] = useState(false);
-  const [pastelColor, setPastelColor] = useState(storedPastelColor);
+  const [isLocked, setIsLocked] = useState(false);
+  const [noteColor, setNoteColor] = useState(storedPastelColor);
   const [showDialog, setShowDialog] = React.useState(false);
 
   // useEffect to update local storage when ever title and notesContent change
   useEffect(() => {
     localStorage.setItem(`Title_${id}`, title);
-    localStorage.setItem(`Color_${id}`, pastelColor);
+    localStorage.setItem(`Color_${id}`, noteColor);
     localStorage.setItem(`Date_${id}`, new Date().toLocaleString());
-  }, [title, pastelColor, id]);
+  }, [title, noteColor, id]);
 
   useEffect(() => {
+    // lock the editor if content is present on first render
     if (localStorage.getItem(`smde_${id}`)?.trim()) {
-      setToggleLock(true);
+      setIsLocked(true);
     }
     // trigger TextareaAutosize update for change in height of the textarea
-    setTimeout(() => {
+    const triggerTitleResize = setTimeout(() => {
       let t = title;
       setTitle("⠀⠀");
       setTitle(t);
     }, 10);
-  }, []);
 
-  let changeRandomPastelColor = () => {
-    setPastelColor(`hsl(${Math.floor(Math.random() * 360)}, ${70}%, ${80}%)`);
+    // remove timeout when component exit (though its unlikely to exit in 10ms)
+    return () => clearTimeout(triggerTitleResize);
+  }, [id]);
+
+  let handleChangeNoteColor = () => {
+    setNoteColor(`hsl(${Math.floor(Math.random() * 360)}, ${70}%, ${80}%)`);
   };
 
   return (
     <>
-      {/* -------------------------------------------------- */}
+      {/* Modal Dialog for deleting notes */}
       <Dialog
         className={styles.deleteDialog}
         isOpen={showDialog}
         onDismiss={() => setShowDialog(false)}
       >
+        {/* Header of the Modal Dialog */}
         <div className={styles.deleteDialogHeader}>
           <h3>Delete Note ?</h3>
           <button
@@ -76,10 +80,14 @@ export default function Notes({ deleteNote, createNotes, history }) {
             <span aria-hidden>×</span>
           </button>
         </div>
+
+        {/* Message of the Modal Dialog */}
         <p>
           Are you sure you want to delete this note ? Once deleted there is no
           going back
         </p>
+
+        {/* Action Buttons for Modal Dialog for Ok and Delete */}
         <div className={styles.deleteDialogButtonWrapper}>
           <button
             className={styles.deleteDialogDenyBtn}
@@ -100,22 +108,21 @@ export default function Notes({ deleteNote, createNotes, history }) {
           </button>
         </div>
       </Dialog>
-      {/* --------------------------------------------------- */}
       <div className={styles.wrapper}>
         <NavBar
-          notePage
-          createNotes={createNotes}
-          showNoteControls={width > 800}
-          toggleLock={toggleLock}
-          setToggleLock={setToggleLock}
-          deleteNote={setShowDialog}
           id={id}
-          pastelColor={pastelColor}
-          changeRandomPastelColor={changeRandomPastelColor}
+          deleteNote={setShowDialog}
+          showNoteControls={width > 800}
+          isNotePage={true}
+          isLocked={isLocked}
+          setIsLocked={setIsLocked}
+          noteColor={noteColor}
+          handleChangeNoteColor={handleChangeNoteColor}
         />
-        <div className={styles.container_wraper}>
+        <div className={styles.containerWrapper}>
           <div className={styles.container}>
-            <div className={styles.titleBoxWraper}>
+            {/* Notes Title Textarea - From react-textarea-autosize library */}
+            <div className={styles.titleBoxWrapper}>
               <TextareaAutosize
                 className={styles.titleBox}
                 value={title}
@@ -124,7 +131,7 @@ export default function Notes({ deleteNote, createNotes, history }) {
                 placeholder="Enter Title"
               />
             </div>
-            <br />
+            {/* Notes Content - From rich-markdown-editor library */}
             <Editor
               placeholder="Start Typing..."
               id={id}
@@ -132,7 +139,7 @@ export default function Notes({ deleteNote, createNotes, history }) {
               value={storedNotesContent}
               className={styles.notesBox}
               dark={true}
-              readOnly={toggleLock}
+              readOnly={isLocked}
               onChange={(value) => {
                 const text = value();
                 localStorage.setItem(`smde_${id}`, text);
@@ -140,22 +147,24 @@ export default function Notes({ deleteNote, createNotes, history }) {
               }}
               type="text"
             />
+            {/* On mobile devices, render NoteControls component at bottom instead of top */}
             {width <= 800 && (
               <div className={styles.footerControls}>
                 <NoteControls
-                  mobile
-                  toggleLock={toggleLock}
-                  setToggleLock={setToggleLock}
-                  deleteNote={setShowDialog}
-                  pastelColor={pastelColor}
                   id={id}
-                  changeRandomPastelColor={changeRandomPastelColor}
+                  isMobile={true}
+                  isLocked={isLocked}
+                  setIsLocked={setIsLocked}
+                  deleteNote={setShowDialog}
+                  noteColor={noteColor}
+                  handleChangeNoteColor={handleChangeNoteColor}
                 />
               </div>
             )}
           </div>
         </div>
       </div>
+      {/* Remove footer in mobile devices in favor of NoteControls at bottom */}
       {width >= 800 && <Footer />}
     </>
   );

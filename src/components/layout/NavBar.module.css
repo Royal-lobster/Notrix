@@ -62,11 +62,13 @@
 }
 
 @media only screen and (max-width: 320px) {
-  .container {
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 20px;
+  .brandingLettering {
+    font-size: 20px;
+  }
+  .brandingSymbol {
+    font-size: 18px;
+    width: 20px;
+    height: 20px;
   }
 }
 @media print {

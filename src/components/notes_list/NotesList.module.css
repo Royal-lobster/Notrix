@@ -1,0 +1,28 @@
+.wrapper {
+  min-height: calc(100vh - 180px);
+  margin-top: 87px;
+}
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 80px auto 0 auto;
+  padding: 20px;
+  max-width: 900px;
+}
+.SavedNotesText {
+  color: #cfcfcf;
+  font-family: "Vollkorn", serif;
+  text-align: center;
+}
+@media only screen and (max-width: 800px) {
+  .container {
+    margin-top: 90px;
+  }
+}
+
+@media only screen and (max-width: 700px) {
+  .SavedNotesText {
+    font-size: 28px;
+  }
+}

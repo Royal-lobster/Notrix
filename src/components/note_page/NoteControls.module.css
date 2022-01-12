@@ -1,0 +1,13 @@
+.container {
+  display: flex;
+  gap: 10px;
+}
+
+.containerWithBackground {
+  display: flex;
+  gap: 10px;
+  background-color: #363e417a;
+  backdrop-filter: blur(8px);
+  padding: 10px;
+  border-radius: 8px;
+}

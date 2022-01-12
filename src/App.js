@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from "react";
-import Notes from "./components/Notes";
+import "./App.css";
+import Notes from "./components/note_page/Notes";
 import { useHistory } from "react-router-dom";
 import createUID from "create-unique-id";
-import "./App.css";
 import { Route, Switch } from "react-router";
-import NotesList from "./components/NotesList";
+import NotesList from "./components/notes_list/NotesList";
 
 function App() {
-  // initalise ids array state
+  // initialize ids array state
   const [ids, setIds] = useState([]);
   const history = useHistory();
 
@@ -22,8 +22,11 @@ function App() {
     // create a new ID
     let newId = createUID(22);
 
+    // get current stored ids array
+    let storedIdsArray = JSON.parse(localStorage.getItem("ids_array"));
+
     //add the new Created Id to an array
-    let newIdsArray = ids.concat([newId]);
+    let newIdsArray = [...storedIdsArray, newId];
 
     //make the array as ids state and set it in localStorage
     setIds(newIdsArray);
@@ -53,6 +56,7 @@ function App() {
     //go to homepage
     history.push(`/`);
   };
+
   return (
     <div>
       <div className="content">
