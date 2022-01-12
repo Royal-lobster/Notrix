@@ -1,0 +1,16 @@
+{
+  "short_name": "Notrix",
+  "name": "Notrix",
+  "description": "A 100% Free and Secure Browser Notes App",
+  "icons": [
+    {
+      "src": "favicon.svg",
+      "purpose": "maskable any",
+      "sizes": "any"
+    }
+  ],
+  "start_url": ".",
+  "display": "standalone",
+  "theme_color": "#27323a",
+  "background_color": "#27323a"
+}
