@@ -140,7 +140,7 @@ export default function Notes({ deleteNote, createNotes, history }) {
               }}
               type="text"
             />
-            {width < 800 && (
+            {width <= 800 && (
               <div className={styles.footerControls}>
                 <NoteControls
                   mobile
