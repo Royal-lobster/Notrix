@@ -1,1 +1,1 @@
-ServiceWorkerRegistration.register();
+serviceWorkerRegistration.register();
