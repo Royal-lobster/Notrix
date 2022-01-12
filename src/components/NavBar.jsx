@@ -20,12 +20,12 @@ export default function NavBar({
 
   useScrollPosition(({ prevPos, currPos }) => {
     if (Math.floor(currPos.y) < -100 && showNoteControls) {
-      console.log(Math.floor(currPos.y));
       setToggleNavTransparent(true);
     } else {
       setToggleNavTransparent(false);
     }
   });
+
   return (
     <div
       className={styles.topWrapper}
@@ -47,6 +47,7 @@ export default function NavBar({
             ? {
                 backgroundColor: "transparent",
                 justifyContent: "center",
+                padding: "10px 0",
               }
             : {}
         }

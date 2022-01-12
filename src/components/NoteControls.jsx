@@ -72,7 +72,7 @@ function NoteControls({
                   : "#363e417a",
               backdropFilter: "blur(8px)",
               padding: 10,
-              borderRadius: 10,
+              borderRadius: 8,
             }
           : {}
       }
