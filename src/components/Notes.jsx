@@ -50,7 +50,7 @@ export default function Notes({ deleteNote, createNotes, history }) {
     // trigger TextareaAutosize update for change in height of the textarea
     setTimeout(() => {
       let t = title;
-      setTitle("");
+      setTitle("⠀⠀");
       setTitle(t);
     }, 10);
   }, []);
