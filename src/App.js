@@ -26,7 +26,7 @@ function App() {
     let storedIdsArray = JSON.parse(localStorage.getItem("ids_array"));
 
     //add the new Created Id to an array
-    let newIdsArray = [...storedIdsArray, newId];
+    let newIdsArray = storedIdsArray ? [...storedIdsArray, newId] : [newId];
 
     //make the array as ids state and set it in localStorage
     setIds(newIdsArray);
