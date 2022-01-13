@@ -93,7 +93,6 @@ function NotesListItem({ id }) {
         </a>
         <p className={styles.contentDetails}>
           <span>
-            {" "}
             <FeatherIcon icon="clock" size={15} /> {shottedDate}
           </span>
           <span className={styles.shareBtn} onClick={createShareLink}>

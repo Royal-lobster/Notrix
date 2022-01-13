@@ -19,16 +19,19 @@ export default function NotesList({ createNotes, deleteNote }) {
           {
             // Map through all Notes if ids array has any ids
             ids.length ? (
-              ids.map((id) => {
-                // Render NotesListItem for each id
-                if (
-                  localStorage.getItem(`Title_${id}`) ||
-                  localStorage.getItem(`smde_${id}`) !== ""
-                )
-                  return <NotesListItem id={id} key={id} />;
-                // if both title and content are empty delete it
-                else return deleteNote(id);
-              })
+              ids
+                .slice(0)
+                .reverse()
+                .map((id) => {
+                  // Render NotesListItem for each id
+                  if (
+                    localStorage.getItem(`Title_${id}`) ||
+                    localStorage.getItem(`smde_${id}`) !== ""
+                  )
+                    return <NotesListItem id={id} key={id} />;
+                  // if both title and content are empty delete it
+                  else return deleteNote(id);
+                })
             ) : (
               // if there are no items in ids array then show fresh start message
               <NoNotesDetected />
