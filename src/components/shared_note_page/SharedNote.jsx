@@ -14,7 +14,6 @@ function SharedNote({ history }) {
       let fetchedQueries = queryString.parse(
         window.location.search.split("?")[1]
       );
-      console.log(fetchedQueries);
       await setQueries(fetchedQueries);
       const compressed = /(?<=\&data=).*/g.exec(window.location.search)[0];
       const decompressed = await LZUTF8.decompress(compressed, {
