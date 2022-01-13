@@ -41,7 +41,7 @@ function NotesListItem({ id }) {
 
   let createShareLink = async () => {
     // if there is no title, show "Untitled"
-    let noteTitle = Title ? Title : "Untitled";
+    let noteTitle = Title ? encodeURIComponent(Title.trim()) : "Untitled";
 
     // if there is content, compress it, else compress nothing
     let compressedContent = Content
