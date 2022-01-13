@@ -13,6 +13,9 @@ function ShareNoteItem({ title, data, hue }) {
     ? data?.substring(0, 150) + "..."
     : "A Fresh page. Only title is available";
 
+  let shortenedTitle = `${title?.substring(0, 150)} ${
+    title?.length > 150 ? "..." : ""
+  }`;
   return (
     <div className={styles.container}>
       <div
@@ -20,7 +23,7 @@ function ShareNoteItem({ title, data, hue }) {
         style={{ backgroundColor: `hsl(${hue}, 70%, 80%)` }}
       ></div>
       <div className={styles.content_wraper}>
-        <h2 className={styles.title}>{title}</h2>
+        <h2 className={styles.title}>{shortenedTitle}</h2>
         <p className={styles.content}>{noteContent}</p>
         <p className={styles.contentDetails}>
           <span>
