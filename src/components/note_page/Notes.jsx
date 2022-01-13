@@ -39,7 +39,6 @@ export default function Notes({ deleteNote }) {
   useEffect(() => {
     localStorage.setItem(`Title_${id}`, title);
     localStorage.setItem(`Color_${id}`, noteColor);
-    localStorage.setItem(`Date_${id}`, new Date().toLocaleString());
   }, [title, noteColor, id]);
 
   useEffect(() => {
