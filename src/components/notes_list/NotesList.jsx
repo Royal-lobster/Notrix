@@ -22,11 +22,11 @@ export default function NotesList({ createNotes, deleteNote }) {
               ids
                 .slice(0)
                 .reverse()
-                .map((id) => {
+                .map((id, i) => {
                   // Render NotesListItem for each id
                   if (
                     localStorage.getItem(`Title_${id}`) ||
-                    localStorage.getItem(`smde_${id}`) !== ""
+                    localStorage.getItem(`smde_${id}`) !== null
                   )
                     return <NotesListItem id={id} key={id} />;
                   // if both title and content are empty delete it
