@@ -39,7 +39,7 @@ function SharedNote({ history }) {
 
     //make Title, Color and Data set to localStorage
     localStorage.setItem(`Title_${newId}`, queries.title);
-    localStorage.setItem(`Color_${newId}`, `hsl(${queries.color}, 70%, 80%)`);
+    localStorage.setItem(`Color_${newId}`, `hsl(${queries.color}, 80%, 80%)`);
     localStorage.setItem(
       `smde_${newId}`,
       `\n:::info\nFetched from Notrix Share\n\n:::\n\n${decodedData}`

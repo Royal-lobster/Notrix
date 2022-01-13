@@ -20,7 +20,7 @@ function ShareNoteItem({ title, data, hue }) {
     <div className={styles.container}>
       <div
         className={styles.decor}
-        style={{ backgroundColor: `hsl(${hue}, 70%, 80%)` }}
+        style={{ backgroundColor: `hsl(${hue}, 80%, 80%)` }}
       ></div>
       <div className={styles.content_wraper}>
         <h2 className={styles.title}>{shortenedTitle}</h2>
