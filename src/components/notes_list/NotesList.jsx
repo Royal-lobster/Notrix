@@ -22,7 +22,7 @@ export default function NotesList({ createNotes, deleteNote }) {
               ids
                 .slice(0)
                 .reverse()
-                .map((id, i) => {
+                .map((id) => {
                   // Render NotesListItem for each id
                   if (
                     localStorage.getItem(`Title_${id}`) ||

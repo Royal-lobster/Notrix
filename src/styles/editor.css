@@ -72,7 +72,9 @@
   border: none !important;
 }
 .ProseMirror code {
-  border: 1px solid rgb(64 64 64);
+  border: 2px solid #00000050 !important;
+  padding: 3px 4px !important;
+  padding-bottom: 0px !important;
   background: #00000024;
 }
 #block-menu-container::-webkit-scrollbar {
@@ -127,6 +129,13 @@
 }
 .ProseMirror li {
   margin-left: 10px;
+}
+div.notice-block.info {
+  background: #1880b1 !important;
+  color: white !important;
+}
+div.notice-block.tip {
+  background: #37aa63 !important;
 }
 
 /* ------------------------------------------------- */

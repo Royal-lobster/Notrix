@@ -36,7 +36,7 @@ function NotesListItem({ id }) {
 
   // if there is no content, show "No Content"
   let noteContent = Content
-    ? Content?.substring(0, 150) + "..."
+    ? `${Content.substring(0, 150)} ${Content.length > 150 ? "..." : ""}`
     : "A Fresh page. Click to edit";
 
   let createShareLink = async () => {

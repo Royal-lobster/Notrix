@@ -37,12 +37,25 @@ function SharedNote({ history }) {
     //make the array as ids state and set it in localStorage
     localStorage.setItem("ids_array", JSON.stringify(newIdsArray));
 
+    // make short date for info
+    let shortenedDate = new Date();
+    shortenedDate = shortenedDate
+      .toLocaleString([], {
+        year: "numeric",
+        month: "numeric",
+        day: "numeric",
+        hour: "2-digit",
+        minute: "2-digit",
+      })
+      .split(",");
     //make Title, Color and Data set to localStorage
     localStorage.setItem(`Title_${newId}`, queries.title);
     localStorage.setItem(`Color_${newId}`, `hsl(${queries.color}, 80%, 80%)`);
     localStorage.setItem(
       `smde_${newId}`,
-      `\n:::info\nFetched from Notrix Share\n\n:::\n\n${decodedData}`
+      `\n:::info\nFetched from **Notrix Share** on \`${
+        shortenedDate[0]
+      }\` at \`${shortenedDate[1].trim()}\`\n\n:::\n\n\\\n${decodedData}`
     );
     localStorage.setItem(`Date_${newId}`, new Date().toLocaleString());
 
