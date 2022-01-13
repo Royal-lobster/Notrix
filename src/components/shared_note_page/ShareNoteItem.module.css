@@ -1,0 +1,55 @@
+.container {
+  background-color: rgba(0, 0, 0, 0.123);
+  max-width: 850px;
+  margin: 10px auto;
+  padding: 5px 30px;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  position: relative;
+  overflow: hidden;
+}
+.content_wraper {
+  margin-left: 20px;
+}
+.title {
+  font-family: Palatino, Georgia, serif;
+  font-size: 30px;
+  color: #fff;
+  margin-bottom: 0;
+}
+.titleLink {
+  color: rgb(180, 180, 180);
+  text-decoration: none;
+  width: 100%;
+}
+
+.content {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  color: rgb(143, 143, 143);
+}
+.decor {
+  position: absolute;
+  left: 0;
+  height: 100%;
+  width: 15px;
+}
+.contentDetails {
+  display: flex;
+  gap: 10px;
+}
+.contentDetails span {
+  padding: 5px 5px;
+  background-color: #0000002f;
+  border-radius: 5px;
+  font-size: 14px;
+}
+@media only screen and (max-width: 700px) {
+  .title {
+    font-size: 25px;
+  }
+  .container {
+    padding: 5px 20px;
+  }
+}

@@ -7,12 +7,13 @@
     41.8px 41.8px 33.4px rgba(0, 0, 0, 0.022),
     100px 100px 80px rgba(0, 0, 0, 0.03);
   max-width: 850px;
+  width: 88%;
   margin: 10px auto;
   padding: 5px 30px;
   border-radius: 6px;
   display: flex;
   align-items: center;
-  gap: 2rem;
+  gap: 1rem;
   position: relative;
   overflow: hidden;
 }
@@ -28,7 +29,6 @@
 .titleLink {
   color: rgb(180, 180, 180);
   text-decoration: none;
-  width: 100%;
 }
 
 .content {
@@ -51,6 +51,53 @@
   border-radius: 5px;
   font-size: 14px;
 }
+.shareBtn {
+  display: flex;
+  justify-content: center;
+  gap: 5px;
+  cursor: pointer;
+}
+.shareBtn:hover {
+  filter: brightness(1.2);
+}
+/* `````````````````````````````````````````` */
+/* generated element for shine effect.
+ * normal state is semi-transparent
+ * white but with zero width. Set no
+ * transition here for no mouse-leave
+ * animations. Otherwise the effect
+ * will play in reverse when your mouse
+ * leaves the element
+ */
+.shareBtn:after {
+  content: "";
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 0%;
+  height: 100%;
+  background-color: rgba(255, 255, 255, 0.4);
+  border-radius: 5px;
+  -webkit-transition: none;
+  -moz-transition: none;
+  -ms-transition: none;
+  -o-transition: none;
+  transition: none;
+}
+/* on hover we animate the width to
+* 100% and opacity to 0 so the element
+* grows and fades out
+*/
+.shareBtn:hover:after {
+  width: 120%;
+  background-color: rgba(255, 255, 255, 0);
+  -webkit-transition: all 0.3s ease-out;
+  -moz-transition: all 0.3s ease-out;
+  -ms-transition: all 0.3s ease-out;
+  -o-transition: all 0.3s ease-out;
+  transition: all 0.3s ease-out;
+}
+/* ``````````````````````````````````````````` */
 @media only screen and (max-width: 700px) {
   .title {
     font-size: 25px;

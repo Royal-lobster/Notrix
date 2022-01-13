@@ -4,6 +4,7 @@
   --secondary_dark_color: #435055;
   --primary_color: #a3f7bf;
   --placeholder_color: #757575;
+  --toastify-color-progress-success: #a3f7bf !important;
 }
 
 * {
@@ -19,4 +20,10 @@ html {
   border-radius: 8px;
   padding: 20px !important;
   margin: 15vh auto !important;
+}
+.Toastify__toast-theme--dark {
+  background: var(--secondary_dark_color) !important;
+}
+.Toastify__toast-icon svg {
+  fill: var(--primary_color) !important;
 }

@@ -5,6 +5,7 @@ import { useHistory } from "react-router-dom";
 import createUID from "create-unique-id";
 import { Route, Switch } from "react-router";
 import NotesList from "./components/notes_list/NotesList";
+import SharedNote from "./components/shared_note_page/SharedNote";
 
 function App() {
   // initialize ids array state
@@ -76,6 +77,12 @@ function App() {
             path="/notes/:id"
             component={() => (
               <Notes deleteNote={deleteNote} history={history} />
+            )}
+          />
+          <Route
+            path="/share"
+            component={() => (
+              <SharedNote createNotes={createNotes} history={history} />
             )}
           />
         </Switch>

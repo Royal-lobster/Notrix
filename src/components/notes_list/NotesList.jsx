@@ -5,7 +5,9 @@ import NavBar from "../layout/NavBar";
 import Footer from "../layout/Footer";
 import NoNotesDetected from "./NoNotesDetected";
 
-export default function NotesList({ ids, createNotes, deleteNote }) {
+export default function NotesList({ createNotes, deleteNote }) {
+  // get ids from local storage
+  let ids = JSON.parse(localStorage.getItem("ids_array")) || [];
   return (
     <>
       <div className={styles.wrapper}>
