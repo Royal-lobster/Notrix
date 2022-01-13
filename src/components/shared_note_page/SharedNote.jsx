@@ -44,6 +44,7 @@ function SharedNote({ history }) {
       `smde_${newId}`,
       `\n:::info\nFetched from Notrix Share\n\n:::\n\n${decodedData}`
     );
+    localStorage.setItem(`Date_${newId}`, new Date().toLocaleString());
 
     //go to new notes page
     history.push(`/notes/${newId}`);

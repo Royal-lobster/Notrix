@@ -19,7 +19,15 @@ function NotesListItem({ id }) {
   );
 
   // get modified date from local storage
-  let shottedDate = NoteDate ? new Date(NoteDate).toLocaleDateString() : "N/A";
+  let shottedDate = NoteDate
+    ? new Date(NoteDate).toLocaleTimeString([], {
+        year: "numeric",
+        month: "numeric",
+        day: "numeric",
+        hour: "2-digit",
+        minute: "2-digit",
+      })
+    : "N/A";
 
   // if there is no title, show "Untitled"
   let noteTitle = Title ? Title : "Untitled";
@@ -84,7 +92,10 @@ function NotesListItem({ id }) {
           <p className={styles.content}>{noteContent}</p>
         </a>
         <p className={styles.contentDetails}>
-          <span> Modified on {shottedDate}</span>
+          <span>
+            {" "}
+            <FeatherIcon icon="clock" size={15} /> {shottedDate}
+          </span>
           <span className={styles.shareBtn} onClick={createShareLink}>
             <FeatherIcon icon="share" size={15} /> Share
           </span>

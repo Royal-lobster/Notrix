@@ -43,6 +43,7 @@
 }
 .contentDetails {
   display: flex;
+  flex-wrap: wrap;
   gap: 10px;
 }
 .contentDetails span {
@@ -50,11 +51,14 @@
   background-color: #0000002f;
   border-radius: 5px;
   font-size: 14px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+.contentDetails span svg {
+  margin-bottom: 2px;
 }
 .shareBtn {
-  display: flex;
-  justify-content: center;
-  gap: 5px;
   cursor: pointer;
 }
 .shareBtn:hover {
@@ -104,5 +108,12 @@
   }
   .container {
     padding: 5px 20px;
+    gap: 1rem;
+  }
+}
+@media only screen and (max-width: 350px) {
+  .container {
+    padding: 5px 20px;
+    gap: 0rem;
   }
 }
