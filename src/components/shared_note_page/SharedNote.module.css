@@ -77,7 +77,11 @@
     height: auto;
   }
   .container {
-    margin: 10vh auto 0 auto;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 80vw;
     padding: 16px;
   }
 }
