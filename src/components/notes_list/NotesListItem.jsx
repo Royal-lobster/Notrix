@@ -121,7 +121,7 @@ function NotesListItem({ id, setIds }) {
     >
       <ToastContainer position="bottom-center" theme="dark" />
       <div className={styles.decor} style={{ backgroundColor: color }}></div>
-      <div className={styles.content_wraper}>
+      <div className={styles.content_wrapper}>
         <a className={styles.titleLink} href={`/notes/${id}`}>
           <h2 className={styles.title}>{title}</h2>
           <p className={styles.content}>{content}</p>

@@ -19,8 +19,11 @@ export default function NotesList({ createNotes, deleteNote }) {
       .get()
       .then((notes) => {
         notes.forEach((note) => {
-          if (note.title || note.content)
-            setIds((prevIds) => [...prevIds, note.id]);
+          if (note.title || note.content.trim() !== "") {
+            if (!note.title && note.content === `\\\n`) {
+              deleteNote(note.id);
+            } else setIds((prevIds) => [...prevIds, note.id]);
+          }
           // if note has empty Title and Content, delete it
           else deleteNote(note.id);
         });
