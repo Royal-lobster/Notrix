@@ -145,13 +145,13 @@ export default function Notes({ deleteNote }) {
           handleChangeNoteColor={handleChangeNoteColor}
           isStickedAtTop={isNoteControlsStickedAtTop}
         />
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          className={styles.containerWrapper}
-        >
+        <div className={styles.containerWrapper}>
           {!loading && (
-            <div className={styles.container}>
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              className={styles.container}
+            >
               {/* Notes Title Textarea - From react-textarea-autosize library */}
               <div className={styles.titleBoxWrapper}>
                 <TextareaAutosize
@@ -195,9 +195,9 @@ export default function Notes({ deleteNote }) {
                   />
                 </div>
               )}
-            </div>
+            </motion.div>
           )}
-        </motion.div>
+        </div>
       </div>
       {/* Remove footer in mobile devices in favor of NoteControls at bottom */}
       {width >= 800 && !loading && <Footer />}
