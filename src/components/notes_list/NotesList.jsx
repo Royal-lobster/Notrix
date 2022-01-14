@@ -31,13 +31,15 @@ export default function NotesList({ createNotes, deleteNote }) {
     <>
       <div className={styles.wrapper}>
         <NavBar createNotes={createNotes} />
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          className={styles.container}
-        >
+        <div className={styles.container}>
           {ids.length !== 0 && (
-            <h1 className={styles.SavedNotesText}>💾 Your Saved Notes</h1>
+            <motion.h1
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              className={styles.SavedNotesText}
+            >
+              💾 Your Saved Notes
+            </motion.h1>
           )}
           {
             // Map through all Notes if ids array has any ids
@@ -47,10 +49,16 @@ export default function NotesList({ createNotes, deleteNote }) {
               ))
             ) : (
               // if there are no items in ids array then show fresh start message
-              <NoNotesDetected />
+              <motion.div
+                transition={{ default: { duration: 0.5 } }}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+              >
+                <NoNotesDetected />
+              </motion.div>
             )
           }
-        </motion.div>
+        </div>
       </div>
       <Footer />
     </>

@@ -5,6 +5,7 @@ import "react-toastify/dist/ReactToastify.css";
 import FeatherIcon from "feather-icons-react";
 import LZUTF8 from "lzutf8";
 import Localbase from "localbase";
+import { motion } from "framer-motion";
 
 function NotesListItem({ id, setIds }) {
   // initialize localbase
@@ -113,7 +114,11 @@ function NotesListItem({ id, setIds }) {
   };
 
   return (
-    <div className={styles.container}>
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      className={styles.container}
+    >
       <ToastContainer position="bottom-center" theme="dark" />
       <div className={styles.decor} style={{ backgroundColor: color }}></div>
       <div className={styles.content_wraper}>
@@ -130,7 +135,7 @@ function NotesListItem({ id, setIds }) {
           </span>
         </p>
       </div>
-    </div>
+    </motion.div>
   );
 }
 

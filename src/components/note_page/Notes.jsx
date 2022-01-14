@@ -131,11 +131,7 @@ export default function Notes({ deleteNote }) {
         />
         <div className={styles.containerWrapper}>
           {!loading && (
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              className={styles.container}
-            >
+            <div className={styles.container}>
               {/* Notes Title Textarea - From react-textarea-autosize library */}
               <div className={styles.titleBoxWrapper}>
                 <TextareaAutosize
@@ -179,7 +175,7 @@ export default function Notes({ deleteNote }) {
                   />
                 </div>
               )}
-            </motion.div>
+            </div>
           )}
         </div>
       </div>
