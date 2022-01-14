@@ -9,43 +9,51 @@ import Footer from "../layout/Footer";
 import NoteControls from "./NoteControls";
 import "@reach/dialog/styles.css";
 import styles from "./Notes.module.css";
+import Localbase from "localbase";
 
 export default function Notes({ deleteNote }) {
+  // initialize localbase
+  let db = new Localbase();
+
   //get id from prams in url
   let { id } = useParams();
   let [width] = useWindowSize();
 
-  // retrieving storedTitle and storedNotesContent from local storage
-  let storedTitle, storedPastelColor, storedNotesContent;
-  localStorage.getItem(`Title_${id}`) == null
-    ? (storedTitle = "")
-    : (storedTitle = localStorage.getItem(`Title_${id}`));
-  localStorage.getItem(`smde_${id}`) == null
-    ? (storedPastelColor = `hsl(${Math.floor(
-        Math.random() * 360
-      )}, ${70}%, ${80}%)`)
-    : (storedPastelColor = localStorage.getItem(`Color_${id}`));
-  localStorage.getItem(`smde_${id}`) == null
-    ? (storedNotesContent = "")
-    : (storedNotesContent = localStorage.getItem(`smde_${id}`));
-
   // initializing state for Notes content and title
-  const [title, setTitle] = useState(storedTitle);
+  const [title, setTitle] = useState("");
+  const [initialStoredContent, setInitialStoredContent] = useState();
   const [isLocked, setIsLocked] = useState(false);
-  const [noteColor, setNoteColor] = useState(storedPastelColor);
+  const [noteColor, setNoteColor] = useState("");
   const [showDialog, setShowDialog] = React.useState(false);
 
-  // useEffect to update local storage when ever title and notesContent change
+  // useEffect to update indexedDB when ever title and color change
   useEffect(() => {
-    localStorage.setItem(`Title_${id}`, title);
-    localStorage.setItem(`Color_${id}`, noteColor);
+    db.collection("notes").doc({ id: id }).update({
+      title: title,
+      color: noteColor,
+    });
   }, [title, noteColor, id]);
 
   useEffect(() => {
-    // lock the editor if content is present on first render
-    if (localStorage.getItem(`smde_${id}`)?.trim()) {
-      setIsLocked(true);
-    }
+    // retrieving notes from indexedDB
+    db.collection("notes")
+      .doc({ id: id })
+      .get()
+      .then((note) => {
+        // set initial content, color and title
+        setTitle(note.title || "");
+        setNoteColor(
+          note.color ||
+            `hsl(${Math.floor(Math.random() * 360)}, ${70}%, ${80}%)`
+        );
+        setInitialStoredContent(note.content || "");
+
+        // lock the editor if content is present on first render
+        if (note.content.trim() !== "") {
+          setIsLocked(true);
+        }
+      });
+
     // trigger TextareaAutosize update for change in height of the textarea
     const triggerTitleResize = setTimeout(() => {
       let t = title;
@@ -135,17 +143,20 @@ export default function Notes({ deleteNote }) {
             <Editor
               placeholder="Start Typing..."
               id={id}
-              defaultValue={storedNotesContent}
-              value={storedNotesContent}
+              defaultValue={initialStoredContent}
+              value={initialStoredContent}
               className={styles.notesBox}
               dark={true}
               readOnly={isLocked}
-              onChange={(value) => {
-                const text = value();
-                localStorage.setItem(`smde_${id}`, text);
-                localStorage.setItem(`Date_${id}`, new Date().toLocaleString());
-              }}
               type="text"
+              onChange={(value) => {
+                let text = value();
+                let currentTime = new Date().toLocaleString();
+                db.collection("notes").doc({ id: id }).update({
+                  content: text,
+                  date: currentTime,
+                });
+              }}
             />
             {/* On mobile devices, render NoteControls component at bottom instead of top */}
             {width <= 800 && (

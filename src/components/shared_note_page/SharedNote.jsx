@@ -5,8 +5,12 @@ import styles from "./SharedNote.module.css";
 import Button from "../general_components/Button";
 import createUID from "create-unique-id";
 import queryString from "query-string";
+import Localbase from "localbase";
 
 function SharedNote({ history }) {
+  // initialize localbase
+  let db = new Localbase();
+
   const [decodedData, setDecodedData] = useState("");
   const [queries, setQueries] = useState({});
   useEffect(() => {
@@ -28,15 +32,6 @@ function SharedNote({ history }) {
     // create a new id for the note
     let newId = createUID(22);
 
-    // get current stored ids array
-    let storedIdsArray = JSON.parse(localStorage.getItem("ids_array"));
-
-    //add the new Created Id to an array
-    let newIdsArray = storedIdsArray ? [...storedIdsArray, newId] : [newId];
-
-    //make the array as ids state and set it in localStorage
-    localStorage.setItem("ids_array", JSON.stringify(newIdsArray));
-
     // make short date for info
     let shortenedDate = new Date();
     shortenedDate = shortenedDate
@@ -48,16 +43,17 @@ function SharedNote({ history }) {
         minute: "2-digit",
       })
       .split(",");
-    //make Title, Color and Data set to localStorage
-    localStorage.setItem(`Title_${newId}`, queries.title);
-    localStorage.setItem(`Color_${newId}`, `hsl(${queries.color}, 80%, 80%)`);
-    localStorage.setItem(
-      `smde_${newId}`,
-      `\n:::info\nFetched from **Notrix Share** on \`${
+
+    //make Title, Color and Data set to indexedDB
+    db.collection("notes").add({
+      id: newId,
+      title: queries.title,
+      content: `\n:::info\nFetched from **Notrix Share** on \`${
         shortenedDate[0]
-      }\` at \`${shortenedDate[1].trim()}\`\n\n:::\n\n\\\n${decodedData}`
-    );
-    localStorage.setItem(`Date_${newId}`, new Date().toLocaleString());
+      }\` at \`${shortenedDate[1].trim()}\`\n\n:::\n\n\\\n${decodedData}`,
+      color: `hsl(${queries.color}, 80%, 80%)`,
+      date: new Date().toLocaleString(),
+    });
 
     //go to new notes page
     history.push(`/notes/${newId}`);
