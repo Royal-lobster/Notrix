@@ -10,6 +10,8 @@ import NoteControls from "./NoteControls";
 import "@reach/dialog/styles.css";
 import styles from "./Notes.module.css";
 import Localbase from "localbase";
+import { motion } from "framer-motion";
+import Scrollbars from "react-custom-scrollbars";
 
 export default function Notes({ deleteNote }) {
   // initialize localbase
@@ -20,11 +22,14 @@ export default function Notes({ deleteNote }) {
   let [width] = useWindowSize();
 
   // initializing state for Notes content and title
-  const [title, setTitle] = useState("");
+  const [title, setTitle] = useState();
   const [initialStoredContent, setInitialStoredContent] = useState();
   const [isLocked, setIsLocked] = useState(false);
-  const [noteColor, setNoteColor] = useState("");
+  const [noteColor, setNoteColor] = useState();
   const [showDialog, setShowDialog] = React.useState(false);
+  const [loading, setLoading] = useState(true);
+  const [isNoteControlsStickedAtTop, setIsNoteControlsStickedAtTop] =
+    useState(false);
 
   // useEffect to update indexedDB when ever title and color change
   useEffect(() => {
@@ -40,29 +45,19 @@ export default function Notes({ deleteNote }) {
       .doc({ id: id })
       .get()
       .then((note) => {
+        // lock the editor if content is present on first render
+        if (note.content) {
+          setIsLocked(true);
+        }
         // set initial content, color and title
-        setTitle(note.title || "");
+        setTitle(note.title);
         setNoteColor(
           note.color ||
             `hsl(${Math.floor(Math.random() * 360)}, ${70}%, ${80}%)`
         );
         setInitialStoredContent(note.content || "");
-
-        // lock the editor if content is present on first render
-        if (note.content.trim() !== "") {
-          setIsLocked(true);
-        }
+        setLoading(false);
       });
-
-    // trigger TextareaAutosize update for change in height of the textarea
-    const triggerTitleResize = setTimeout(() => {
-      let t = title;
-      setTitle("⠀⠀");
-      setTitle(t);
-    }, 10);
-
-    // remove timeout when component exit (though its unlikely to exit in 10ms)
-    return () => clearTimeout(triggerTitleResize);
   }, [id]);
 
   let handleChangeNoteColor = () => {
@@ -70,7 +65,13 @@ export default function Notes({ deleteNote }) {
   };
 
   return (
-    <>
+    <Scrollbars
+      onScrollFrame={(e) => {
+        if (e.top > 0.03) setIsNoteControlsStickedAtTop(true);
+        else setIsNoteControlsStickedAtTop(false);
+      }}
+      style={{ width: "100vw", height: "100vh" }}
+    >
       {/* Modal Dialog for deleting notes */}
       <Dialog
         className={styles.deleteDialog}
@@ -120,63 +121,70 @@ export default function Notes({ deleteNote }) {
         <NavBar
           id={id}
           deleteNote={setShowDialog}
-          showNoteControls={width > 800}
+          showNoteControls={width > 800 && loading === false}
           isNotePage={true}
           isLocked={isLocked}
           setIsLocked={setIsLocked}
           noteColor={noteColor}
           handleChangeNoteColor={handleChangeNoteColor}
+          isStickedAtTop={isNoteControlsStickedAtTop}
         />
         <div className={styles.containerWrapper}>
-          <div className={styles.container}>
-            {/* Notes Title Textarea - From react-textarea-autosize library */}
-            <div className={styles.titleBoxWrapper}>
-              <TextareaAutosize
-                className={styles.titleBox}
-                value={title}
-                onChange={(e) => setTitle(e.target.value)}
-                type="text"
-                placeholder="Enter Title"
-              />
-            </div>
-            {/* Notes Content - From rich-markdown-editor library */}
-            <Editor
-              placeholder="Start Typing..."
-              id={id}
-              defaultValue={initialStoredContent}
-              value={initialStoredContent}
-              className={styles.notesBox}
-              dark={true}
-              readOnly={isLocked}
-              type="text"
-              onChange={(value) => {
-                let text = value();
-                let currentTime = new Date().toLocaleString();
-                db.collection("notes").doc({ id: id }).update({
-                  content: text,
-                  date: currentTime,
-                });
-              }}
-            />
-            {/* On mobile devices, render NoteControls component at bottom instead of top */}
-            {width <= 800 && (
-              <div className={styles.footerControls}>
-                <NoteControls
-                  id={id}
-                  isMobile={true}
-                  isLocked={isLocked}
-                  setIsLocked={setIsLocked}
-                  deleteNote={setShowDialog}
-                  noteColor={noteColor}
-                  handleChangeNoteColor={handleChangeNoteColor}
+          {!loading && (
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              className={styles.container}
+            >
+              {/* Notes Title Textarea - From react-textarea-autosize library */}
+              <div className={styles.titleBoxWrapper}>
+                <TextareaAutosize
+                  className={styles.titleBox}
+                  value={title}
+                  onChange={(e) => setTitle(e.target.value)}
+                  type="text"
+                  placeholder="Enter Title"
                 />
               </div>
-            )}
-          </div>
+              {/* Notes Content - From rich-markdown-editor library */}
+              <Editor
+                placeholder="Start Typing..."
+                id={id}
+                defaultValue={initialStoredContent}
+                value={initialStoredContent}
+                className={styles.notesBox}
+                dark={true}
+                readOnly={isLocked}
+                type="text"
+                onChange={(value) => {
+                  let text = value();
+                  let currentTime = new Date().toLocaleString();
+                  db.collection("notes").doc({ id: id }).update({
+                    content: text,
+                    date: currentTime,
+                  });
+                }}
+              />
+              {/* On mobile devices, render NoteControls component at bottom instead of top */}
+              {width <= 800 && (
+                <div className={styles.footerControls}>
+                  <NoteControls
+                    id={id}
+                    isMobile={true}
+                    isLocked={isLocked}
+                    setIsLocked={setIsLocked}
+                    deleteNote={setShowDialog}
+                    noteColor={noteColor}
+                    handleChangeNoteColor={handleChangeNoteColor}
+                  />
+                </div>
+              )}
+            </motion.div>
+          )}
         </div>
       </div>
       {/* Remove footer in mobile devices in favor of NoteControls at bottom */}
-      {width >= 800 && <Footer />}
-    </>
+      {width >= 800 && !loading && <Footer />}
+    </Scrollbars>
   );
 }

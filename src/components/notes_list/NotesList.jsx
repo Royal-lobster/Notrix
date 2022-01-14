@@ -5,6 +5,7 @@ import NavBar from "../layout/NavBar";
 import Footer from "../layout/Footer";
 import NoNotesDetected from "./NoNotesDetected";
 import Localbase from "localbase";
+import { motion } from "framer-motion";
 
 export default function NotesList({ createNotes, deleteNote }) {
   const [ids, setIds] = useState([]);
@@ -30,7 +31,11 @@ export default function NotesList({ createNotes, deleteNote }) {
     <>
       <div className={styles.wrapper}>
         <NavBar createNotes={createNotes} />
-        <div className={styles.container}>
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          className={styles.container}
+        >
           {ids.length !== 0 && (
             <h1 className={styles.SavedNotesText}>💾 Your Saved Notes</h1>
           )}
@@ -45,7 +50,7 @@ export default function NotesList({ createNotes, deleteNote }) {
               <NoNotesDetected />
             )
           }
-        </div>
+        </motion.div>
       </div>
       <Footer />
     </>

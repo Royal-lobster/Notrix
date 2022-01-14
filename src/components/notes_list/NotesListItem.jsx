@@ -12,6 +12,7 @@ function NotesListItem({ id, setIds }) {
 
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
+  const [fullContent, setFullContent] = useState("");
   const [color, setColor] = useState("");
   const [date, setDate] = useState("");
 
@@ -28,6 +29,7 @@ function NotesListItem({ id, setIds }) {
               }`
             : "Untitled"
         );
+        setFullContent(note.content);
         setContent(
           note.content
             ? `${note.content?.substring(0, 150)} ${
@@ -60,8 +62,8 @@ function NotesListItem({ id, setIds }) {
     let noteTitle = title ? encodeURIComponent(title.trim()) : "Untitled";
 
     // if there is content, compress it, else compress nothing
-    let compressedContent = content
-      ? await LZUTF8.compress(content, {
+    let compressedContent = fullContent
+      ? await LZUTF8.compress(fullContent, {
           outputEncoding: "Base64",
         })
       : "A Fresh page. Only title is available";

@@ -1,3 +1,4 @@
+import { motion } from "framer-motion";
 import React, { useEffect, useState } from "react";
 import { abbreviateNumber } from "../../lib/abbreviateNumber";
 import Button from "../general_components/Button";
@@ -53,7 +54,9 @@ function NoteControls({
   }, [isLocked]);
 
   return (
-    <div
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
       className={
         !isStickedAtTop ? styles.container : styles.containerWithBackground
       }
@@ -90,7 +93,7 @@ function NoteControls({
         toggleColor={isLocked ? "#bda24a" : "transparent"}
         onClick={() => setIsLocked(!isLocked)}
       />
-    </div>
+    </motion.div>
   );
 }
 

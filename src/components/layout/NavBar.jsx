@@ -14,18 +14,9 @@ export default function NavBar({
   showNoteControls,
   noteColor,
   handleChangeNoteColor,
+  isStickedAtTop,
 }) {
   const history = useHistory();
-  const [isStickedAtTop, setIsStickedAtTop] = React.useState(false);
-
-  // Hook to listen to scroll changes and make note controls stick at top
-  useScrollPosition(({ prevPos, currPos }) => {
-    if (Math.floor(currPos.y) < -100 && showNoteControls) {
-      setIsStickedAtTop(true);
-    } else {
-      setIsStickedAtTop(false);
-    }
-  });
 
   // Styles for fixing navbar at top for note controls accessability
   const fixNavTopWrapperStyles = {

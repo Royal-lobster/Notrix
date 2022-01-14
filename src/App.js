@@ -7,10 +7,10 @@ import { Route, Switch } from "react-router";
 import NotesList from "./components/notes_list/NotesList";
 import SharedNote from "./components/shared_note_page/SharedNote";
 import Localbase from "localbase";
+import { Scrollbars } from "react-custom-scrollbars";
 
 function App() {
   const history = useHistory();
-
   // initialize localbase
   let db = new Localbase();
 
@@ -68,7 +68,9 @@ function App() {
             exact
             path="/"
             component={() => (
-              <NotesList createNotes={createNotes} deleteNote={deleteNote} />
+              <Scrollbars style={{ width: "100vw", height: "100vh" }}>
+                <NotesList createNotes={createNotes} deleteNote={deleteNote} />
+              </Scrollbars>
             )}
           />
           <Route
@@ -80,7 +82,9 @@ function App() {
           <Route
             path="/share"
             component={() => (
-              <SharedNote createNotes={createNotes} history={history} />
+              <Scrollbars style={{ width: "100vw", height: "100vh" }}>
+                <SharedNote createNotes={createNotes} history={history} />
+              </Scrollbars>
             )}
           />
         </Switch>
