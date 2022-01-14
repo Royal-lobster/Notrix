@@ -147,55 +147,59 @@ export default function Notes({ deleteNote }) {
         />
         <div className={styles.containerWrapper}>
           {!loading && (
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              className={styles.container}
-            >
-              {/* Notes Title Textarea - From react-textarea-autosize library */}
-              <div className={styles.titleBoxWrapper}>
-                <TextareaAutosize
-                  className={styles.titleBox}
-                  value={title}
-                  onChange={(e) => setTitle(e.target.value)}
-                  type="text"
-                  placeholder="Enter Title"
-                />
-              </div>
-              {/* Notes Content - From rich-markdown-editor library */}
-              <Editor
-                placeholder="Start Typing..."
-                id={id}
-                defaultValue={initialStoredContent}
-                value={initialStoredContent}
-                className={styles.notesBox}
-                dark={true}
-                readOnly={isLocked}
-                type="text"
-                onChange={(value) => {
-                  let text = value();
-                  let currentTime = new Date().toLocaleString();
-                  db.collection("notes").doc({ id: id }).update({
-                    content: text,
-                    date: currentTime,
-                  });
-                }}
-              />
-              {/* On mobile devices, render NoteControls component at bottom instead of top */}
-              {width <= 800 && (
-                <div className={styles.footerControls}>
-                  <NoteControls
-                    id={id}
-                    isMobile={true}
-                    isLocked={isLocked}
-                    setIsLocked={setIsLocked}
-                    deleteNote={handleShowDeleteDialog}
-                    noteColor={noteColor}
-                    handleChangeNoteColor={handleChangeNoteColor}
+            <>
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                className={styles.container}
+              >
+                {/* Notes Title Textarea - From react-textarea-autosize library */}
+                <div className={styles.titleBoxWrapper}>
+                  <TextareaAutosize
+                    className={styles.titleBox}
+                    value={title}
+                    onChange={(e) => setTitle(e.target.value)}
+                    type="text"
+                    placeholder="Enter Title"
                   />
                 </div>
-              )}
-            </motion.div>
+                {/* Notes Content - From rich-markdown-editor library */}
+                <Editor
+                  placeholder="Start Typing..."
+                  id={id}
+                  defaultValue={initialStoredContent}
+                  value={initialStoredContent}
+                  className={styles.notesBox}
+                  dark={true}
+                  readOnly={isLocked}
+                  type="text"
+                  onChange={(value) => {
+                    let text = value();
+                    let currentTime = new Date().toLocaleString();
+                    db.collection("notes").doc({ id: id }).update({
+                      content: text,
+                      date: currentTime,
+                    });
+                  }}
+                />
+                {/* On mobile devices, render NoteControls component at bottom instead of top */}
+              </motion.div>
+              <div className={styles.container}>
+                {width <= 800 && (
+                  <div className={styles.footerControls}>
+                    <NoteControls
+                      id={id}
+                      isMobile={true}
+                      isLocked={isLocked}
+                      setIsLocked={setIsLocked}
+                      deleteNote={handleShowDeleteDialog}
+                      noteColor={noteColor}
+                      handleChangeNoteColor={handleChangeNoteColor}
+                    />
+                  </div>
+                )}
+              </div>
+            </>
           )}
         </div>
       </div>

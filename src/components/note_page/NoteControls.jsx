@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import React, { useEffect, useState } from "react";
 import { abbreviateNumber } from "../../lib/abbreviateNumber";
+import useWindowSize from "../../lib/useWindowSize";
 import Button from "../general_components/Button";
 import styles from "./NoteControls.module.css";
 
@@ -15,7 +16,7 @@ function NoteControls({
   handleChangeNoteColor,
 }) {
   let [wordCount, setWordCount] = useState(0);
-
+  let [width] = useWindowSize();
   // calculate word count on every valid keystroke
   useEffect(() => {
     // get word count from note for first render
@@ -55,8 +56,8 @@ function NoteControls({
 
   return (
     <motion.div
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
+      initial={{ scale: 0 }}
+      animate={{ scale: 1 }}
       className={
         !isStickedAtTop ? styles.container : styles.containerWithBackground
       }
