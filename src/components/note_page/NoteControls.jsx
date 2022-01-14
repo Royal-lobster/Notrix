@@ -56,8 +56,9 @@ function NoteControls({
 
   return (
     <motion.div
-      initial={{ scale: 0 }}
+      initial={{ scale: 0.5 }}
       animate={{ scale: 1 }}
+      transition={{ duration: 0.13 }}
       className={
         !isStickedAtTop ? styles.container : styles.containerWithBackground
       }
