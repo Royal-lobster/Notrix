@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { useParams } from "react-router";
 import { Dialog } from "@reach/dialog";
 import useWindowSize from "../../lib/useWindowSize";
@@ -20,6 +20,7 @@ export default function Notes({ deleteNote }) {
   //get id from prams in url
   let { id } = useParams();
   let [width] = useWindowSize();
+  const scrollbar = useRef(null);
 
   // initializing state for Notes content and title
   const [title, setTitle] = useState();
@@ -63,12 +64,27 @@ export default function Notes({ deleteNote }) {
   let handleChangeNoteColor = () => {
     setNoteColor(`hsl(${Math.floor(Math.random() * 360)}, ${70}%, ${80}%)`);
   };
+  const scrollToTop = () => {
+    if (!scrollbar || !scrollbar.current) {
+      return;
+    }
+    scrollbar.current.view.scroll({
+      top: 0,
+      behavior: "smooth",
+    });
+  };
+  let handleShowDeleteDialog = () => {
+    setShowDialog(true);
+    scrollToTop();
+  };
 
   return (
     <Scrollbars
+      ref={scrollbar}
       onScrollFrame={(e) => {
         if (e.top > 0.03) setIsNoteControlsStickedAtTop(true);
         else setIsNoteControlsStickedAtTop(false);
+        if (showDialog) e.scrollToTop();
       }}
       style={{ width: "100vw", height: "100vh" }}
     >
@@ -120,7 +136,7 @@ export default function Notes({ deleteNote }) {
       <div className={styles.wrapper}>
         <NavBar
           id={id}
-          deleteNote={setShowDialog}
+          deleteNote={handleShowDeleteDialog}
           showNoteControls={width > 800 && loading === false}
           isNotePage={true}
           isLocked={isLocked}
@@ -169,7 +185,7 @@ export default function Notes({ deleteNote }) {
                     isMobile={true}
                     isLocked={isLocked}
                     setIsLocked={setIsLocked}
-                    deleteNote={setShowDialog}
+                    deleteNote={handleShowDeleteDialog}
                     noteColor={noteColor}
                     handleChangeNoteColor={handleChangeNoteColor}
                   />

@@ -67,10 +67,7 @@ function NoteControls({
         icon="trash-2"
         outline
         color="#fa7272"
-        onClick={() => {
-          window.scrollTo(0, 0);
-          deleteNote(true);
-        }}
+        onClick={deleteNote}
       />
 
       {/* ===============Color Control Button =============== */}
