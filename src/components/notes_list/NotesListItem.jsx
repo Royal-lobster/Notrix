@@ -16,6 +16,7 @@ function NotesListItem({ id, setIds }) {
   const [fullContent, setFullContent] = useState("");
   const [color, setColor] = useState("");
   const [date, setDate] = useState("");
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     db.collection("notes")
@@ -50,6 +51,9 @@ function NotesListItem({ id, setIds }) {
               })
             : "N/A"
         );
+        setTimeout(() => {
+          setLoading(false);
+        }, 50);
       })
       .catch((error) => {
         setIds((prevIds) => prevIds.filter((pid) => pid !== id));
@@ -113,30 +117,28 @@ function NotesListItem({ id, setIds }) {
     }
   };
 
-  return (
-    <motion.div
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      className={styles.container}
-    >
-      <ToastContainer position="bottom-center" theme="dark" />
-      <div className={styles.decor} style={{ backgroundColor: color }}></div>
-      <div className={styles.content_wrapper}>
-        <a className={styles.titleLink} href={`/notes/${id}`}>
-          <h2 className={styles.title}>{title}</h2>
-          <p className={styles.content}>{content}</p>
-        </a>
-        <p className={styles.contentDetails}>
-          <span>
-            <FeatherIcon icon="clock" size={15} /> {date}
-          </span>
-          <span className={styles.shareBtn} onClick={createShareLink}>
-            <FeatherIcon icon="share" size={15} /> Share
-          </span>
-        </p>
-      </div>
-    </motion.div>
-  );
+  if (!loading)
+    return (
+      <motion.div className={styles.container}>
+        <ToastContainer position="bottom-center" theme="dark" />
+        <div className={styles.decor} style={{ backgroundColor: color }}></div>
+        <div className={styles.content_wrapper}>
+          <a className={styles.titleLink} href={`/notes/${id}`}>
+            <h2 className={styles.title}>{title}</h2>
+            <p className={styles.content}>{content}</p>
+          </a>
+          <p className={styles.contentDetails}>
+            <span>
+              <FeatherIcon icon="clock" size={15} /> {date}
+            </span>
+            <span className={styles.shareBtn} onClick={createShareLink}>
+              <FeatherIcon icon="share" size={15} /> Share
+            </span>
+          </p>
+        </div>
+      </motion.div>
+    );
+  else return null;
 }
 
 export default NotesListItem;

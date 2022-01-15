@@ -3,7 +3,6 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@n8tb1t/use-scroll-position": "^2.0.3",
     "@reach/dialog": "^0.16.2",
     "@testing-library/jest-dom": "^5.11.9",
     "@testing-library/react": "^11.2.5",
@@ -13,6 +12,7 @@
     "create-unique-id": "^1.0.2",
     "feather-icons-react": "^0.5.0",
     "framer-motion": "^5.6.0",
+    "fuse.js": "^6.5.3",
     "localbase": "^0.7.5",
     "lzutf8": "^0.6.0",
     "query-string": "^7.1.0",

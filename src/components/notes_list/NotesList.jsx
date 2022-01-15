@@ -9,6 +9,7 @@ import { motion } from "framer-motion";
 
 export default function NotesList({ createNotes, deleteNote }) {
   const [ids, setIds] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   // initialize ids array and localbase
   let db = new Localbase();
@@ -19,13 +20,14 @@ export default function NotesList({ createNotes, deleteNote }) {
       .get()
       .then((notes) => {
         notes.forEach((note) => {
-          if (note.title || note.content.trim() !== "") {
+          if (note.title || note.content) {
             if (!note.title && note.content === `\\\n`) {
               deleteNote(note.id);
             } else setIds((prevIds) => [...prevIds, note.id]);
           }
           // if note has empty Title and Content, delete it
           else deleteNote(note.id);
+          setLoading(false);
         });
       });
   }, []);
@@ -33,9 +35,13 @@ export default function NotesList({ createNotes, deleteNote }) {
   return (
     <>
       <div className={styles.wrapper}>
-        <NavBar createNotes={createNotes} />
+        <NavBar
+          createNotes={createNotes}
+          showSearchBar
+          isNotesPresent={ids.length !== 0}
+        />
         <div className={styles.container}>
-          {ids.length !== 0 && (
+          {ids.length !== 0 && !loading && (
             <motion.h1
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
@@ -46,7 +52,7 @@ export default function NotesList({ createNotes, deleteNote }) {
           )}
           {
             // Map through all Notes if ids array has any ids
-            ids.length !== 0 ? (
+            ids.length !== 0 && !loading ? (
               ids.map((id) => (
                 <NotesListItem id={id} key={id} setIds={setIds} />
               ))
