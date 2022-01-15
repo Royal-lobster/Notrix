@@ -23,7 +23,7 @@ export default function NotesList({ createNotes, deleteNote }) {
           if (note.title || note.content) {
             if (!note.title && note.content === `\\\n`) {
               deleteNote(note.id);
-            } else setIds((prevIds) => [...prevIds, note.id]);
+            } else setIds((prevIds) => [note.id, ...prevIds]);
           }
           // if note has empty Title and Content, delete it
           else deleteNote(note.id);
