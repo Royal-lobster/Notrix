@@ -1,6 +1,7 @@
 .topWrapper,
 .topWrapperNotesList {
   border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+  background-color: var(--primary_dark_color);
   z-index: 999;
 }
 .topWrapperNotesList {
