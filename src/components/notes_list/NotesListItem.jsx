@@ -7,61 +7,15 @@ import LZUTF8 from "lzutf8";
 import Localbase from "localbase";
 import { motion } from "framer-motion";
 
-function NotesListItem({ id, setIds }) {
-  // initialize localbase
-  let db = new Localbase();
-
-  const [title, setTitle] = useState("");
-  const [content, setContent] = useState("");
-  const [fullContent, setFullContent] = useState("");
-  const [color, setColor] = useState("");
-  const [date, setDate] = useState("");
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    db.collection("notes")
-      .doc({ id: id })
-      .get()
-      .then((note) => {
-        // set initial content, color and title
-        setTitle(
-          note.title
-            ? `${note.title?.substring(0, 150)} ${
-                note.title?.length > 150 ? "..." : ""
-              }`
-            : "Untitled"
-        );
-        setFullContent(note.content);
-        setContent(
-          note.content
-            ? `${note.content?.substring(0, 150)} ${
-                note.content?.length > 150 ? "..." : ""
-              }`
-            : "A Fresh page. Click to edit"
-        );
-        setColor(note.color);
-        setDate(
-          note.date
-            ? new Date(note.date).toLocaleTimeString([], {
-                year: "numeric",
-                month: "numeric",
-                day: "numeric",
-                hour: "2-digit",
-                minute: "2-digit",
-              })
-            : "N/A"
-        );
-        setTimeout(() => {
-          setLoading(false);
-        }, 50);
-      })
-      .catch((error) => {
-        setIds((prevIds) => prevIds.filter((pid) => pid !== id));
-      });
-
-    // If title and content are empty, remove from IDs array
-  }, []);
-
+function NotesListItem({
+  id,
+  setIds,
+  title,
+  content,
+  fullContent,
+  color,
+  date,
+}) {
   let createShareLink = async () => {
     // if there is no title, show "Untitled"
     let noteTitle = title ? encodeURIComponent(title.trim()) : "Untitled";
@@ -117,28 +71,30 @@ function NotesListItem({ id, setIds }) {
     }
   };
 
-  if (!loading)
-    return (
-      <motion.div className={styles.container}>
-        <ToastContainer position="bottom-center" theme="dark" />
-        <div className={styles.decor} style={{ backgroundColor: color }}></div>
-        <div className={styles.content_wrapper}>
-          <a className={styles.titleLink} href={`/notes/${id}`}>
-            <h2 className={styles.title}>{title}</h2>
-            <p className={styles.content}>{content}</p>
-          </a>
-          <p className={styles.contentDetails}>
-            <span>
-              <FeatherIcon icon="clock" size={15} /> {date}
-            </span>
-            <span className={styles.shareBtn} onClick={createShareLink}>
-              <FeatherIcon icon="share" size={15} /> Share
-            </span>
-          </p>
-        </div>
-      </motion.div>
-    );
-  else return null;
+  return (
+    <motion.div className={styles.container}>
+      <ToastContainer position="bottom-center" theme="dark" />
+      <div
+        data-movable-handle
+        className={styles.decor}
+        style={{ backgroundColor: color, cursor: "move" }}
+      ></div>
+      <div className={styles.content_wrapper}>
+        <a className={styles.titleLink} href={`/notes/${id}`}>
+          <h2 className={styles.title}>{title}</h2>
+          <p className={styles.content}>{content}</p>
+        </a>
+        <p className={styles.contentDetails}>
+          <span>
+            <FeatherIcon icon="clock" size={15} /> {date}
+          </span>
+          <span className={styles.shareBtn} onClick={createShareLink}>
+            <FeatherIcon icon="share" size={15} /> Share
+          </span>
+        </p>
+      </div>
+    </motion.div>
+  );
 }
 
 export default NotesListItem;

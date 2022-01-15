@@ -55,6 +55,18 @@ function SharedNote({ history }) {
       date: new Date().toLocaleString(),
     });
 
+    // prepend the new ID in note id order
+    db.collection("order")
+      .doc({ id: 0 })
+      .get()
+      .then((doc) => {
+        db.collection("order")
+          .doc({ id: 0 })
+          .update({
+            order: [newId, ...doc.order],
+          });
+      });
+
     //go to new notes page
     history.push(`/notes/${newId}`);
   };

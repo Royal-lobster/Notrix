@@ -45,19 +45,45 @@ function App() {
     // add new ID to notes collection in IndexedDB
     db.collection("notes").add({
       id: newId,
+      date: new Date().toLocaleString(),
     });
+
+    // prepend the new ID in note id order
+    db.collection("order")
+      .doc({ id: 0 })
+      .get()
+      .then((doc) => {
+        db.collection("order")
+          .doc({ id: 0 })
+          .update({
+            order: [newId, ...doc.order],
+          });
+      });
 
     //redirect to that notes page with new id created
     history.push(`/notes/${newId}`);
   };
 
   // delete Note Function
-  let deleteNote = (note_id) => {
+  let deleteNote = async (note_id) => {
     //remove data from IndexedDB
-    db.collection("notes").doc({ id: note_id }).delete();
+    await db.collection("notes").doc({ id: note_id }).delete();
+
+    // remove the ID in note id order
+    await db
+      .collection("order")
+      .doc({ id: 0 })
+      .get()
+      .then((doc) => {
+        db.collection("order")
+          .doc({ id: 0 })
+          .update({
+            order: doc.order.filter((id) => id !== note_id),
+          });
+      });
 
     //go to homepage
-    history.replace(`/`);
+    window.location.replace(`/`);
   };
 
   return (
@@ -68,9 +94,7 @@ function App() {
             exact
             path="/"
             component={() => (
-              <Scrollbars style={{ width: "100vw", height: "100vh" }}>
-                <NotesList createNotes={createNotes} deleteNote={deleteNote} />
-              </Scrollbars>
+              <NotesList createNotes={createNotes} deleteNote={deleteNote} />
             )}
           />
           <Route
