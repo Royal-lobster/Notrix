@@ -155,6 +155,9 @@
   .titleBox {
     font-size: 38px;
   }
+  .container {
+    margin-top: 60px;
+  }
 }
 
 @media only screen and (max-width: 980px) {

@@ -4,6 +4,7 @@ import { abbreviateNumber } from "../../lib/abbreviateNumber";
 import useWindowSize from "../../lib/useWindowSize";
 import Button from "../general_components/Button";
 import styles from "./NoteControls.module.css";
+import Localbase from "localbase";
 
 function NoteControls({
   id,
@@ -15,19 +16,26 @@ function NoteControls({
   isStickedAtTop,
   handleChangeNoteColor,
 }) {
+  // initialize localbase
+  let db = new Localbase();
+
   let [wordCount, setWordCount] = useState(0);
   let [width] = useWindowSize();
   // calculate word count on every valid keystroke
   useEffect(() => {
+    let fetchWordCount = () => {
+      db.collection("notes")
+        .doc({ id: id })
+        .get()
+        .then((note) => {
+          let storedContent = note.content;
+          let separatedWords = storedContent?.split(/\s/);
+          let cleanWords = separatedWords?.filter((w) => w.trim() !== "");
+          setWordCount(abbreviateNumber(cleanWords?.length || 0));
+        });
+    };
     // get word count from note for first render
-    setWordCount(
-      abbreviateNumber(
-        localStorage
-          .getItem(`smde_${id}`)
-          ?.split(" ")
-          .filter((w) => w.trim() !== "").length || 0
-      )
-    );
+    fetchWordCount();
 
     // set up a listener for changes to note
     let handleUserKeyPress;
@@ -39,13 +47,7 @@ function NoteControls({
       handleUserKeyPress = (e) => {
         // if any or enter, backspace, delete, v, x...
         // pressed, then count the words
-        if ([32, 8, 9, 13, 46, 86, 88].includes(e.keyCode)) {
-          let storedContent = localStorage.getItem(`smde_${id}`);
-          let separatedWords = storedContent?.split(/\s/);
-          let cleanWords = separatedWords?.filter((w) => w.trim() !== "");
-
-          setWordCount(abbreviateNumber(cleanWords?.length || 0));
-        }
+        if ([32, 8, 9, 13, 46, 86, 88].includes(e.keyCode)) fetchWordCount();
       };
       window.addEventListener("keydown", handleUserKeyPress);
     }
@@ -56,8 +58,9 @@ function NoteControls({
 
   return (
     <motion.div
-      initial={{ scale: 0 }}
+      initial={{ scale: 0.5 }}
       animate={{ scale: 1 }}
+      transition={{ duration: 0.13 }}
       className={
         !isStickedAtTop ? styles.container : styles.containerWithBackground
       }

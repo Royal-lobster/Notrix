@@ -32,7 +32,7 @@ a {
 .text {
   color: #fff;
   font-weight: 800;
-  margin-top: 3px;
+  margin-top: 2px;
   -webkit-user-select: none; /* Safari */
   -moz-user-select: none; /* Firefox */
   -ms-user-select: none; /* IE10+/Edge */
