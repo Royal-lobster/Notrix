@@ -141,7 +141,7 @@ export default function NotesList({ createNotes, deleteNote }) {
                             }`
                           : "A Fresh page. Click to edit"
                       }
-                      fullConten={value.content}
+                      fullContent={value.content}
                       color={value.color}
                       date={
                         value.date
