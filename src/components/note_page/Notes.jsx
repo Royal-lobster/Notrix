@@ -73,6 +73,7 @@ export default function Notes({ deleteNote }) {
       behavior: "smooth",
     });
   };
+
   let handleShowDeleteDialog = () => {
     setShowDialog(true);
     scrollToTop();

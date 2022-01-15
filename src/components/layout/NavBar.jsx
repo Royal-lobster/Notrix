@@ -24,7 +24,7 @@ export default function NavBar({
 
   // Styles for fixing navbar at top for note controls accessability
   const fixNavTopWrapperStyles = {
-    position: "sticky",
+    position: "fixed",
     top: 0,
     width: "100%",
     borderBottom: "none",
