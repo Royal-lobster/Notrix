@@ -20,7 +20,7 @@ function Search() {
     });
 
   let filterSearchQuery = (query) => {
-    if (query.length > 0) setResults(fuse.search(query));
+    if (query.length > 0) setResults(fuse.search(query).slice(0, 8));
     if (query.length <= 0) setResults([]);
   };
 
