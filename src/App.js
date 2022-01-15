@@ -57,7 +57,7 @@ function App() {
     db.collection("notes").doc({ id: note_id }).delete();
 
     //go to homepage
-    history.push(`/`);
+    history.replace(`/`);
   };
 
   return (
