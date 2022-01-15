@@ -82,9 +82,7 @@ function App() {
           <Route
             path="/share"
             component={() => (
-              <Scrollbars style={{ width: "100vw", height: "100vh" }}>
-                <SharedNote createNotes={createNotes} history={history} />
-              </Scrollbars>
+              <SharedNote createNotes={createNotes} history={history} />
             )}
           />
         </Switch>
