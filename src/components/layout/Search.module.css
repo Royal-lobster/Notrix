@@ -34,11 +34,11 @@
   border: 1px solid #ffffff2a;
 }
 .searchResult {
-  cursor: pointer;
   font-size: 18px;
   border-bottom: 1px solid #ffffff2a;
 }
 .searchResultInnerContainer {
+  cursor: pointer;
   display: flex;
   flex-shrink: 0;
   align-items: center;
