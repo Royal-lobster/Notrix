@@ -42,7 +42,7 @@ function Search() {
               key={result.item.id}
               onClick={() => history.push(`/notes/${result.item.id}`)}
             >
-              <div className={styles.searchResultInnerContainer}>
+              <button className={styles.searchResultInnerContainer}>
                 <div
                   className={styles.searchResultColor}
                   style={{ backgroundColor: result.item.color }}
@@ -50,7 +50,7 @@ function Search() {
                 {`${result.item.title?.substring(0, 50)} ${
                   result.item.title?.length > 50 ? "..." : ""
                 }`}
-              </div>
+              </button>
             </div>
           ))}
         </div>

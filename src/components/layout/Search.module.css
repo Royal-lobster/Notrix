@@ -46,9 +46,17 @@
   padding: 5px;
   border-radius: 4px;
   margin-bottom: 10px;
+  background-color: transparent;
+  border: none;
+  font-family: nunito;
+  font-size: 16px;
+  width: 100%;
+  text-align: left;
 }
-.searchResultInnerContainer:hover {
-  background-color: #ffffff2a;
+.searchResultInnerContainer:hover,
+.searchResultInnerContainer:focus {
+  background-color: #ffffff1a;
+  outline: none;
 }
 .searchResult:last-child {
   border: 0;
