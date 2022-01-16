@@ -10,11 +10,11 @@ function ShareNoteItem({ title, data, hue }) {
 
   // if there is no content, show "No Content"
   let noteContent = data
-    ? `${data.substring(0, 150)} ${data.length > 150 ? "..." : ""}`
+    ? `${data.substring(0, 50)} ${data.length > 50 ? "..." : ""}`
     : "A Fresh page. Only title is available";
 
-  let shortenedTitle = `${title?.substring(0, 150)} ${
-    title?.length > 150 ? "..." : ""
+  let shortenedTitle = `${title?.substring(0, 70)} ${
+    title?.length > 70 ? "..." : ""
   }`;
   return (
     <div className={styles.container}>

@@ -25,6 +25,7 @@
   font-size: 30px;
   color: #fff;
   margin-bottom: 0;
+  word-break: break-word;
 }
 .titleLink {
   color: rgb(180, 180, 180);
@@ -34,6 +35,7 @@
 .content {
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   color: rgb(143, 143, 143);
+  word-break: break-word;
 }
 .decor {
   position: absolute;
