@@ -7,18 +7,102 @@
   width: min(40vw, 500px);
 }
 .searchBar {
-  border: none;
+  display: flex;
+  gap: 10px;
   border: 1px solid rgba(255, 255, 255, 0.12);
+  background-color: transparent;
+  width: 100%;
+  padding: 4px;
+  border-radius: 5px;
+}
+.searchBar input {
+  border: none;
   background-color: transparent;
   text-align: center;
   font-family: nunito;
   width: 100%;
   font-size: 18px;
-  padding: 4px;
-  border-radius: 5px;
+  padding: 0;
+  margin: 0;
 }
-.searchBar:focus {
+.searchBar input:focus {
   outline: none;
+}
+.notrixShareIndicator {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  outline: 1px solid var(--secondary_dark_color);
+  border-radius: 5px;
+  padding-right: 5px;
+  font-family: nunito;
+  color: #a1a1a1;
+}
+.notrixShareGoBtn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  background-color: var(--secondary_dark_color);
+  border: none;
+  border-radius: 5px;
+  padding: 0 10px;
+  cursor: pointer;
+}
+.notrixShareGoBtn {
+  cursor: pointer;
+}
+.notrixShareGoBtn:hover {
+  filter: brightness(1.2);
+}
+/* `````````````````````````````````````````` */
+/* generated element for shine effect.
+ * normal state is semi-transparent
+ * white but with zero width. Set no
+ * transition here for no mouse-leave
+ * animations. Otherwise the effect
+ * will play in reverse when your mouse
+ * leaves the element
+ */
+.notrixShareGoBtn:after {
+  content: "";
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 0%;
+  height: 100%;
+  background-color: rgba(255, 255, 255, 0.4);
+  border-radius: 5px;
+  -webkit-transition: none;
+  -moz-transition: none;
+  -ms-transition: none;
+  -o-transition: none;
+  transition: none;
+}
+/* on hover we animate the width to
+* 100% and opacity to 0 so the element
+* grows and fades out
+*/
+.notrixShareGoBtn:hover:after {
+  width: 120%;
+  background-color: rgba(255, 255, 255, 0);
+  -webkit-transition: all 0.3s ease-out;
+  -moz-transition: all 0.3s ease-out;
+  -ms-transition: all 0.3s ease-out;
+  -o-transition: all 0.3s ease-out;
+  transition: all 0.3s ease-out;
+}
+.brandingSymbol {
+  border-right: 1px solid var(--secondary_dark_color);
+  color: #a1a1a1;
+  font-family: "Vollkorn", serif;
+  padding: 5px;
+  font-size: 16px;
+  margin-right: 5px;
+  height: 15px;
+  width: 15px;
+  text-align: center;
+  line-height: 1.2;
 }
 .resultsContainer {
   z-index: 9999999;
@@ -79,6 +163,8 @@
   .searchBar {
     width: 90vw;
     padding: 5px;
+  }
+  .searchBar input {
     font-size: 16px;
   }
   .resultsContainer {

@@ -113,7 +113,9 @@ export default function NotesList({ createNotes, deleteNote }) {
                   reOrderIds(newItems);
                 }}
                 renderList={({ children, props }) => (
-                  <div {...props}>{children}</div>
+                  <div style={{ width: "100%" }} {...props}>
+                    {children}
+                  </div>
                 )}
                 renderItem={({ value, props }) => (
                   <div
@@ -121,6 +123,7 @@ export default function NotesList({ createNotes, deleteNote }) {
                     style={{
                       ...props.style,
                       border: "2px solid transparent",
+                      width: "100%",
                     }}
                   >
                     <NotesListItem
