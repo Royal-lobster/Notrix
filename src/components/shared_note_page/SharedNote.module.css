@@ -5,7 +5,6 @@
   align-items: center;
   justify-content: center;
   height: 100vh;
-  padding: 30px 0;
 }
 .container {
   width: min(90%, 600px);
