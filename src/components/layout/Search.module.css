@@ -55,6 +55,10 @@
 .notrixShareGoBtn:hover {
   filter: brightness(1.2);
 }
+.notrixShareGoBtn:focus {
+  outline: 2px solid rgba(255, 255, 255, 0.07);
+  filter: brightness(1.1);
+}
 /* `````````````````````````````````````````` */
 /* generated element for shine effect.
  * normal state is semi-transparent
