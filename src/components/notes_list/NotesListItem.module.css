@@ -70,15 +70,6 @@
 .shareBtn:hover {
   filter: brightness(1.2);
 }
-/* `````````````````````````````````````````` */
-/* generated element for shine effect.
- * normal state is semi-transparent
- * white but with zero width. Set no
- * transition here for no mouse-leave
- * animations. Otherwise the effect
- * will play in reverse when your mouse
- * leaves the element
- */
 .shareBtn:after {
   content: "";
   position: absolute;
@@ -94,10 +85,6 @@
   -o-transition: none;
   transition: none;
 }
-/* on hover we animate the width to
-* 100% and opacity to 0 so the element
-* grows and fades out
-*/
 .shareBtn:hover:after {
   width: 120%;
   background-color: rgba(255, 255, 255, 0);
@@ -107,7 +94,6 @@
   -o-transition: all 0.3s ease-out;
   transition: all 0.3s ease-out;
 }
-/* ``````````````````````````````````````````` */
 @media only screen and (max-width: 700px) {
   .title {
     font-size: 25px;

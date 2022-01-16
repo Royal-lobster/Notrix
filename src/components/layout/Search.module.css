@@ -38,6 +38,18 @@
   font-family: nunito;
   color: #a1a1a1;
 }
+.brandingSymbol {
+  border-right: 1px solid var(--secondary_dark_color);
+  color: #a1a1a1;
+  font-family: "Vollkorn", serif;
+  padding: 5px;
+  font-size: 16px;
+  margin-right: 5px;
+  height: 15px;
+  width: 15px;
+  text-align: center;
+  line-height: 1.2;
+}
 .notrixShareGoBtn {
   display: flex;
   justify-content: center;
@@ -48,6 +60,10 @@
   border-radius: 5px;
   padding: 0 10px;
   cursor: pointer;
+  -webkit-user-select: none; /* Safari */
+  -moz-user-select: none; /* Firefox */
+  -ms-user-select: none; /* IE10+/Edge */
+  user-select: none; /* Standard */
 }
 .notrixShareGoBtn {
   cursor: pointer;
@@ -59,15 +75,6 @@
   outline: 2px solid rgba(255, 255, 255, 0.07);
   filter: brightness(1.1);
 }
-/* `````````````````````````````````````````` */
-/* generated element for shine effect.
- * normal state is semi-transparent
- * white but with zero width. Set no
- * transition here for no mouse-leave
- * animations. Otherwise the effect
- * will play in reverse when your mouse
- * leaves the element
- */
 .notrixShareGoBtn:after {
   content: "";
   position: absolute;
@@ -83,10 +90,6 @@
   -o-transition: none;
   transition: none;
 }
-/* on hover we animate the width to
-* 100% and opacity to 0 so the element
-* grows and fades out
-*/
 .notrixShareGoBtn:hover:after {
   width: 120%;
   background-color: rgba(255, 255, 255, 0);
@@ -95,18 +98,6 @@
   -ms-transition: all 0.3s ease-out;
   -o-transition: all 0.3s ease-out;
   transition: all 0.3s ease-out;
-}
-.brandingSymbol {
-  border-right: 1px solid var(--secondary_dark_color);
-  color: #a1a1a1;
-  font-family: "Vollkorn", serif;
-  padding: 5px;
-  font-size: 16px;
-  margin-right: 5px;
-  height: 15px;
-  width: 15px;
-  text-align: center;
-  line-height: 1.2;
 }
 .resultsContainer {
   z-index: 9999999;

@@ -100,7 +100,6 @@
     background-color: #363e41;
   }
 }
-/* ----------------------------------------------- */
 .deleteDialogHeader {
   display: flex;
   justify-content: space-between;
@@ -149,7 +148,6 @@
 .deleteDialogConfirmBtn:focus {
   outline: 4px solid rgba(255, 255, 255, 0.2);
 }
-/* ----------------------------------------------- */
 
 @media only screen and (max-width: 700px) {
   .titleBox {
