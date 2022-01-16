@@ -83,7 +83,7 @@ export default function Notes({ deleteNote }) {
     <Scrollbars
       ref={scrollbar}
       onScrollFrame={(e) => {
-        if (e.top > 0.03) setIsNoteControlsStickedAtTop(true);
+        if (e.top > 0.04) setIsNoteControlsStickedAtTop(true);
         else setIsNoteControlsStickedAtTop(false);
         if (showDialog) e.scrollToTop();
       }}

@@ -24,10 +24,11 @@ export default function NavBar({
 
   // Styles for fixing navbar at top for note controls accessability
   const fixNavTopWrapperStyles = {
-    position: "fixed",
+    position: "sticky",
     top: 0,
     width: "100%",
     borderBottom: "none",
+    backgroundColor: "transparent",
   };
 
   const fixNavTopContainerStyles = {
@@ -38,54 +39,52 @@ export default function NavBar({
 
   return (
     // Render Nav bar at top if note is not scrolled else fix the nav at top always
-    <div className={styles.navWrapper}>
+    <div
+      className={isNotePage ? styles.topWrapper : styles.topWrapperNotesList}
+      style={isStickedAtTop ? fixNavTopWrapperStyles : {}}
+    >
       <div
-        className={isNotePage ? styles.topWrapper : styles.topWrapperNotesList}
-        style={isStickedAtTop ? fixNavTopWrapperStyles : {}}
+        className={styles.container}
+        style={isStickedAtTop ? fixNavTopContainerStyles : {}}
       >
-        <div
-          className={styles.container}
-          style={isStickedAtTop ? fixNavTopContainerStyles : {}}
+        {/* Branding of Application, at the left most side of nav */}
+        <h2
+          className={styles.branding}
+          style={isStickedAtTop ? { display: "none" } : {}}
+          onClick={() => history.push("/")}
         >
-          {/* Branding of Application, at the left most side of nav */}
-          <h2
-            className={styles.branding}
-            style={isStickedAtTop ? { display: "none" } : {}}
-            onClick={() => history.push("/")}
-          >
-            <div className={styles.brandingSymbol}>N</div>
-            <div className={styles.brandingLettering}>Notrix</div>
-          </h2>
+          <div className={styles.brandingSymbol}>N</div>
+          <div className={styles.brandingLettering}>Notrix</div>
+        </h2>
 
-          {/* If Note Controls to be shown, render it in middle of nav */}
-          {showNoteControls && (
-            <NoteControls
-              id={id}
-              deleteNote={deleteNote}
-              isLocked={isLocked}
-              setIsLocked={setIsLocked}
-              isStickedAtTop={isStickedAtTop}
-              noteColor={noteColor}
-              handleChangeNoteColor={handleChangeNoteColor}
-            />
-          )}
+        {/* If Note Controls to be shown, render it in middle of nav */}
+        {showNoteControls && (
+          <NoteControls
+            id={id}
+            deleteNote={deleteNote}
+            isLocked={isLocked}
+            setIsLocked={setIsLocked}
+            isStickedAtTop={isStickedAtTop}
+            noteColor={noteColor}
+            handleChangeNoteColor={handleChangeNoteColor}
+          />
+        )}
 
-          {/* Show search bar if showSearchBar prop is passed */}
-          {showSearchBar && width >= 600 && <Search />}
+        {/* Show search bar if showSearchBar prop is passed */}
+        {showSearchBar && width >= 600 && <Search />}
 
-          {/* render button at right most side. [New note] in homepage and [back btn] at notes page */}
-          <div style={isStickedAtTop ? { display: "none" } : {}}>
-            <Button
-              className={styles.createNotesBtn}
-              onClick={isNotePage ? () => history.push("/") : createNotes}
-              icon={isNotePage ? "home" : "pen-tool"}
-              text={isNotePage ? "All Notes" : "New Note"}
-            />
-          </div>
+        {/* render button at right most side. [New note] in homepage and [back btn] at notes page */}
+        <div style={isStickedAtTop ? { display: "none" } : {}}>
+          <Button
+            className={styles.createNotesBtn}
+            onClick={isNotePage ? () => history.push("/") : createNotes}
+            icon={isNotePage ? "home" : "pen-tool"}
+            text={isNotePage ? "All Notes" : "New Note"}
+          />
         </div>
-        {/* Show search bar at bottom of nav on mobile */}
-        {showSearchBar && width < 600 && isNotesPresent && <Search />}
       </div>
+      {/* Show search bar at bottom of nav on mobile */}
+      {showSearchBar && width < 600 && isNotesPresent && <Search />}
     </div>
   );
 }

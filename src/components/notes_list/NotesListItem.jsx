@@ -6,6 +6,7 @@ import FeatherIcon from "feather-icons-react";
 import LZUTF8 from "lzutf8";
 import Localbase from "localbase";
 import { motion } from "framer-motion";
+import fetchWithTimeout from "../../lib/fetchWithTimeout";
 
 function NotesListItem({
   id,
@@ -35,30 +36,31 @@ function NotesListItem({
 
     // shorten generated link if online
     if (navigator.onLine) {
-      const response = await toast.promise(
-        fetch("https://api.tinyurl.com/create", {
-          method: "POST",
-          headers: {
-            Authorization: `Bearer ${process.env.REACT_APP_TINYURL_ACCESS_TOKEN}`,
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            url: generatedURL,
+      try {
+        const response = await toast.promise(
+          fetchWithTimeout("https://api.tinyurl.com/create", {
+            method: "POST",
+            headers: {
+              Authorization: `Bearer ${process.env.REACT_APP_TINYURL_ACCESS_TOKEN}`,
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              url: generatedURL,
+            }),
           }),
-        }),
-        {
-          pending: "Generating Share link",
-          success: "Share Link Copied to Clipboard",
-        }
-      );
-      const body = await response.json();
+          {
+            pending: "Generating Share link",
+            success: "Share Link Copied to Clipboard",
+          }
+        );
+        const body = await response.json();
 
-      // copy the url in the clipboard
-      if (body?.data?.tiny_url) {
-        navigator.clipboard.writeText(body.data.tiny_url);
-      } else {
+        // copy the url in the clipboard
+        if (body.data.tiny_url)
+          navigator.clipboard.writeText(body.data.tiny_url);
+        else navigator.clipboard.writeText(generatedURL);
+      } catch {
         navigator.clipboard.writeText(generatedURL);
-        // show toast
         toast.success("Share Link Copied to clipboard");
       }
     }
