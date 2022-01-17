@@ -123,7 +123,6 @@ export default function NotesList({ createNotes, deleteNote }) {
                     style={{
                       ...props.style,
                       border: "2px solid transparent",
-                      width: "100%",
                     }}
                   >
                     <NotesListItem
