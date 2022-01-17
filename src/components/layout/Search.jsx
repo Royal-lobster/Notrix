@@ -11,6 +11,7 @@ function Search() {
   let db = new Localbase();
   const [results, setResults] = useState([]);
   const [queryShareUrl, setQueryShareURL] = useState("");
+  const [isGoBtnClicked, setIsGoBtnClicked] = useState(false);
   let fuse;
 
   db.collection("notes")
@@ -60,10 +61,17 @@ function Search() {
         {queryShareUrl && (
           <button
             className={styles.notrixShareGoBtn}
-            onClick={() => (window.location.href = queryShareUrl)}
+            onClick={() => {
+              setIsGoBtnClicked(true);
+              window.location.href = queryShareUrl;
+            }}
           >
             Go
-            <FeatherIcon icon="arrow-right-circle" color="#ddd" size="15" />
+            {isGoBtnClicked ? (
+              <div class={styles.loaderWheel} />
+            ) : (
+              <FeatherIcon icon="arrow-right-circle" color="#ddd" size="15" />
+            )}
           </button>
         )}
       </div>
