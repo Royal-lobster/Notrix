@@ -28,7 +28,8 @@
 .searchBar input:focus {
   outline: none;
 }
-.notrixShareIndicator {
+.notrixShareIndicator,
+.notrixShareIndicatorShine {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -38,17 +39,33 @@
   font-family: nunito;
   color: #a1a1a1;
 }
+.notrixShareIndicatorShine {
+  animation: shine 1s infinite;
+}
+@keyframes shine {
+  0% {
+    opacity: 1;
+    background-color: #ffffff15;
+  }
+  50% {
+    opacity: 0.5;
+  }
+  100% {
+    opacity: 1;
+  }
+}
 .brandingSymbol {
-  border-right: 1px solid var(--secondary_dark_color);
   color: #a1a1a1;
   font-family: "Vollkorn", serif;
-  padding: 5px;
+  padding-left: 5px;
   font-size: 16px;
   margin-right: 5px;
-  height: 15px;
-  width: 15px;
   text-align: center;
-  line-height: 1.2;
+  transform: translateY(1px);
+}
+.shareText {
+  border-left: 1px solid var(--secondary_dark_color);
+  padding-left: 5px;
 }
 .notrixShareGoBtn {
   display: flex;
@@ -172,6 +189,12 @@
   }
   .searchBar {
     width: 90vw;
+  }
+  .shareText {
+    font-size: 14px;
+  }
+  .searchBar input {
+    font-size: 16px;
   }
   .resultsContainer {
     margin-top: 8px;

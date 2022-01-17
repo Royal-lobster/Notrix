@@ -47,12 +47,20 @@ function Search() {
     <div className={styles.container}>
       <div className={styles.searchBar}>
         {queryShareUrl && (
-          <div className={styles.notrixShareIndicator}>
-            <span className={styles.brandingSymbol}>N</span> Share
+          <div
+            className={
+              isGoBtnClicked
+                ? styles.notrixShareIndicatorShine
+                : styles.notrixShareIndicator
+            }
+          >
+            <span className={styles.brandingSymbol}>N</span>{" "}
+            <span className={styles.shareText}>Share</span>
           </div>
         )}
         <input
           type="text"
+          disabled={isGoBtnClicked}
           onChange={(e) => {
             filterSearchQuery(e.target.value);
           }}
@@ -61,6 +69,7 @@ function Search() {
         {queryShareUrl && (
           <button
             className={styles.notrixShareGoBtn}
+            disabled={isGoBtnClicked}
             onClick={() => {
               setIsGoBtnClicked(true);
               window.location.href = queryShareUrl;
