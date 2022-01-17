@@ -41,7 +41,7 @@
 }
 .brandingSymbol {
   background-color: var(--primary_color);
-  color: var(--primary_dark_color);
+  color: var(--secondary_dark_color);
   padding: 5px;
   font-size: 24px;
   margin-right: 12px;
