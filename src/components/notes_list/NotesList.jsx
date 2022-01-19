@@ -26,7 +26,7 @@ export default function NotesList({ createNotes, deleteNote }) {
   let db = new Localbase();
 
   let reOrderIds = (notes) => {
-    let newOrder = notes.map((note) => note.id);
+    let newOrder = notes?.map((note) => note?.id);
     // update the new order in IndexedDB
     db.collection("order").doc({ id: 0 }).set({
       id: 0,
@@ -38,13 +38,13 @@ export default function NotesList({ createNotes, deleteNote }) {
   useEffect(() => {
     let cleanAndSetItems = (note) => {
       // if note either has title or content allow it
-      if (note.title || note.content) {
+      if (note?.title || note?.content) {
         // if note has no title and modifed empty content delete it
-        if (!note.title && note.content === `\\\n`) deleteNote(note.id);
+        if (!note?.title && note?.content === `\\\n`) deleteNote(note?.id);
         else return note;
       }
       // if note has empty Title and Content, delete it
-      else deleteNote(note.id);
+      else deleteNote(note?.id);
     };
 
     let getOrderFromIndexedDB = async () => {
