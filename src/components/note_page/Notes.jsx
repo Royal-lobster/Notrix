@@ -1,17 +1,17 @@
 import React, { useEffect, useState, useRef } from "react";
 import { useParams } from "react-router";
 import { Dialog } from "@reach/dialog";
-import useWindowSize from "../../lib/useWindowSize";
 import TextareaAutosize from "react-textarea-autosize";
 import Editor from "rich-markdown-editor";
-import NavBar from "../layout/NavBar";
-import Footer from "../layout/Footer";
-import NoteControls from "./NoteControls";
 import "@reach/dialog/styles.css";
-import styles from "./Notes.module.css";
 import Localbase from "localbase";
 import { motion } from "framer-motion";
 import Scrollbars from "react-custom-scrollbars";
+import useWindowSize from "../../lib/useWindowSize";
+import NavBar from "../layout/NavBar";
+import Footer from "../layout/Footer";
+import NoteControls from "./NoteControls";
+import styles from "./Notes.module.css";
 
 export default function Notes({ deleteNote }) {
   // initialize localbase
@@ -64,6 +64,8 @@ export default function Notes({ deleteNote }) {
   let handleChangeNoteColor = () => {
     setNoteColor(`hsl(${Math.floor(Math.random() * 360)}, ${70}%, ${80}%)`);
   };
+
+  // function to make scroll to top smoothly
   const scrollToTop = () => {
     if (!scrollbar || !scrollbar.current) {
       return;
@@ -134,6 +136,7 @@ export default function Notes({ deleteNote }) {
           </button>
         </div>
       </Dialog>
+
       <div className={styles.wrapper}>
         <NavBar
           id={id}
@@ -183,8 +186,8 @@ export default function Notes({ deleteNote }) {
                     });
                   }}
                 />
-                {/* On mobile devices, render NoteControls component at bottom instead of top */}
               </motion.div>
+              {/* On mobile devices, render NoteControls component at bottom instead of top */}
               <div className={styles.container}>
                 {width <= 800 && (
                   <div className={styles.footerControls}>
