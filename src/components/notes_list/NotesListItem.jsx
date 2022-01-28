@@ -4,19 +4,10 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import FeatherIcon from "feather-icons-react";
 import LZUTF8 from "lzutf8";
-import Localbase from "localbase";
 import { motion } from "framer-motion";
 import fetchWithTimeout from "../../lib/fetchWithTimeout";
 
-function NotesListItem({
-  id,
-  setIds,
-  title,
-  content,
-  fullContent,
-  color,
-  date,
-}) {
+function NotesListItem({ id, title, content, fullContent, color, date }) {
   let createShareLink = async () => {
     // if there is no title, show "Untitled"
     let noteTitle = title ? encodeURIComponent(title.trim()) : "Untitled";
@@ -38,26 +29,18 @@ function NotesListItem({
     if (navigator.onLine) {
       try {
         const response = await toast.promise(
-          fetchWithTimeout("https://api.tinyurl.com/create", {
-            method: "POST",
-            headers: {
-              Authorization: `Bearer ${process.env.REACT_APP_TINYURL_ACCESS_TOKEN}`,
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-              url: generatedURL,
-            }),
-          }),
+          fetchWithTimeout(
+            `https://tinyurl.com/api-create.php?url=${generatedURL}`
+          ),
           {
             pending: "Generating Share link",
             success: "Share Link Copied to Clipboard",
           }
         );
-        const body = await response.json();
+        let shortenedURL = await response.text();
 
         // copy the url in the clipboard
-        if (body.data.tiny_url)
-          navigator.clipboard.writeText(body.data.tiny_url);
+        if (shortenedURL) navigator.clipboard.writeText(shortenedURL);
         else navigator.clipboard.writeText(generatedURL);
       } catch {
         navigator.clipboard.writeText(generatedURL);

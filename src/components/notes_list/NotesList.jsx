@@ -129,7 +129,6 @@ export default function NotesList({ createNotes, deleteNote }) {
                     <NotesListItem
                       id={value.id}
                       key={value.id}
-                      setIds={setItems}
                       title={
                         value.title
                           ? `${value.title?.substring(0, 150)} ${
