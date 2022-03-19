@@ -40,7 +40,7 @@ function NotesListItem({ id, title, content, fullContent, color, date }) {
         let shortenedURL = await response.text();
 
         // copy the url in the clipboard
-        if (shortenedURL) navigator.clipboard.writeText(shortenedURL);
+        if (shortenedURL && response.ok) navigator.clipboard.writeText(shortenedURL);
         else navigator.clipboard.writeText(generatedURL);
       } catch {
         navigator.clipboard.writeText(generatedURL);
