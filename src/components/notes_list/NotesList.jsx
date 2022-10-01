@@ -68,7 +68,6 @@ export default function NotesList({ createNotes, deleteNote }) {
       // if order data is present in indexedDB, fetch notes in order
       else {
         let order = orderData[0].order;
-        let AllOrderedNotes = [];
         order.forEach((id) => {
           db.collection("notes")
             .doc({ id: id })

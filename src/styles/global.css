@@ -3,6 +3,7 @@
   --primary_dark_color: #27323a;
   --secondary_dark_color: #435055;
   --primary_color: #a3f7bf;
+  --danger_color: #d65745;
   --placeholder_color: #757575;
   --toastify-color-progress-success: #a3f7bf !important;
 }
@@ -24,8 +25,12 @@ html {
 .Toastify__toast-theme--dark {
   background: var(--secondary_dark_color) !important;
 }
-.Toastify__toast-icon svg {
+.Toastify__toast--success svg {
   fill: var(--primary_color) !important;
+}
+
+.Toastify__toast--error svg {
+  fill: var(--danger_color) !important;
 }
 /* width */
 ::-webkit-scrollbar {

@@ -74,7 +74,18 @@ export default function NavBar({
         {showSearchBar && width >= 600 && <Search />}
 
         {/* render button at right most side. [New note] in homepage and [back btn] at notes page */}
-        <div style={isStickedAtTop ? { display: "none" } : {}}>
+        <div
+          style={
+            isStickedAtTop ? { display: "none" } : { display: "flex", gap: 10 }
+          }
+        >
+          {!isNotePage && (
+            <Button
+              className={styles.createNotesBtn}
+              onClick={() => history.push("/migrate")}
+              icon="download"
+            ></Button>
+          )}
           <Button
             className={styles.createNotesBtn}
             onClick={isNotePage ? () => history.push("/") : createNotes}

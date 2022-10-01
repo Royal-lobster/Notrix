@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import "./App.css";
 import Notes from "./components/note_page/Notes";
 import { useHistory } from "react-router-dom";
@@ -7,10 +7,11 @@ import { Route, Switch } from "react-router";
 import NotesList from "./components/notes_list/NotesList";
 import SharedNote from "./components/shared_note_page/SharedNote";
 import Localbase from "localbase";
-import { Scrollbars } from "react-custom-scrollbars";
+import Migrate from "./components/migrate/Migrate";
 
 function App() {
   const history = useHistory();
+
   // initialize localbase
   let db = new Localbase();
 
@@ -108,6 +109,10 @@ function App() {
             component={() => (
               <SharedNote createNotes={createNotes} history={history} />
             )}
+          />
+          <Route
+            path="/migrate"
+            component={() => <Migrate history={history} />}
           />
         </Switch>
       </div>

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import styles from "./NotesListItem.module.css";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -8,7 +8,13 @@ import { motion } from "framer-motion";
 import fetchWithTimeout from "../../lib/fetchWithTimeout";
 
 function NotesListItem({ id, title, content, fullContent, color, date }) {
+  const toastId = React.useRef(null);
+
   let createShareLink = async () => {
+    toastId.current = toast.loading("Generating Link", { autoClose: false });
+
+    console.log({ toastId: toastId.current });
+
     // if there is no title, show "Untitled"
     let noteTitle = title ? encodeURIComponent(title.trim()) : "Untitled";
 
@@ -28,32 +34,32 @@ function NotesListItem({ id, title, content, fullContent, color, date }) {
     // shorten generated link if online
     if (navigator.onLine) {
       try {
-        const response = await toast.promise(
-          fetchWithTimeout(
-            `https://tinyurl.com/api-create.php?url=${generatedURL}`
-          ),
-          {
-            pending: "Generating Share link",
-            success: "Share Link Copied to Clipboard",
-          }
+        const response = await fetchWithTimeout(
+          `https://tinyurl.com/api-create.php?url=${generatedURL}`
         );
         let shortenedURL = await response.text();
-
-        // copy the url in the clipboard
-        if (shortenedURL && response.ok) navigator.clipboard.writeText(shortenedURL);
+        if (shortenedURL && response.ok)
+          navigator.clipboard.writeText(shortenedURL);
         else navigator.clipboard.writeText(generatedURL);
       } catch {
         navigator.clipboard.writeText(generatedURL);
-        toast.success("Share Link Copied to clipboard");
       }
     }
     // if offline, copy long url and show toast
     else {
       // copy the url in the clipboard
       navigator.clipboard.writeText(generatedURL);
-      // show toast
-      toast.success("Share Link Copied to clipboard");
     }
+
+    console.log(generatedURL);
+
+    toast.update(toastId.current, {
+      render: "Share Link Copied to clipboard",
+      type: "success",
+      isLoading: false,
+      autoClose: 3000,
+      closeOnClick: true,
+    });
   };
 
   return (

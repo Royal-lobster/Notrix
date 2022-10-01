@@ -1,7 +1,6 @@
 import { motion } from "framer-motion";
 import React, { useEffect, useState } from "react";
 import { abbreviateNumber } from "../../lib/abbreviateNumber";
-import useWindowSize from "../../lib/useWindowSize";
 import Button from "../general_components/Button";
 import styles from "./NoteControls.module.css";
 import Localbase from "localbase";
@@ -20,7 +19,6 @@ function NoteControls({
   let db = new Localbase();
 
   let [wordCount, setWordCount] = useState(0);
-  let [width] = useWindowSize();
   // calculate word count on every valid keystroke
   useEffect(() => {
     let fetchWordCount = () => {

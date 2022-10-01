@@ -15,7 +15,7 @@ function Button({ icon, text, outline, onClick, color, toggleColor }) {
         color={toggleColor ? "#FFF" : color ? color : "#A3F7BF"}
         size="20"
       />
-      <div className={styles.text}>{text}</div>
+      {text && <div className={styles.text}>{text}</div>}
     </button>
   );
 }
