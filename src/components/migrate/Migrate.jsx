@@ -31,7 +31,7 @@ function Migrate({ history }) {
     a.href = url;
 
     // set the download attribute of the anchor element to the file name
-    a.download = "notes.json";
+    a.download = `notrix-backup-${new Date().toLocaleString()}.json`;
 
     // click the anchor element
     a.click();
