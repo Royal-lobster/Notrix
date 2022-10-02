@@ -51,13 +51,24 @@ function Migrate({ history }) {
       // get the notes and order from the json
       let { notes, order } = data;
 
+      const shortenedDate = new Date()
+        .toLocaleString([], {
+          year: "numeric",
+          month: "numeric",
+          day: "numeric",
+          hour: "2-digit",
+          minute: "2-digit",
+        })
+        .split(",");
+
       // change ids of notes to avoid conflicts and reflect the changes of ids in order
       notes.forEach((note) => {
         let newId = createUID(22);
-
-        console.log(note.id, "--->", newId);
         order.order = order.order.map((id) => (id === note.id ? newId : id));
         note.id = newId;
+        note.content = `\n:::info\nFetched from **Notrix Migrate** on \`${
+          shortenedDate[0]
+        }\` at \`${shortenedDate[1].trim()}\`\n\n:::\n\n\\\n${note.content}`;
       });
 
       // loop through the notes and add them to the database
