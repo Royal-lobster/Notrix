@@ -96,6 +96,7 @@
 input[type="file"] {
   background-color: #0000002a;
   border-radius: 6px;
+  max-width: min(300px, 80vw);
 }
 input[type="file"]::file-selector-button {
   border-top-left-radius: 6px;

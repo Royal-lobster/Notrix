@@ -16,8 +16,18 @@ function Migrate({ history }) {
     // get note order
     let order = await db.collection("order").doc({ id: 0 }).get();
 
+    // order all notes by order
+    let orderedNotes = [];
+    order.order.forEach((id) => {
+      notes.forEach((note) => {
+        if (note.id === id) {
+          orderedNotes.push(note);
+        }
+      });
+    });
+
     // create a new blob with the data
-    let blob = new Blob([JSON.stringify({ notes, order })], {
+    let blob = new Blob([JSON.stringify(orderedNotes)], {
       type: "application/json",
     });
 
@@ -46,10 +56,8 @@ function Migrate({ history }) {
 
     try {
       // parse the text as json
-      let data = JSON.parse(text);
-
-      // get the notes and order from the json
-      let { notes, order } = data;
+      const notes = JSON.parse(text);
+      const order = [];
 
       const shortenedDate = new Date()
         .toLocaleString([], {
@@ -64,7 +72,7 @@ function Migrate({ history }) {
       // change ids of notes to avoid conflicts and reflect the changes of ids in order
       notes.forEach((note) => {
         let newId = createUID(22);
-        order.order = order.order.map((id) => (id === note.id ? newId : id));
+        order.push(newId);
         note.id = newId;
         note.content = `\n:::info\nFetched from **Notrix Migrate** on \`${
           shortenedDate[0]
@@ -77,16 +85,13 @@ function Migrate({ history }) {
       });
 
       // modify the order in the database
-      db.collection("order")
-        .doc({ id: 0 })
-        .get()
-        .then((doc) => {
-          db.collection("order")
-            .doc({ id: 0 })
-            .update({
-              order: [...order.order, ...doc.order],
-            });
-        });
+      let oldOrder = db.collection("order").get();
+
+      if (oldOrder.length === 0) {
+        db.collection("order").add({ id: 0, order });
+      } else {
+        db.collection("order").doc({ id: 0 }).update({ order });
+      }
 
       toast.success("Success! Going Home", {
         autoClose: 3000,
