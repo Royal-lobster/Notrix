@@ -113,7 +113,7 @@ function Migrate({ history }) {
               </div>
               <h1 className={styles.title}>Export Notes</h1>
               <p className={styles.message}>
-                Click on the button below to export the data from your notion.
+                Click on the button below to export the data from your notrix.
                 This will export all your notes into JSON file.
               </p>
 
@@ -135,7 +135,7 @@ function Migrate({ history }) {
               </div>
               <h1 className={styles.title}>Import Notes</h1>
               <p className={styles.message}>
-                Upload the exported data from your notion. This will add the new
+                Upload the exported data from your notrix. This will add the new
                 imported notes to your existing notes.
               </p>
               <input
