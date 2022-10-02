@@ -2,12 +2,22 @@ import React from "react";
 import styles from "./Button.module.css";
 import FeatherIcon from "feather-icons-react";
 
-function Button({ icon, text, outline, onClick, color, toggleColor }) {
+function Button({
+  icon,
+  text,
+  outline,
+  onClick,
+  color,
+  toggleColor,
+  className,
+}) {
   return (
     <button
       tabIndex="0"
       style={toggleColor && { backgroundColor: toggleColor }}
-      className={outline ? styles.buttonOutline : styles.button}
+      className={`${
+        outline ? styles.buttonOutline : styles.button
+      } ${className}`}
       onClick={onClick}
     >
       <FeatherIcon

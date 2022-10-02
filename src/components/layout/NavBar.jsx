@@ -87,7 +87,7 @@ export default function NavBar({
             ></Button>
           )}
           <Button
-            className={styles.createNotesBtn}
+            className={styles.migrateBtn}
             onClick={isNotePage ? () => history.push("/") : createNotes}
             icon={isNotePage ? "home" : "pen-tool"}
             text={isNotePage ? "All Notes" : "New Note"}
