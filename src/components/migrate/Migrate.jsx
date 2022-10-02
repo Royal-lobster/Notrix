@@ -85,13 +85,10 @@ function Migrate({ history }) {
       });
 
       // modify the order in the database
-      let oldOrder = db.collection("order").get();
-
-      if (oldOrder.length === 0) {
-        db.collection("order").add({ id: 0, order });
-      } else {
-        db.collection("order").doc({ id: 0 }).update({ order });
-      }
+      let oldOrder = await db.collection("order").get();
+      oldOrder = oldOrder[0].order;
+      order.push(...oldOrder);
+      db.collection("order").doc({ id: 0 }).update({ order });
 
       toast.success("Success! Going Home", {
         autoClose: 3000,
