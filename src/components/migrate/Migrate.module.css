@@ -127,7 +127,7 @@ input[type="file"]::file-selector-button {
   }
 }
 
-@media only screen and (max-width: 360px) {
+@media only screen and (max-width: 600px) {
   .brandingLettering {
     font-size: 20px;
   }
@@ -137,7 +137,8 @@ input[type="file"]::file-selector-button {
     height: 20px;
   }
   .content {
-    gap: 40px;
+    gap: 30px;
+    padding: 20px 10px;
   }
   .section {
     display: flex;
@@ -148,8 +149,11 @@ input[type="file"]::file-selector-button {
   }
   .message {
     margin-top: 10px;
+    font-size: 16px;
   }
   .themeIcon {
     margin-bottom: 10px;
+    height: 40px;
+    width: 40px;
   }
 }

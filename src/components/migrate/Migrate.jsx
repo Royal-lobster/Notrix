@@ -134,15 +134,13 @@ function Migrate({ history }) {
               </p>
 
               {/* Export Button */}
-              <div className={styles.buttonWrapper}>
-                <Button
-                  className={styles.exportButton}
-                  text="Export Raw Data"
-                  icon="file-text"
-                  toggleColor="#1a73e8"
-                  onClick={exportData}
-                />
-              </div>
+              <Button
+                className={styles.exportButton}
+                text="Export Raw Data"
+                icon="file-text"
+                toggleColor="#1a73e8"
+                onClick={exportData}
+              />
             </div>
             <div className={styles.section}>
               {/* Import Message */}
